@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="layout.xhtml">
+
+<ui:define name="title">Your Order is Complete</ui:define>
+
+<ui:define name="body">
+
+            <h2>Your Order is Complete :
+                <h:outputText value="#{catalogController.order.id}"/>
+            </h2>
+
+            <p><b>Your order id is <h:outputText value="#{catalogController.order.id}"/></b></p>
+
+            <h:form>
+                <h:dataTable value="#{catalogController.order.orderLines}" var="orderLine">
+                    <h:column>
+                        <b><h:outputText value="#{orderLine.item.product.name}"/></b>
+                        <br/>
+                        <h:outputText value="#{orderLine.item.name}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{orderLine.quantity}"/>
+                    </h:column>
+                    <h:column>
+                        x
+                        <h:outputText value="#{orderLine.item.unitCost}"/>
+                        $
+                    </h:column>
+                    <h:column>
+                        =
+                        <h:outputText value="#{orderLine.subTotal}"/>
+                        $
+                    </h:column>
+                </h:dataTable>
+                <br/>
+
+                <div class="zoneButton">
+                    Total $
+                    <h:outputText value="#{cart.order.total}"/>
+                </div>
+            </h:form>
+
+
+            <P>You will receive shortly an email confirming your order</P>
+
+            <P>Thank you for shopping with the YAPS Pet Store</P>
+
+    </ui:define>
+</ui:composition>
+</html>

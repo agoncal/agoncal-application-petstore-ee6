@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:link outcome="main">
+        <h:graphicImage  id="logo" url="#{resource['banner_logo.gif']}"/>
+    </h:link>
+
+    <h:form>
+        <div style="float: right;">
+            <h:inputText value="#{catalogController.keyword}"/>
+            <h:commandButton action="#{catalogController.doSearch}" value="Search"/>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <h:link outcome="signon" value="Sign in" rendered="#{!accountController.loggedIn}"/>
+            &nbsp;&nbsp;&nbsp;
+            <h:link outcome="showaccount" value="Welcome #{accountController.customer.firstname}" rendered="#{accountController.loggedIn}"/>
+            &nbsp;&nbsp;&nbsp;
+            <h:link outcome="showcart" value="Cart" rendered="#{!shoppingCartController.shoppingCartIsEmpty()}"/>
+            &nbsp;&nbsp;&nbsp;
+            <h:commandLink action="#{accountController.doSignOff}" rendered="#{accountController.loggedIn}">
+                <h:outputText value="Sign off"/>
+            </h:commandLink>
+
+        </div>
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="layout.xhtml">
+
+    <ui:define name="title">Sign In</ui:define>
+
+    <ui:define name="body">
+
+        <h2>Sign In</h2>
+
+        <p><b>Are you a returning customer ?</b></p>
+
+        <table cellSpacing="0" cellPadding="20" width="100%" border="1">
+            <tr>
+                <td vAlign="top">
+                    <h:form>
+                        <table cellSpacing="0" cellPadding="5" border="0">
+                            <tr>
+                                <td align="center" colSpan="2"><b>Yes.</b></td>
+                            </tr>
+                            <tr>
+                                <td align="right"><b>Login :</b></td>
+                                <td>
+                                    <h:inputText value="#{accountController.login}" maxlength="10" size="12"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><b>Password:</b></td>
+                                <td>
+                                    <h:inputSecret value="#{accountController.password}" maxlength="10" size="12"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" colSpan="2">
+                                    <h:commandButton value="Sign In"
+                                                     action="#{accountController.doSignIn}"
+                                                     type="submit"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </h:form>
+                </td>
+                <td vAlign="top">
+                    <h:form>
+                        <table cellSpacing="0" cellPadding="5" border="0">
+                            <tr>
+                                <td align="middle" colSpan="2"><b>No. I would like to sign up for an account.</b></td>
+                            </tr>
+                            <tr>
+                                <td align="right"><b>Login:</b></td>
+                                <td>
+                                    <h:inputText value="#{accountController.customer.login}" maxlength="10" size="12"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><b>Password:</b></td>
+                                <td>
+                                    <h:inputSecret value="#{accountController.customer.password}" maxlength="10" size="12"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><b>Password (Repeat):</b></td>
+                                <td>
+                                    <h:inputSecret value="#{accountController.password2}" maxlength="10" size="12"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="middle" colSpan="2">
+                                    <h:commandButton value="Create new account"
+                                                     action="#{accountController.doCreateNewAccount}"
+                                                     type="submit"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </h:form>
+                </td>
+            </tr>
+        </table>
+
+    </ui:define>
+</ui:composition>
+</html>

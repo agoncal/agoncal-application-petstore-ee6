@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="layout.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="itemId" value="#{catalogController.itemId}"/>
+        <f:event type="preRenderComponent" listener="#{catalogController.doFindItem}"/>
+    </f:metadata>
+
+    <ui:define name="title">#{catalogController.product.name} Items</ui:define>
+
+    <ui:define name="body">
+
+        <h2>
+            <h:outputText value="#{catalogController.item.product.name} - #{catalogController.item.name}"/>
+        </h2>
+
+        <h:panelGrid columns="3">
+            <h:column>
+                <h:graphicImage url="resources/images/#{catalogController.item.imagePath}"/>
+            </h:column>
+
+            <h:column>
+                <h:outputText value="Unit Cost:"/>
+                <h:outputText value="#{catalogController.item.unitCost}"/> $
+            </h:column>
+
+
+            <h:column>
+                <h:form>
+                    <h:commandLink action="#{shoppingCartController.addItemToCart}"
+                                   rendered="#{accountController.loggedIn}">
+                        <h:outputText value="Add to cart"/>
+                        <f:param name="itemId" value="#{catalogController.item.id}"/>
+                    </h:commandLink>
+                </h:form>
+            </h:column>
+        </h:panelGrid>
+
+        <h:panelGrid columns="1">
+            <h:column>
+                <h:outputText value="#{catalogController.item.description}"/> $
+            </h:column>
+        </h:panelGrid>
+
+    </ui:define>
+</ui:composition>
+</html>

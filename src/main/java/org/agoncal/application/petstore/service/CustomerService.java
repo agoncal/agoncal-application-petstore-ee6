@@ -1,0 +1,86 @@
+package org.agoncal.application.petstore.service;
+
+import org.agoncal.application.petstore.domain.Address;
+import org.agoncal.application.petstore.domain.Customer;
+import org.agoncal.application.petstore.exception.ValidationException;
+import org.agoncal.application.petstore.util.Loggable;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
+import java.io.Serializable;
+
+/**
+ * @author Antonio Goncalves
+ *         http://www.antoniogoncalves.org
+ *         --
+ */
+
+@Stateless
+@Loggable
+public class CustomerService implements Serializable {
+
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
+    @Inject
+    private EntityManager em;
+
+    // ======================================
+    // =              Public Methods        =
+    // ======================================
+
+    public boolean doesLoginAlreadyExist(final String login) {
+
+        if (login == null)
+            throw new ValidationException("Login cannot be null");
+
+        // Login has to be unique
+        TypedQuery<Customer> typedQuery = em.createNamedQuery(Customer.FIND_BY_LOGIN, Customer.class);
+        typedQuery.setParameter("login", login);
+        try {
+            typedQuery.getSingleResult();
+            return true;
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
+
+    public Customer createCustomer(final Customer customer) {
+
+        if (customer == null)
+            throw new ValidationException("Customer object is null");
+
+        em.persist(customer);
+
+        return customer;
+    }
+
+    public Customer findCustomer(final String login) {
+
+        if (login == null)
+            throw new ValidationException("Invalid login");
+
+        TypedQuery<Customer> typedQuery = em.createNamedQuery(Customer.FIND_BY_LOGIN, Customer.class);
+        typedQuery.setParameter("login", login);
+
+        return typedQuery.getSingleResult();
+    }
+
+    public Customer updateCustomer(final Customer customer, final Address homeAddress) {
+
+        // Make sure the object is valid
+        if (customer == null)
+            throw new ValidationException("Customer object is null");
+
+        customer.setHomeAddress(homeAddress);
+
+        // Update the object in the database
+        em.merge(customer);
+
+        return customer;
+    }
+}

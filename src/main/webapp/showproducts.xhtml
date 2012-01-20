@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="layout.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="categoryName" value="#{catalogController.categoryName}"/>
+        <f:event type="preRenderComponent" listener="#{catalogController.doFindProducts}"/>
+    </f:metadata>
+
+    <ui:define name="title">#{catalogController.categoryName} Products</ui:define>
+
+    <ui:define name="body">
+
+        <h2>Products for category :
+            <h:outputText value="#{catalogController.categoryName}"/>
+        </h2>
+
+        <h:outputText value="No products found" rendered="#{catalogController.products == null || catalogController.products.size() == 0}"/>
+        <h:dataTable value="#{catalogController.products}" var="oneProduct" rendered="#{catalogController.products.size() > 0}">
+            <h:column>
+                <h:link outcome="showitems" includeViewParams="true" value="#{oneProduct.name}">
+                    <f:param name="productId" value="#{oneProduct.id}"/>
+                </h:link>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{oneProduct.description}"/>
+            </h:column>
+        </h:dataTable>
+
+    </ui:define>
+</ui:composition>
+</html>

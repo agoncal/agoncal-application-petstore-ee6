@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="layout.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="login" value="#{accountController.login}"/>
+        <f:event type="preRenderComponent" listener="#{accountController.doFindCustomer}"/>
+    </f:metadata>
+
+    <ui:define name="title">Update account</ui:define>
+
+    <ui:define name="body">
+
+        <h2>Update account</h2>
+
+            <h:form>
+
+                <div class="zoneEditor">
+                    <h3>Personal information</h3>
+
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Login :"/>
+                        <h:inputText value="#{accountController.customer.login}" readonly="true"/>
+
+                        <h:outputText value="*Firstname :"/>
+                        <h:inputText value="#{accountController.customer.firstname}"/>
+
+                        <h:outputText value="*Lastname :"/>
+                        <h:inputText value="#{accountController.customer.lastname}"/>
+
+                        <h:outputText value="Email :"/>
+                        <h:inputText value="#{accountController.customer.email}"/>
+
+                        <h:outputText value="Telephone :"/>
+                        <h:inputText value="#{accountController.customer.telephone}"/>
+
+                        <h:outputText value="Date of birth (dd.MM.yyyy):"/>
+                        <h:inputText value="#{accountController.customer.dateOfBirth}">
+                            <f:convertDateTime pattern="dd.MM.yyyy"/>
+                        </h:inputText>
+
+                    </h:panelGrid>
+                </div>
+
+                <div class="zoneEditor">
+                    <h3>Address</h3>
+
+                    <h:panelGrid columns="2">
+                        <h:outputText value="*Street1 :"/>
+                        <h:inputText value="#{accountController.homeAddress.street1}"/>
+
+                        <h:outputText value="Street2 :"/>
+                        <h:inputText value="#{accountController.homeAddress.street2}"/>
+
+                        <h:outputText value="*City :"/>
+                        <h:inputText value="#{accountController.homeAddress.city}"/>
+
+                        <h:outputText value="State :"/>
+                        <h:inputText value="#{accountController.homeAddress.state}"/>
+
+                        <h:outputText value="*Zipcode :"/>
+                        <h:inputText value="#{accountController.homeAddress.zipcode}"/>
+
+                        <h:outputText value="*Country :"/>
+                        <h:inputText value="#{accountController.homeAddress.country}"/>
+
+                    </h:panelGrid>
+                </div>
+
+                <div class="zoneButton">
+                    <h:commandButton value="Submit" action="#{accountController.doUpdateAccount}" type="submit"/>
+                </div>
+            </h:form>
+
+    </ui:define>
+</ui:composition>
+</html>
