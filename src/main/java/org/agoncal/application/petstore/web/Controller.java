@@ -5,6 +5,7 @@ import org.agoncal.application.petstore.util.Loggable;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -24,7 +25,8 @@ public abstract class Controller {
     // =             Attributes             =
     // ======================================
 
-    private Logger logger = Logger.getLogger(Constants.LOGGER_JSF);
+    @Inject
+    private Logger logger;
 
     // ======================================
     // =          Protected Methods         =

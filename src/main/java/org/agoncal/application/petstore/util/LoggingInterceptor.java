@@ -1,5 +1,6 @@
 package org.agoncal.application.petstore.util;
 
+import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
@@ -22,7 +23,8 @@ public class LoggingInterceptor implements Serializable {
     // =             Attributes             =
     // ======================================
 
-    private Logger logger = Logger.getLogger("org.agoncal.petstore");
+    @Inject
+    private Logger logger;
 
     // ======================================
     // =          Business methods          =
