@@ -83,4 +83,11 @@ public class CustomerService implements Serializable {
 
         return customer;
     }
+
+    public void removeCustomer(final Customer customer) {
+        if (customer == null)
+            throw new ValidationException("Customer object is null");
+
+        em.remove(em.merge(customer));
+    }
 }

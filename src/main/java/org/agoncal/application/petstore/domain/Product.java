@@ -3,6 +3,8 @@ package org.agoncal.application.petstore.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,15 +16,10 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = Product.FIND_BY_CATEGORY_NAME, query = "SELECT p FROM Product p WHERE p.category.name = :pname")
+        @NamedQuery(name = Product.FIND_BY_CATEGORY_NAME, query = "SELECT p FROM Product p WHERE p.category.name = :pname"),
+        @NamedQuery(name = Product.FIND_ALL, query = "SELECT p FROM Product p")
 })
 public class Product {
-
-    // ======================================
-    // =             Constants              =
-    // ======================================
-
-    public static final String FIND_BY_CATEGORY_NAME = "Product.findByCategoryName";
 
     // ======================================
     // =             Attributes             =
@@ -37,12 +34,21 @@ public class Product {
     private String name;
     @Column(nullable = false)
     private String description;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "category_fk", nullable = false)
+    @XmlTransient
     private Category category;
-    @OneToMany(mappedBy = "product", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     @OrderBy("name ASC")
+    @XmlTransient
     private List<Item> items;
+
+    // ======================================
+    // =             Constants              =
+    // ======================================
+
+    public static final String FIND_BY_CATEGORY_NAME = "Product.findByCategoryName";
+    public static final String FIND_ALL = "Product.findAll";
 
     // ======================================
     // =            Constructors            =

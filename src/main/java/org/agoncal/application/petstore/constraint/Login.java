@@ -25,6 +25,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface Login {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
     String message() default "Invalid login"; // TODO use message bundle
 
     Class<?>[] groups() default {};

@@ -1,6 +1,5 @@
 package org.agoncal.application.petstore.web;
 
-import org.agoncal.application.petstore.util.Constants;
 import org.agoncal.application.petstore.util.Loggable;
 
 import javax.faces.application.FacesMessage;
@@ -26,7 +25,7 @@ public abstract class Controller {
     // ======================================
 
     @Inject
-    private Logger logger;
+    private transient Logger logger;
 
     // ======================================
     // =          Protected Methods         =

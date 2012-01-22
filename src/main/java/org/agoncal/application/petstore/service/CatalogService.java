@@ -1,7 +1,6 @@
 package org.agoncal.application.petstore.service;
 
 import org.agoncal.application.petstore.domain.Category;
-import org.agoncal.application.petstore.domain.Customer;
 import org.agoncal.application.petstore.domain.Item;
 import org.agoncal.application.petstore.domain.Product;
 import org.agoncal.application.petstore.exception.ValidationException;
@@ -59,7 +58,7 @@ public class CatalogService implements Serializable {
     public Category createCategory(Category category) {
         if (category == null)
             throw new ValidationException("Category object is null");
-        
+
         em.persist(category);
         return category;
     }
@@ -67,17 +66,20 @@ public class CatalogService implements Serializable {
     public Category updateCategory(Category category) {
         if (category == null)
             throw new ValidationException("Category object is null");
-        
+
         em.merge(category);
         return category;
     }
 
-    public Category removeCategory(Category category) {
+    public void removeCategory(Category category) {
         if (category == null)
             throw new ValidationException("Category object is null");
-        
+
         em.remove(em.merge(category));
-        return category;
+    }
+
+    public void removeCategory(Long categoryId) {
+        removeCategory(findCategory(categoryId));
     }
 
     public List<Product> findProducts(String categoryName) {
@@ -93,12 +95,39 @@ public class CatalogService implements Serializable {
         return em.find(Product.class, productId);
     }
 
+    public List<Product> findAllProducts() {
+        TypedQuery<Product> typedQuery = em.createNamedQuery(Product.FIND_ALL, Product.class);
+        return typedQuery.getResultList();
+    }
+
     public Product createProduct(Product product) {
         if (product == null)
             throw new ValidationException("Product object is null");
-        
+
+        if (product.getCategory() != null && product.getCategory().getId() == null)
+            em.persist(product.getCategory());
+
         em.persist(product);
         return product;
+    }
+
+    public Product updateProduct(Product product) {
+        if (product == null)
+            throw new ValidationException("Product object is null");
+
+        em.merge(product);
+        return product;
+    }
+
+    public void removeProduct(Product product) {
+        if (product == null)
+            throw new ValidationException("Product object is null");
+
+        em.remove(em.merge(product));
+    }
+
+    public void removeProduct(Long productId) {
+        removeProduct(findProduct(productId));
     }
 
     public List<Item> findItems(Long productId) {
@@ -122,11 +151,41 @@ public class CatalogService implements Serializable {
         return typedQuery.getResultList();
     }
 
+    public List<Item> findAllItems() {
+        TypedQuery<Item> typedQuery = em.createNamedQuery(Item.FIND_ALL, Item.class);
+        return typedQuery.getResultList();
+    }
+
     public Item createItem(Item item) {
         if (item == null)
             throw new ValidationException("Item object is null");
 
+        if (item.getProduct() != null && item.getProduct().getId() == null) {
+            em.persist(item.getProduct());
+            if (item.getProduct().getCategory() != null && item.getProduct().getCategory().getId() == null)
+                em.persist(item.getProduct().getCategory());
+        }
+
         em.persist(item);
         return item;
+    }
+
+    public Item updateItem(Item item) {
+        if (item == null)
+            throw new ValidationException("Item object is null");
+
+        em.merge(item);
+        return item;
+    }
+
+    public void removeItem(Item item) {
+        if (item == null)
+            throw new ValidationException("Item object is null");
+
+        em.remove(em.merge(item));
+    }
+
+    public void removeItem(Long itemId) {
+        removeItem(findItem(itemId));
     }
 }

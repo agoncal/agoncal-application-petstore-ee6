@@ -5,10 +5,10 @@ import org.agoncal.application.petstore.util.Loggable;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 /**
  * @author Antonio Goncalves
@@ -19,6 +19,10 @@ import javax.persistence.EntityManager;
 @Singleton
 @Startup
 @Loggable
+@DataSourceDefinition(name = "java:global/jdbc/applicationPetstoreDS",
+        className = "org.apache.derby.jdbc.EmbeddedDriver",
+        url = "jdbc:derby:memory:applicationPetstoreDB;create=true;user=app;password=app"
+)
 public class DBPopulator {
 
     // ======================================
@@ -35,7 +39,10 @@ public class DBPopulator {
     Customer steve;
 
     @Inject
-    private EntityManager em;
+    private CatalogService catalogService;
+
+    @Inject
+    private CustomerService customerService;
 
     // ======================================
     // =          Lifecycle Methods         =
@@ -49,15 +56,15 @@ public class DBPopulator {
 
     @PreDestroy
     private void clearDB() {
-        em.remove(fish);
-        em.remove(dog);
-        em.remove(reptile);
-        em.remove(cat);
-        em.remove(bird);
-        em.remove(marc);
-        em.remove(bill);
-        em.remove(steve);
-        em.remove(fish);
+        catalogService.removeCategory(fish);
+        catalogService.removeCategory(dog);
+        catalogService.removeCategory(reptile);
+        catalogService.removeCategory(cat);
+        catalogService.removeCategory(bird);
+        catalogService.removeCategory(fish);
+        customerService.removeCustomer(marc);
+        customerService.removeCustomer(bill);
+        customerService.removeCustomer(steve);
     }
 
     // ======================================
@@ -181,11 +188,11 @@ public class DBPopulator {
         finch.addItem(maleFinch);
         finch.addItem(femaleFinch);
 
-        em.persist(fish);
-        em.persist(dog);
-        em.persist(reptile);
-        em.persist(cat);
-        em.persist(bird);
+        catalogService.createCategory(fish);
+        catalogService.createCategory(dog);
+        catalogService.createCategory(reptile);
+        catalogService.createCategory(cat);
+        catalogService.createCategory(bird);
     }
 
     private void initCustomers() {
@@ -193,9 +200,9 @@ public class DBPopulator {
         Customer bill = new Customer("Bill", "Gates", "bill", "bill", "bill.gates@microsoft.com", new Address("27 West Side", "Alhabama", "8401", "USA"));
         Customer steve = new Customer("Steve", "Jobs", "jobs", "jobs", "steve.jobs@apple.com", new Address("154 Star Boulevard", "San Francisco", "5455", "USA"));
 
-        em.persist(marc);
-        em.persist(bill);
-        em.persist(steve);
+        customerService.createCustomer(marc);
+        customerService.createCustomer(bill);
+        customerService.createCustomer(steve);
     }
 
 }

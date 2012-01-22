@@ -17,6 +17,7 @@ public abstract class AbstractDomainTest {
     // ======================================
     // =             Attributes             =
     // ======================================
+
     protected static ValidatorFactory vdf;
     protected static Validator validator;
 

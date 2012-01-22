@@ -25,6 +25,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface NotEmpty {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
     String message() default "Should not be empty"; // TODO use message bundle
 
     Class<?>[] groups() default {};

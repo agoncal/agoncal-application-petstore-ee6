@@ -4,8 +4,10 @@ import org.agoncal.application.petstore.constraint.Login;
 import org.agoncal.application.petstore.exception.ValidationException;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -20,6 +22,7 @@ import java.util.GregorianCalendar;
 @NamedQueries({
         @NamedQuery(name = Customer.FIND_BY_LOGIN, query = "SELECT c FROM Customer c WHERE c.login = :login")
 })
+@XmlRootElement
 public class Customer {
 
     // ======================================
@@ -45,6 +48,7 @@ public class Customer {
     private String telephone;
     private String email;
     @Embedded
+    @Valid
     private Address homeAddress = new Address();
     @Column(name = "date_of_birth")
     @Temporal(TemporalType.DATE)

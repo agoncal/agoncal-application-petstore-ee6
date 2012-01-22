@@ -5,6 +5,8 @@ import org.agoncal.application.petstore.constraint.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,7 @@ import java.util.List;
         @NamedQuery(name = Category.FIND_BY_NAME, query = "SELECT c FROM Category c WHERE c.name = :pname"),
         @NamedQuery(name = Category.FIND_ALL, query = "SELECT c FROM Category c")
 })
+@XmlRootElement
 public class Category {
 
     // ======================================
@@ -35,8 +38,9 @@ public class Category {
     @Column(nullable = false)
     @NotEmpty
     private String description;
-    @OneToMany(mappedBy = "category", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     @OrderBy("name ASC")
+    @XmlTransient
     private List<Product> products;
 
     // ======================================

@@ -1,6 +1,7 @@
 package org.agoncal.application.petstore.domain;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "t_order")
+@XmlRootElement
 public class Order {
 
     // ======================================

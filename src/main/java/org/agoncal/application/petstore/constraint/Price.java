@@ -25,6 +25,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface Price {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
     String message() default "Invalid price"; // TODO use message bundle
 
     Class<?>[] groups() default {};
