@@ -5,6 +5,7 @@ import org.agoncal.application.petstore.service.CatalogService;
 import org.agoncal.application.petstore.service.OrderService;
 
 import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 
 @Named
-@SessionScoped
+@ConversationScoped
 public class ShoppingCartController extends Controller implements Serializable {
 
     // ======================================

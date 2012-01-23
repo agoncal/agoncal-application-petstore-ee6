@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -22,7 +23,7 @@ import java.io.Serializable;
 
 @Named
 @Loggable
-@ConversationScoped
+@SessionScoped
 public class AccountController extends Controller implements Serializable {
 
     // ======================================
