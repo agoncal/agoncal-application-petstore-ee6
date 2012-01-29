@@ -31,6 +31,10 @@ This sample has been tested with GlassFish 3.1.2 in several modes :
 ## Execute the sample
 
 Once deployed go to the following URL and start buying some pets: [http://localhost:8080/applicationPetstore](http://localhost:8080/applicationPetstore).
+You can use these login/passwd :
+marc/marc
+bill/bill
+jobsjobs
 
 The admin [REST interface](rs/catalog) allows you to create/update/remove items in the catalog. You can run the following [curl](http://curl.haxx.se/) commands :
 
