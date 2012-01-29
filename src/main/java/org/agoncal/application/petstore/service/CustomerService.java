@@ -70,6 +70,20 @@ public class CustomerService implements Serializable {
         return typedQuery.getSingleResult();
     }
 
+    public Customer findCustomer(final String login, final String password) {
+
+        if (login == null)
+            throw new ValidationException("Invalid login");
+        if (password == null)
+            throw new ValidationException("Invalid password");
+
+        TypedQuery<Customer> typedQuery = em.createNamedQuery(Customer.FIND_BY_LOGIN_PASSWORD, Customer.class);
+        typedQuery.setParameter("login", login);
+        typedQuery.setParameter("password", password);
+
+        return typedQuery.getSingleResult();
+    }
+
     public Customer updateCustomer(final Customer customer, final Address homeAddress) {
 
         // Make sure the object is valid

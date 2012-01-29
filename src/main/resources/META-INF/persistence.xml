@@ -6,13 +6,6 @@
 
     <persistence-unit name="applicationPetstorePU" transaction-type="JTA">
         <jta-data-source>java:global/jdbc/applicationPetstoreDS</jta-data-source>
-        <class>org.agoncal.application.petstore.domain.Category</class>
-        <class>org.agoncal.application.petstore.domain.Item</class>
-        <class>org.agoncal.application.petstore.domain.Product</class>
-        <class>org.agoncal.application.petstore.domain.Customer</class>
-        <class>org.agoncal.application.petstore.domain.CreditCard</class>
-        <class>org.agoncal.application.petstore.domain.Order</class>
-        <class>org.agoncal.application.petstore.domain.OrderLine</class>
         <properties>
             <property name="eclipselink.target-database" value="DERBY"/>
             <property name="eclipselink.ddl-generation" value="create-tables"/>

@@ -33,7 +33,7 @@
             <h:column>
                 <h:form>
                     <h:commandLink action="#{shoppingCartController.addItemToCart}"
-                                   rendered="#{accountController.loggedIn}">
+                                   rendered="#{loginController.loggedIn}">
                         <h:outputText value="Add to cart"/>
                         <f:param name="itemId" value="#{catalogController.item.id}"/>
                     </h:commandLink>

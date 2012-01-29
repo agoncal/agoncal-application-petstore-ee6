@@ -24,7 +24,7 @@ public class LoggingInterceptor implements Serializable {
     // ======================================
 
     @Inject
-    private Logger logger;
+    private transient Logger logger;
 
     // ======================================
     // =          Business methods          =
@@ -33,7 +33,6 @@ public class LoggingInterceptor implements Serializable {
     @AroundInvoke
     public Object logMethod(InvocationContext ic) throws Exception {
         logger.entering(ic.getTarget().getClass().getName(), ic.getMethod().getName());
-        System.out.println(ic.getTarget().getClass().getName() + "-" + ic.getMethod().getName());
         try {
             return ic.proceed();
         } finally {

@@ -36,7 +36,7 @@ marc/marc
 bill/bill
 jobs/jobs
 
-The admin [REST interface](rs/catalog) allows you to create/update/remove items in the catalog. You can run the following [curl](http://curl.haxx.se/) commands :
+The admin [REST interface](rs/application.wadl) allows you to create/update/remove items in the catalog, orders or customers. You can run the following [curl](http://curl.haxx.se/) commands :
 
 * `curl -X GET http://localhost:8080/applicationPetstore/rs/catalog/categories`
 * `curl -X GET http://localhost:8080/applicationPetstore/rs/catalog/products`

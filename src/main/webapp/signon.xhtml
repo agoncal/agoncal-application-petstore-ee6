@@ -25,19 +25,19 @@
                             <tr>
                                 <td align="right"><b>Login :</b></td>
                                 <td>
-                                    <h:inputText value="#{accountController.login}" maxlength="10" size="12"/>
+                                    <h:inputText value="#{credentials.login}" maxlength="10" size="12"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td align="right"><b>Password:</b></td>
                                 <td>
-                                    <h:inputSecret value="#{accountController.password}" maxlength="10" size="12"/>
+                                    <h:inputSecret value="#{credentials.password}" maxlength="10" size="12"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td align="center" colSpan="2">
                                     <h:commandButton value="Sign In"
-                                                     action="#{accountController.doSignIn}"
+                                                     action="#{loginController.doLogin}"
                                                      type="submit"/>
                                 </td>
                             </tr>
@@ -53,25 +53,25 @@
                             <tr>
                                 <td align="right"><b>Login:</b></td>
                                 <td>
-                                    <h:inputText value="#{accountController.customer.login}" maxlength="10" size="12"/>
+                                    <h:inputText value="#{credentials.login}" maxlength="10" size="12"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td align="right"><b>Password:</b></td>
                                 <td>
-                                    <h:inputSecret value="#{accountController.customer.password}" maxlength="10" size="12"/>
+                                    <h:inputSecret value="#{credentials.password}" maxlength="10" size="12"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td align="right"><b>Password (Repeat):</b></td>
                                 <td>
-                                    <h:inputSecret value="#{accountController.password2}" maxlength="10" size="12"/>
+                                    <h:inputSecret value="#{credentials.password2}" maxlength="10" size="12"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td align="middle" colSpan="2">
                                     <h:commandButton value="Create new account"
-                                                     action="#{accountController.doCreateNewAccount}"
+                                                     action="#{loginController.doCreateNewAccount}"
                                                      type="submit"/>
                                 </td>
                             </tr>

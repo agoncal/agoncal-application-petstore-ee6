@@ -41,6 +41,11 @@ public abstract class Controller {
         }
     }
 
+    protected void addInformationMessage(String message) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+    }
+
     protected void addWarningMessage(String message) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, message, null));

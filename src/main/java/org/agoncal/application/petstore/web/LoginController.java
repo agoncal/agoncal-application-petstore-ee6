@@ -4,7 +4,6 @@ import org.agoncal.application.petstore.domain.Customer;
 import org.agoncal.application.petstore.service.CustomerService;
 
 import javax.enterprise.context.SessionScoped;
-import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -19,36 +18,69 @@ import java.io.Serializable;
 @SessionScoped
 public class LoginController extends Controller implements Serializable {
 
-    @Inject
-    private Credentials credentials;
+    // ======================================
+    // =             Attributes             =
+    // ======================================
 
     @Inject
     private CustomerService customerService;
 
-    private Customer customer;
+    @Inject
+    private Credentials credentials;
 
-    public String doSignIn() {
+    private Customer currentUser;
+
+    // ======================================
+    // =              Public Methods        =
+    // ======================================
+
+    public String doLogin() {
 
         String navigateTo = null;
         try {
-            Customer customer = customerService.findCustomer(credentials.getLogin());
-
-            // Check if it's the right password
-            if (customer != null)
-                customer.matchPassword(credentials.getPassword());
-
-            this.customer = customer;
+            Customer customer = customerService.findCustomer(credentials.getLogin(), credentials.getPassword());
+            this.currentUser = customer;
             navigateTo = "main.xhtml";
         } catch (Exception e) {
-            addMessage(this.getClass().getName(), "doSignIn", e);
+            addMessage(this.getClass().getName(), "doLogin", e);
         }
         return navigateTo;
     }
 
-    @Named
-    @Produces
-    @LoggedIn
-    public Customer getLoggedInUser() {
-        return customer;
+    public String doCreateNewAccount() {
+
+        // Login has to be unique
+        if (customerService.doesLoginAlreadyExist(credentials.getLogin())) {
+            addWarningMessage("Login already exists");
+            return null;
+        }
+
+        // Id and password must be filled
+        if ("".equals(credentials.getLogin()) || "".equals(credentials.getPassword()) || "".equals(credentials.getPassword2())) {
+            addWarningMessage("Id and passwords have to be filled");
+            return null;
+        } else if (!credentials.getPassword().equals(credentials.getPassword2())) {
+            addWarningMessage("Both entered passwords have to be the same");
+            return null;
+        }
+
+        return "createaccount.xhtml";
+    }
+
+    public void doLogout() {
+        currentUser = null;
+    }
+
+    public boolean isLoggedIn() {
+        return currentUser != null;
+    }
+
+
+    public Customer getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(Customer currentUser) {
+        this.currentUser = currentUser;
     }
 }

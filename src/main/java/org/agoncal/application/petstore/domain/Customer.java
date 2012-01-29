@@ -20,7 +20,8 @@ import java.util.GregorianCalendar;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = Customer.FIND_BY_LOGIN, query = "SELECT c FROM Customer c WHERE c.login = :login")
+        @NamedQuery(name = Customer.FIND_BY_LOGIN, query = "SELECT c FROM Customer c WHERE c.login = :login"),
+        @NamedQuery(name = Customer.FIND_BY_LOGIN_PASSWORD, query = "SELECT c FROM Customer c WHERE c.login = :login AND c.password = :password")
 })
 @XmlRootElement
 public class Customer {
@@ -61,6 +62,7 @@ public class Customer {
     // ======================================
 
     public static final String FIND_BY_LOGIN = "Customer.findByLogin";
+    public static final String FIND_BY_LOGIN_PASSWORD = "Customer.findByLoginAndPassword";
 
     // ======================================
     // =            Constructors            =
