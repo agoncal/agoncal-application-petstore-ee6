@@ -29,7 +29,7 @@ public @interface NotEmpty {
     // =             Attributes             =
     // ======================================
 
-    String message() default "Should not be empty"; // TODO use message bundle
+    String message() default "validator.notEmpty"; // TODO use message bundle
 
     Class<?>[] groups() default {};
 
