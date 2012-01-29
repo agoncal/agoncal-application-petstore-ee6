@@ -34,7 +34,7 @@ Once deployed go to the following URL and start buying some pets: [http://localh
 You can use these login/passwd :
 marc/marc
 bill/bill
-jobsjobs
+jobs/jobs
 
 The admin [REST interface](rs/catalog) allows you to create/update/remove items in the catalog. You can run the following [curl](http://curl.haxx.se/) commands :
 
