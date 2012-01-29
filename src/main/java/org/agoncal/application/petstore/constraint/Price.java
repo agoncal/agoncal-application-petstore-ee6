@@ -29,7 +29,7 @@ public @interface Price {
     // =             Attributes             =
     // ======================================
 
-    String message() default "Invalid price"; // TODO use message bundle
+    String message() default "{validator.invalidPrice}";
 
     Class<?>[] groups() default {};
 

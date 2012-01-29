@@ -29,8 +29,7 @@ public @interface Login {
     // =             Attributes             =
     // ======================================
 
-    String message() default "Invalid login"; // TODO use message bundle
-
+    String message() default "{validator.invalidLogin}";
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
