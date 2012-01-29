@@ -42,7 +42,8 @@ public class AccountController extends Controller implements Serializable {
     private String password;
     private String password2;
 
-    private Customer customer;
+    //init object for create login page
+    private Customer customer=new Customer();
     private Address homeAddress;
 
     // ======================================
