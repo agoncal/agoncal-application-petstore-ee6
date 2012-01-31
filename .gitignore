@@ -10,3 +10,6 @@ target
 rebel.xml
 *DB
 *.dat
+.classpath
+.project
+.settings
