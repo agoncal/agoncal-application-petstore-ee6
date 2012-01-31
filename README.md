@@ -21,6 +21,26 @@ If you want to use a different web interface, external frameworks, add some sexy
 
 Being Maven centric, you can compile and package it with `mvn clean compile`, `mvn clean package` or `mvn clean install`. The `package` and `install` phase will automatically trigger the unit tests. Once you have your war file, you can deploy it.
 
+## Test in multiple containers
+
+The application uses Arquillian for its integration test. Using Maven profile, you can test Services against different application servers
+
+### Test with Glassfish embedded
+
+Launching tests under Glassfish is straight forward. You only have to lauch :
+
+    mvn clean install -Pglassfish-embedded
+
+Galssfish will lauch during the build and tests will be executed in it.
+
+### Test with JBoss 7.0.2 managed
+
+To launch tests under JBoss 7.0.2 you first should install JBoss 7.0.2 and set the environnment variable JBOSS_HOME to JBoss installation directory. Once this is done you'll launch the test with this command
+
+    mvn clean install -Pjbossas7-managed
+
+During the build, Arquillian will launch JBoss and execute the tests in it.
+
 ## Deploy the sample
 
 This sample has been tested with GlassFish 3.1.2 in several modes :
