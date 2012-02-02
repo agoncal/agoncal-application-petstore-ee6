@@ -27,6 +27,7 @@ public abstract class AbstractServiceIT {
         JavaArchive archive = ShrinkWrap.create(JavaArchive.class)
                 .addPackages(true, "org.agoncal.application.petstore")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsResource("META-INF/jboss-deployment-structure.xml","META-INF/jboss-deployment-structure.xml")
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml");
         System.out.println(archive.toString(true));
         return archive;

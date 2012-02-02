@@ -20,6 +20,8 @@
 		<version.maven.compiler.plugin>2.3.2</version.maven.compiler.plugin>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<jdbc.datasource.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.datasource.driver>
+		<jdbc.url>jdbc:derby:memory:applicationPetstoreDB;create=true;user=app;password=app</jdbc.url>
 	</properties>
 
 	<dependencyManagement>
@@ -61,6 +63,10 @@
 	<profiles>
 		<profile>
 			<id>glassfish-embedded</id>
+			<properties>
+				<jdbc.datasource.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.datasource.driver>
+				<jdbc.url>jdbc:derby:memory:applicationPetstoreDB;create=true;user=app;password=app</jdbc.url>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>org.jboss.arquillian.container</groupId>
@@ -88,6 +94,10 @@
 
 		<profile>
 			<id>jbossas7-managed</id>
+			<properties>
+				<jdbc.datasource.driver>org.h2.jdbcx.JdbcDataSource</jdbc.datasource.driver>
+				<jdbc.url>jdbc:h2:~/applicationPetstoreDB;AUTO_SERVER=TRUE</jdbc.url>
+			</properties>
 			<activation>
 				<activeByDefault>false</activeByDefault>
 			</activation>
@@ -97,9 +107,10 @@
 					<artifactId>jboss-as-arquillian-container-managed</artifactId>
 					<version>${version.arquillian.jboss.managed}</version>
 					<scope>test</scope>
-				</dependency>	
+				</dependency>
 			</dependencies>
 			<build>
+			
 				<plugins>
 					<plugin>
 						<artifactId>maven-failsafe-plugin</artifactId>
@@ -120,6 +131,18 @@
 
 	<build>
 		<finalName>applicationPetstore</finalName>
+		<sourceDirectory>target/filtered-sources/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<filtering>true</filtering>
+				<targetPath>../filtered-sources/java</targetPath>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

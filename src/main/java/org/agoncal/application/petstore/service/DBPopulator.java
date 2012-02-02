@@ -20,9 +20,9 @@ import javax.inject.Inject;
 @Startup
 @Loggable
 @DataSourceDefinition(name = "java:global/jdbc/applicationPetstoreDS",
-        className = "org.apache.derby.jdbc.EmbeddedDriver",
-        url = "jdbc:derby:memory:applicationPetstoreDB;create=true;user=app;password=app"
-)
+                      className = "${jdbc.datasource.driver}",
+                      url = "${jdbc.url}"
+                      )
 public class DBPopulator {
 
     // ======================================
