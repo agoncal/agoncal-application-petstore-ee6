@@ -28,7 +28,7 @@
                             <h:inputSecret value="#{credentials.password}" maxlength="10" size="12"/>
                             <f:facet name="footer">
                                 <h:commandButton value="Sign In"
-                                                 action="#{loginController.doLogin}"
+                                                 action="#{accountController.doLogin}"
                                                  type="submit"/>
                             </f:facet>
                         </h:panelGrid>
@@ -49,7 +49,7 @@
                             <h:inputSecret value="#{credentials.password2}" maxlength="10" size="12"/>
                             <f:facet name="footer">
                                 <h:commandButton value="Create new account"
-                                                 action="#{loginController.doCreateNewAccount}"
+                                                 action="#{accountController.doCreateNewAccount}"
                                                  type="submit"/>
                             </f:facet>
                         </h:panelGrid>

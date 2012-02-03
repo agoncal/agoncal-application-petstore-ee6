@@ -32,8 +32,6 @@ public class ShoppingCartController extends Controller implements Serializable {
     private OrderService orderBean;
     @Inject
     private Conversation conversation;
-    @Inject
-    AccountController accountController;
 
     private List<CartItem> cartItems = new ArrayList<CartItem>();
 
@@ -99,7 +97,6 @@ public class ShoppingCartController extends Controller implements Serializable {
     }
 
     public String checkout() {
-        customer = accountController.getCustomer();
         return "confirmorder.xhtml";
     }
 

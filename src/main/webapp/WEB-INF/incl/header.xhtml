@@ -16,14 +16,14 @@
         </div>
 
         <div style="margin-top: 20px;">
-            <h:link outcome="signon" value="Log in" rendered="#{!loginController.loggedIn}"/>
+            <h:link outcome="signon" value="Log in" rendered="#{!accountController.loggedIn}"/>
             &nbsp;&nbsp;&nbsp;
-            <h:link outcome="showaccount" value="Welcome #{loginController.loggedinCustomer.firstname}"
-                    rendered="#{loginController.loggedIn}"/>
+            <h:link outcome="showaccount" value="Welcome #{accountController.loggedinCustomer.firstname}"
+                    rendered="#{accountController.loggedIn}"/>
             &nbsp;&nbsp;&nbsp;
             <h:link outcome="showcart" value="Cart" rendered="#{!shoppingCartController.shoppingCartIsEmpty()}"/>
             &nbsp;&nbsp;&nbsp;
-            <h:commandLink action="#{loginController.doLogout}" rendered="#{loginController.loggedIn}">
+            <h:commandLink action="#{accountController.doLogout}" rendered="#{accountController.loggedIn}">
                 <h:outputText value="Log out"/>
             </h:commandLink>
 

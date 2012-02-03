@@ -19,22 +19,22 @@
 
                 <h:panelGrid columns="2">
                     <h:outputText value="Login :"/>
-                    <h:inputText value="#{loginController.loggedinCustomer.login}" readonly="true"/>
+                    <h:inputText value="#{accountController.loggedinCustomer.login}" readonly="true"/>
 
                     <h:outputText value="*Firstname :"/>
-                    <h:inputText value="#{loginController.loggedinCustomer.firstname}"/>
+                    <h:inputText value="#{accountController.loggedinCustomer.firstname}"/>
 
                     <h:outputText value="*Lastname :"/>
-                    <h:inputText value="#{loginController.loggedinCustomer.lastname}"/>
+                    <h:inputText value="#{accountController.loggedinCustomer.lastname}"/>
 
                     <h:outputText value="Email :"/>
-                    <h:inputText value="#{loginController.loggedinCustomer.email}"/>
+                    <h:inputText value="#{accountController.loggedinCustomer.email}"/>
 
                     <h:outputText value="Telephone :"/>
-                    <h:inputText value="#{loginController.loggedinCustomer.telephone}"/>
+                    <h:inputText value="#{accountController.loggedinCustomer.telephone}"/>
 
                     <h:outputText value="Date of birth (dd.MM.yyyy):"/>
-                    <h:inputText value="#{loginController.loggedinCustomer.dateOfBirth}">
+                    <h:inputText value="#{accountController.loggedinCustomer.dateOfBirth}">
                         <f:convertDateTime pattern="dd.MM.yyyy"/>
                     </h:inputText>
 
@@ -46,28 +46,28 @@
 
                 <h:panelGrid columns="2">
                     <h:outputText value="*Street1 :"/>
-                    <h:inputText value="#{loginController.loggedinCustomer.homeAddress.street1}"/>
+                    <h:inputText value="#{accountController.loggedinCustomer.homeAddress.street1}"/>
 
                     <h:outputText value="Street2 :"/>
-                    <h:inputText value="#{loginController.loggedinCustomer.homeAddress.street2}"/>
+                    <h:inputText value="#{accountController.loggedinCustomer.homeAddress.street2}"/>
 
                     <h:outputText value="*City :"/>
-                    <h:inputText value="#{loginController.loggedinCustomer.homeAddress.city}"/>
+                    <h:inputText value="#{accountController.loggedinCustomer.homeAddress.city}"/>
 
                     <h:outputText value="State :"/>
-                    <h:inputText value="#{loginController.loggedinCustomer.homeAddress.state}"/>
+                    <h:inputText value="#{accountController.loggedinCustomer.homeAddress.state}"/>
 
                     <h:outputText value="*Zipcode :"/>
-                    <h:inputText value="#{loginController.loggedinCustomer.homeAddress.zipcode}"/>
+                    <h:inputText value="#{accountController.loggedinCustomer.homeAddress.zipcode}"/>
 
                     <h:outputText value="*Country :"/>
-                    <h:inputText value="#{loginController.loggedinCustomer.homeAddress.country}"/>
+                    <h:inputText value="#{accountController.loggedinCustomer.homeAddress.country}"/>
 
                 </h:panelGrid>
             </div>
 
             <div class="zoneButton">
-                <h:commandButton value="Submit" action="#{loginController.doUpdateAccount}" type="submit"/>
+                <h:commandButton value="Submit" action="#{accountController.doUpdateAccount}" type="submit"/>
             </div>
         </h:form>
 

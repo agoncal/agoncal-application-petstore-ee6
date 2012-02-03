@@ -1,12 +1,10 @@
 package org.agoncal.application.petstore.web;
 
-import org.agoncal.application.petstore.constraint.Login;
-import org.agoncal.application.petstore.domain.Address;
 import org.agoncal.application.petstore.domain.Customer;
 import org.agoncal.application.petstore.service.CustomerService;
-import org.agoncal.application.petstore.util.Loggable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -18,7 +16,6 @@ import java.io.Serializable;
  */
 
 @Named
-@Loggable
 @SessionScoped
 public class AccountController extends Controller implements Serializable {
 
@@ -29,26 +26,58 @@ public class AccountController extends Controller implements Serializable {
     @Inject
     private CustomerService customerService;
 
-    @Login
-    private String login;
-    private String password;
+    @Inject
+    private Credentials credentials;
 
-    @Inject @LoggedIn
-    private Customer loggedInCustomer;
-    private Customer customer;
-    private Address homeAddress;
+    private Customer loggedinCustomer;
 
     // ======================================
     // =              Public Methods        =
     // ======================================
+
+    public String doLogin() {
+
+        String navigateTo = null;
+        try {
+            loggedinCustomer = customerService.findCustomer(credentials.getLogin(), credentials.getPassword());
+            navigateTo = "main.xhtml";
+        } catch (Exception e) {
+            addMessage(this.getClass().getName(), "doLogin", e);
+        }
+        return navigateTo;
+    }
+
+    public String doCreateNewAccount() {
+
+        // Login has to be unique
+        if (customerService.doesLoginAlreadyExist(credentials.getLogin())) {
+            addWarningMessage("Login already exists");
+            return null;
+        }
+
+        // Id and password must be filled
+        if ("".equals(credentials.getLogin()) || "".equals(credentials.getPassword()) || "".equals(credentials.getPassword2())) {
+            addWarningMessage("Id and passwords have to be filled");
+            return null;
+        } else if (!credentials.getPassword().equals(credentials.getPassword2())) {
+            addWarningMessage("Both entered passwords have to be the same");
+            return null;
+        }
+
+        // Login and password are ok
+        loggedinCustomer = new Customer();
+        loggedinCustomer.setLogin(credentials.getLogin());
+        loggedinCustomer.setPassword(credentials.getPassword());
+
+        return "createaccount.xhtml";
+    }
 
     public String doCreateCustomer() {
         String navigateTo = null;
 
         try {
             // Creates the customer
-            customer = customerService.createCustomer(customer);
-            homeAddress = customer.getHomeAddress();
+            loggedinCustomer = customerService.createCustomer(loggedinCustomer);
 
             navigateTo = "main.xhtml";
         } catch (Exception e) {
@@ -57,60 +86,36 @@ public class AccountController extends Controller implements Serializable {
         return navigateTo;
     }
 
-    public String doFindCustomer() {
+
+    public void doLogout() {
+        loggedinCustomer = null;
+    }
+
+    public String doUpdateAccount() {
+
         String navigateTo = null;
 
         try {
-            // Creates the customer
-            customer = customerService.findCustomer(login);
-            homeAddress = customer.getHomeAddress();
-            navigateTo = "showaccount.xhtml";
+            // Updates the customer
+            loggedinCustomer = customerService.updateCustomer(loggedinCustomer);
+            addInformationMessage("Your account has been updated");
+            navigateTo = "account.updated";
         } catch (Exception e) {
-            addMessage(this.getClass().getName(), "doFindCustomer", e);
+            addMessage(this.getClass().getName(), "doUpdateAccount", e);
         }
         return navigateTo;
     }
 
-    // ======================================
-    // =         Getters & setters          =
-    // ======================================
-    public String getLogin() {
-        return login;
+    public boolean isLoggedIn() {
+        return loggedinCustomer != null;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+
+    public Customer getLoggedinCustomer() {
+        return loggedinCustomer;
     }
 
-    public String getPassword() {
-        return password;
+    public void setLoggedinCustomer(Customer loggedinCustomer) {
+        this.loggedinCustomer = loggedinCustomer;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Address getHomeAddress() {
-        return homeAddress;
-    }
-
-    public void setHomeAddress(Address homeAddress) {
-        this.homeAddress = homeAddress;
-    }
-
-    // ======================================
-    // =           Private Methods          =
-    // ======================================
-
-    // ======================================
-    // =   Methods hash, equals, toString   =
-    // ======================================
 }
