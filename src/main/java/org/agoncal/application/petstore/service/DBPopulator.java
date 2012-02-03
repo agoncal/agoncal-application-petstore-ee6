@@ -199,10 +199,14 @@ public class DBPopulator {
         Customer marc = new Customer("Marc", "Fleury", "marc", "marc", "marc@jboss.org", new Address("65 Ritherdon Road", "Los Angeles", "56421", "USA"));
         Customer bill = new Customer("Bill", "Gates", "bill", "bill", "bill.gates@microsoft.com", new Address("27 West Side", "Alhabama", "8401", "USA"));
         Customer steve = new Customer("Steve", "Jobs", "jobs", "jobs", "steve.jobs@apple.com", new Address("154 Star Boulevard", "San Francisco", "5455", "USA"));
+        Customer user = new Customer("User", "User", "user", "user", "user@petstore.org", new Address("Petstore", "Land", "666", "Nowhere"));
+        Customer admin = new Customer("Admin", "Admin", "admin", "admin", "admin@petstore.org", new Address("Petstore", "Land", "666", "Nowhere"));
 
         customerService.createCustomer(marc);
         customerService.createCustomer(bill);
         customerService.createCustomer(steve);
+        customerService.createCustomer(user);
+        customerService.createCustomer(admin);
     }
 
 }
