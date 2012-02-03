@@ -44,15 +44,13 @@
             </h:column>
 
             <h:column>
-                <c:if test="${not empty sessionScope.account}">
-                    <h:column>
-                        &nbsp;
-                        <h:commandLink action="#{cart.addItemToCart}">
-                            <h:outputText value="Add to cart"/>
-                            <f:param name="itemId" value="#{item.id}"/>
-                        </h:commandLink>
-                    </h:column>
-                </c:if>
+                <h:form>
+                    <h:commandLink action="#{shoppingCartController.addItemToCart}"
+                                   rendered="#{accountController.loggedIn}">
+                        <h:outputText value="Add to cart"/>
+                        <f:param name="itemId" value="#{oneItem.id}"/>
+                    </h:commandLink>
+                </h:form>
             </h:column>
         </h:dataTable>
 
