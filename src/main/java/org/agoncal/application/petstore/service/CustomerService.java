@@ -84,13 +84,11 @@ public class CustomerService implements Serializable {
         return typedQuery.getSingleResult();
     }
 
-    public Customer updateCustomer(final Customer customer, final Address homeAddress) {
+    public Customer updateCustomer(final Customer customer) {
 
         // Make sure the object is valid
         if (customer == null)
             throw new ValidationException("Customer object is null");
-
-        customer.setHomeAddress(homeAddress);
 
         // Update the object in the database
         em.merge(customer);

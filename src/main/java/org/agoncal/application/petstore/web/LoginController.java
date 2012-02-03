@@ -72,6 +72,21 @@ public class LoginController extends Controller implements Serializable {
         loggedinCustomer = null;
     }
 
+    public String doUpdateAccount() {
+
+        String navigateTo = null;
+
+        try {
+            // Updates the customer
+            loggedinCustomer = customerService.updateCustomer(loggedinCustomer);
+            addInformationMessage("Your account has been updated");
+            navigateTo = "account.updated";
+        } catch (Exception e) {
+            addMessage(this.getClass().getName(), "doUpdateAccount", e);
+        }
+        return navigateTo;
+    }
+
     public boolean isLoggedIn() {
         return loggedinCustomer != null;
     }

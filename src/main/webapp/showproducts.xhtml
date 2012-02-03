@@ -19,8 +19,10 @@
             <h:outputText value="#{catalogController.categoryName}"/>
         </h2>
 
-        <h:outputText value="No products found" rendered="#{catalogController.products == null || catalogController.products.size() == 0}"/>
-        <h:dataTable value="#{catalogController.products}" var="oneProduct" rendered="#{catalogController.products.size() > 0}">
+        <h:outputText value="No products found"
+                      rendered="#{catalogController.products == null || catalogController.products.size() == 0}"/>
+        <h:dataTable value="#{catalogController.products}" var="oneProduct"
+                     rendered="#{catalogController.products.size() > 0}">
             <h:column>
                 <h:link outcome="showitems" includeViewParams="true" value="#{oneProduct.name}">
                     <f:param name="productId" value="#{oneProduct.id}"/>

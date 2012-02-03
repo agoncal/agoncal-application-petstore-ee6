@@ -71,21 +71,6 @@ public class AccountController extends Controller implements Serializable {
         return navigateTo;
     }
 
-    public String doUpdateAccount() {
-
-        String navigateTo = null;
-
-        try {
-            // Updates the customer
-            customer = customerService.updateCustomer(customer, homeAddress);
-            homeAddress = customer.getHomeAddress();
-            navigateTo = "account.updated";
-        } catch (Exception e) {
-            addMessage(this.getClass().getName(), "doUpdateAccount", e);
-        }
-        return navigateTo;
-    }
-
     // ======================================
     // =         Getters & setters          =
     // ======================================

@@ -6,75 +6,70 @@
 
 <ui:composition template="layout.xhtml">
 
-    <f:metadata>
-        <f:viewParam name="login" value="#{accountController.login}"/>
-        <f:event type="preRenderComponent" listener="#{accountController.doFindCustomer}"/>
-    </f:metadata>
-
     <ui:define name="title">Update account</ui:define>
 
     <ui:define name="body">
 
-        <h2>Update account</h2>
+        <h2>Update your account</h2>
 
-            <h:form>
+        <h:form>
 
-                <div class="zoneEditor">
-                    <h3>Personal information</h3>
+            <div class="zoneEditor">
+                <h3>Personal information</h3>
 
-                    <h:panelGrid columns="2">
-                        <h:outputText value="Login :"/>
-                        <h:inputText value="#{accountController.customer.login}" readonly="true"/>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Login :"/>
+                    <h:inputText value="#{loginController.loggedinCustomer.login}" readonly="true"/>
 
-                        <h:outputText value="*Firstname :"/>
-                        <h:inputText value="#{accountController.customer.firstname}"/>
+                    <h:outputText value="*Firstname :"/>
+                    <h:inputText value="#{loginController.loggedinCustomer.firstname}"/>
 
-                        <h:outputText value="*Lastname :"/>
-                        <h:inputText value="#{accountController.customer.lastname}"/>
+                    <h:outputText value="*Lastname :"/>
+                    <h:inputText value="#{loginController.loggedinCustomer.lastname}"/>
 
-                        <h:outputText value="Email :"/>
-                        <h:inputText value="#{accountController.customer.email}"/>
+                    <h:outputText value="Email :"/>
+                    <h:inputText value="#{loginController.loggedinCustomer.email}"/>
 
-                        <h:outputText value="Telephone :"/>
-                        <h:inputText value="#{accountController.customer.telephone}"/>
+                    <h:outputText value="Telephone :"/>
+                    <h:inputText value="#{loginController.loggedinCustomer.telephone}"/>
 
-                        <h:outputText value="Date of birth (dd.MM.yyyy):"/>
-                        <h:inputText value="#{accountController.customer.dateOfBirth}">
-                            <f:convertDateTime pattern="dd.MM.yyyy"/>
-                        </h:inputText>
+                    <h:outputText value="Date of birth (dd.MM.yyyy):"/>
+                    <h:inputText value="#{loginController.loggedinCustomer.dateOfBirth}">
+                        <f:convertDateTime pattern="dd.MM.yyyy"/>
+                    </h:inputText>
 
-                    </h:panelGrid>
-                </div>
+                </h:panelGrid>
+            </div>
 
-                <div class="zoneEditor">
-                    <h3>Address</h3>
+            <div class="zoneEditor">
+                <h3>Address</h3>
 
-                    <h:panelGrid columns="2">
-                        <h:outputText value="*Street1 :"/>
-                        <h:inputText value="#{accountController.homeAddress.street1}"/>
+                <h:panelGrid columns="2">
+                    <h:outputText value="*Street1 :"/>
+                    <h:inputText value="#{loginController.loggedinCustomer.homeAddress.street1}"/>
 
-                        <h:outputText value="Street2 :"/>
-                        <h:inputText value="#{accountController.homeAddress.street2}"/>
+                    <h:outputText value="Street2 :"/>
+                    <h:inputText value="#{loginController.loggedinCustomer.homeAddress.street2}"/>
 
-                        <h:outputText value="*City :"/>
-                        <h:inputText value="#{accountController.homeAddress.city}"/>
+                    <h:outputText value="*City :"/>
+                    <h:inputText value="#{loginController.loggedinCustomer.homeAddress.city}"/>
 
-                        <h:outputText value="State :"/>
-                        <h:inputText value="#{accountController.homeAddress.state}"/>
+                    <h:outputText value="State :"/>
+                    <h:inputText value="#{loginController.loggedinCustomer.homeAddress.state}"/>
 
-                        <h:outputText value="*Zipcode :"/>
-                        <h:inputText value="#{accountController.homeAddress.zipcode}"/>
+                    <h:outputText value="*Zipcode :"/>
+                    <h:inputText value="#{loginController.loggedinCustomer.homeAddress.zipcode}"/>
 
-                        <h:outputText value="*Country :"/>
-                        <h:inputText value="#{accountController.homeAddress.country}"/>
+                    <h:outputText value="*Country :"/>
+                    <h:inputText value="#{loginController.loggedinCustomer.homeAddress.country}"/>
 
-                    </h:panelGrid>
-                </div>
+                </h:panelGrid>
+            </div>
 
-                <div class="zoneButton">
-                    <h:commandButton value="Submit" action="#{accountController.doUpdateAccount}" type="submit"/>
-                </div>
-            </h:form>
+            <div class="zoneButton">
+                <h:commandButton value="Submit" action="#{loginController.doUpdateAccount}" type="submit"/>
+            </div>
+        </h:form>
 
     </ui:define>
 </ui:composition>

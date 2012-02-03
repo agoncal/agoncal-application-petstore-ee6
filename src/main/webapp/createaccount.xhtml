@@ -12,64 +12,64 @@
 
         <h2>Create Your Account</h2>
 
-            <h:form>
+        <h:form>
 
-                <div class="zoneEditor">
-                    <h3>Personal information</h3>
+            <div class="zoneEditor">
+                <h3>Personal information</h3>
 
-                    <h:panelGrid columns="2">
-                        <h:outputText value="Login :"/>
-                        <h:inputText value="#{accountController.customer.login}" readonly="true"/>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Login :"/>
+                    <h:inputText value="#{accountController.customer.login}" readonly="true"/>
 
-                        <h:outputText value="*Firstname :"/>
-                        <h:inputText value="#{accountController.customer.firstname}"/>
+                    <h:outputText value="*Firstname :"/>
+                    <h:inputText value="#{accountController.customer.firstname}"/>
 
-                        <h:outputText value="*Lastname :"/>
-                        <h:inputText value="#{accountController.customer.lastname}"/>
+                    <h:outputText value="*Lastname :"/>
+                    <h:inputText value="#{accountController.customer.lastname}"/>
 
-                        <h:outputText value="Email :"/>
-                        <h:inputText value="#{accountController.customer.email}"/>
+                    <h:outputText value="Email :"/>
+                    <h:inputText value="#{accountController.customer.email}"/>
 
-                        <h:outputText value="Telephone :"/>
-                        <h:inputText value="#{accountController.customer.telephone}"/>
+                    <h:outputText value="Telephone :"/>
+                    <h:inputText value="#{accountController.customer.telephone}"/>
 
-                        <h:outputText value="Date of birth (dd.MM.yyyy):"/>
-                        <h:inputText value="#{accountController.customer.dateOfBirth}">
-                            <f:convertDateTime pattern="dd.MM.yyyy"/>
-                        </h:inputText>
+                    <h:outputText value="Date of birth (dd.MM.yyyy):"/>
+                    <h:inputText value="#{accountController.customer.dateOfBirth}">
+                        <f:convertDateTime pattern="dd.MM.yyyy"/>
+                    </h:inputText>
 
-                    </h:panelGrid>
-                </div>
+                </h:panelGrid>
+            </div>
 
-                <div class="zoneEditor">
-                    <h3>Address</h3>
+            <div class="zoneEditor">
+                <h3>Address</h3>
 
-                    <h:panelGrid columns="2">
-                        <h:outputText value="*Street1 :"/>
-                        <h:inputText value="#{accountController.customer.homeAddress.street1}"/>
+                <h:panelGrid columns="2">
+                    <h:outputText value="*Street1 :"/>
+                    <h:inputText value="#{accountController.customer.homeAddress.street1}"/>
 
-                        <h:outputText value="Street2 :"/>
-                        <h:inputText value="#{accountController.customer.homeAddress.street2}"/>
+                    <h:outputText value="Street2 :"/>
+                    <h:inputText value="#{accountController.customer.homeAddress.street2}"/>
 
-                        <h:outputText value="*City :"/>
-                        <h:inputText value="#{accountController.customer.homeAddress.city}"/>
+                    <h:outputText value="*City :"/>
+                    <h:inputText value="#{accountController.customer.homeAddress.city}"/>
 
-                        <h:outputText value="State :"/>
-                        <h:inputText value="#{accountController.customer.homeAddress.state}"/>
+                    <h:outputText value="State :"/>
+                    <h:inputText value="#{accountController.customer.homeAddress.state}"/>
 
-                        <h:outputText value="*Zipcode :"/>
-                        <h:inputText value="#{accountController.customer.homeAddress.zipcode}"/>
+                    <h:outputText value="*Zipcode :"/>
+                    <h:inputText value="#{accountController.customer.homeAddress.zipcode}"/>
 
-                        <h:outputText value="*Country :"/>
-                        <h:inputText value="#{accountController.customer.homeAddress.country}"/>
+                    <h:outputText value="*Country :"/>
+                    <h:inputText value="#{accountController.customer.homeAddress.country}"/>
 
-                    </h:panelGrid>
-                </div>
+                </h:panelGrid>
+            </div>
 
-                <div class="zoneButton">
-                    <h:commandButton value="Submit" action="#{accountController.doCreateCustomer}" type="submit"/>
-                </div>
-            </h:form>
+            <div class="zoneButton">
+                <h:commandButton value="Submit" action="#{accountController.doCreateCustomer}" type="submit"/>
+            </div>
+        </h:form>
 
     </ui:define>
 </ui:composition>

@@ -6,7 +6,7 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <h:link outcome="main">
-        <h:graphicImage  id="logo" url="#{resource['banner_logo.gif']}"/>
+        <h:graphicImage id="logo" url="#{resource['banner_logo.gif']}"/>
     </h:link>
 
     <h:form>
@@ -18,7 +18,8 @@
         <div style="margin-top: 20px;">
             <h:link outcome="signon" value="Log in" rendered="#{!loginController.loggedIn}"/>
             &nbsp;&nbsp;&nbsp;
-            <h:link outcome="showaccount" value="Welcome #{loginController.loggedinCustomer.firstname}" rendered="#{loginController.loggedIn}"/>
+            <h:link outcome="showaccount" value="Welcome #{loginController.loggedinCustomer.firstname}"
+                    rendered="#{loginController.loggedIn}"/>
             &nbsp;&nbsp;&nbsp;
             <h:link outcome="showcart" value="Cart" rendered="#{!shoppingCartController.shoppingCartIsEmpty()}"/>
             &nbsp;&nbsp;&nbsp;
