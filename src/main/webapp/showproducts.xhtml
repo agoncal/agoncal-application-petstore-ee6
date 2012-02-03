@@ -26,6 +26,7 @@
             <h:column>
                 <h:link outcome="showitems" includeViewParams="true" value="#{oneProduct.name}">
                     <f:param name="productId" value="#{oneProduct.id}"/>
+                    <f:param name="cid" value="#{conversation.id}"/>
                 </h:link>
             </h:column>
             <h:column>

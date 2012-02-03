@@ -29,6 +29,7 @@
             <h:column>
                 <h:link outcome="showitem" includeViewParams="true" value="#{oneItem.name}">
                     <f:param name="itemId" value="#{oneItem.id}"/>
+                    <f:param name="cid" value="#{conversation.id}"/>
                 </h:link>
             </h:column>
 

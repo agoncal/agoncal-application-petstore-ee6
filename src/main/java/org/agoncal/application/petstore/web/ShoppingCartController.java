@@ -4,6 +4,7 @@ import org.agoncal.application.petstore.domain.*;
 import org.agoncal.application.petstore.service.CatalogService;
 import org.agoncal.application.petstore.service.OrderService;
 
+import javax.ejb.Stateful;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
@@ -33,7 +34,7 @@ public class ShoppingCartController extends Controller implements Serializable {
     @Inject
     private Conversation conversation;
 
-    private List<CartItem> cartItems = new ArrayList<CartItem>();
+    private List<CartItem> cartItems;
 
     private CreditCard creditCard = new CreditCard();
     private Customer customer = new Customer();
@@ -51,6 +52,7 @@ public class ShoppingCartController extends Controller implements Serializable {
 
             // Start conversation
             if (conversation.isTransient()) {
+                cartItems = new ArrayList<CartItem>();
                 conversation.begin();
             }
 

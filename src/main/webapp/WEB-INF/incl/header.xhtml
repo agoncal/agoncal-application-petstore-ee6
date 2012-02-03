@@ -3,10 +3,11 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
 
     <h:link outcome="main">
         <h:graphicImage id="logo" url="#{resource['banner_logo.gif']}"/>
+        <f:param name="cid" value="#{conversation.id}"/>
     </h:link>
 
     <h:form>
@@ -19,9 +20,13 @@
             <h:link outcome="signon" value="Log in" rendered="#{!accountController.loggedIn}"/>
             &nbsp;&nbsp;&nbsp;
             <h:link outcome="showaccount" value="Welcome #{accountController.loggedinCustomer.firstname}"
-                    rendered="#{accountController.loggedIn}"/>
+                    rendered="#{accountController.loggedIn}">
+                <f:param name="cid" value="#{conversation.id}"/>
+            </h:link>
             &nbsp;&nbsp;&nbsp;
-            <h:link outcome="showcart" value="Cart" rendered="#{!shoppingCartController.shoppingCartIsEmpty()}"/>
+            <h:link outcome="showcart" value="Cart" rendered="#{!shoppingCartController.shoppingCartIsEmpty()}">
+                <f:param name="cid" value="#{conversation.id}"/>
+            </h:link>
             &nbsp;&nbsp;&nbsp;
             <h:commandLink action="#{accountController.doLogout}" rendered="#{accountController.loggedIn}">
                 <h:outputText value="Log out"/>
