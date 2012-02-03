@@ -33,6 +33,8 @@ public class AccountController extends Controller implements Serializable {
     private String login;
     private String password;
 
+    @Inject @LoggedIn
+    private Customer loggedInCustomer;
     private Customer customer;
     private Address homeAddress;
 

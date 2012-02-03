@@ -9,6 +9,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
@@ -19,7 +20,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @NotNull
 @DecimalMin("10")
-@Target({ElementType.METHOD, ElementType.FIELD})
+@Target({METHOD, FIELD})
 @Retention(RUNTIME)
 @Constraint(validatedBy = {})
 @Documented

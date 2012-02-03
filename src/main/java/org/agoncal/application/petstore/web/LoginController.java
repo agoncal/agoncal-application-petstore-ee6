@@ -4,6 +4,7 @@ import org.agoncal.application.petstore.domain.Customer;
 import org.agoncal.application.petstore.service.CustomerService;
 
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -28,7 +29,8 @@ public class LoginController extends Controller implements Serializable {
     @Inject
     private Credentials credentials;
 
-    private Customer currentUser;
+    @Produces @LoggedIn
+    private Customer loggedinCustomer;
 
     // ======================================
     // =              Public Methods        =
@@ -38,8 +40,7 @@ public class LoginController extends Controller implements Serializable {
 
         String navigateTo = null;
         try {
-            Customer customer = customerService.findCustomer(credentials.getLogin(), credentials.getPassword());
-            this.currentUser = customer;
+            loggedinCustomer = customerService.findCustomer(credentials.getLogin(), credentials.getPassword());
             navigateTo = "main.xhtml";
         } catch (Exception e) {
             addMessage(this.getClass().getName(), "doLogin", e);
@@ -68,19 +69,19 @@ public class LoginController extends Controller implements Serializable {
     }
 
     public void doLogout() {
-        currentUser = null;
+        loggedinCustomer = null;
     }
 
     public boolean isLoggedIn() {
-        return currentUser != null;
+        return loggedinCustomer != null;
     }
 
 
-    public Customer getCurrentUser() {
-        return currentUser;
+    public Customer getLoggedinCustomer() {
+        return loggedinCustomer;
     }
 
-    public void setCurrentUser(Customer currentUser) {
-        this.currentUser = currentUser;
+    public void setLoggedinCustomer(Customer loggedinCustomer) {
+        this.loggedinCustomer = loggedinCustomer;
     }
 }

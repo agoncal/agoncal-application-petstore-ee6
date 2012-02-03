@@ -18,7 +18,7 @@
         <div style="margin-top: 20px;">
             <h:link outcome="signon" value="Log in" rendered="#{!loginController.loggedIn}"/>
             &nbsp;&nbsp;&nbsp;
-            <h:link outcome="showaccount" value="Welcome #{loginController.currentUser.firstname}" rendered="#{loginController.loggedIn}"/>
+            <h:link outcome="showaccount" value="Welcome #{loginController.loggedinCustomer.firstname}" rendered="#{loginController.loggedIn}"/>
             &nbsp;&nbsp;&nbsp;
             <h:link outcome="showcart" value="Cart" rendered="#{!shoppingCartController.shoppingCartIsEmpty()}"/>
             &nbsp;&nbsp;&nbsp;
