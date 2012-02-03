@@ -18,64 +18,40 @@
             <tr>
                 <td vAlign="top">
                     <h:form>
-                        <table cellSpacing="0" cellPadding="5" border="0">
-                            <tr>
-                                <td align="center" colSpan="2"><b>Yes.</b></td>
-                            </tr>
-                            <tr>
-                                <td align="right"><b>Login :</b></td>
-                                <td>
-                                    <h:inputText value="#{credentials.login}" maxlength="10" size="12"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right"><b>Password:</b></td>
-                                <td>
-                                    <h:inputSecret value="#{credentials.password}" maxlength="10" size="12"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="center" colSpan="2">
-                                    <h:commandButton value="Sign In"
-                                                     action="#{loginController.doLogin}"
-                                                     type="submit"/>
-                                </td>
-                            </tr>
-                        </table>
+                        <h:panelGrid columns="2">
+                            <f:facet name="header">
+                                <h:outputLabel value="Yes"/>
+                            </f:facet>
+                            <h:outputLabel value="Login :"/>
+                            <h:inputText value="#{credentials.login}" maxlength="10" size="12"/>
+                            <h:outputLabel value="Password :"/>
+                            <h:inputSecret value="#{credentials.password}" maxlength="10" size="12"/>
+                            <f:facet name="footer">
+                                <h:commandButton value="Sign In"
+                                                 action="#{loginController.doLogin}"
+                                                 type="submit"/>
+                            </f:facet>
+                        </h:panelGrid>
                     </h:form>
                 </td>
                 <td vAlign="top">
                     <h:form>
-                        <table cellSpacing="0" cellPadding="5" border="0">
-                            <tr>
-                                <td align="middle" colSpan="2"><b>No. I would like to sign up for an account.</b></td>
-                            </tr>
-                            <tr>
-                                <td align="right"><b>Login:</b></td>
-                                <td>
-                                    <h:inputText value="#{credentials.login}" maxlength="10" size="12"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right"><b>Password:</b></td>
-                                <td>
-                                    <h:inputSecret value="#{credentials.password}" maxlength="10" size="12"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right"><b>Password (Repeat):</b></td>
-                                <td>
-                                    <h:inputSecret value="#{credentials.password2}" maxlength="10" size="12"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="middle" colSpan="2">
-                                    <h:commandButton value="Create new account"
-                                                     action="#{loginController.doCreateNewAccount}"
-                                                     type="submit"/>
-                                </td>
-                            </tr>
-                        </table>
+                        <h:panelGrid columns="2">
+                            <f:facet name="header">
+                                <h:outputLabel value="No. I would like to sign up for an account."/>
+                            </f:facet>
+                            <h:outputLabel value="Login :"/>
+                            <h:inputText value="#{credentials.login}" maxlength="10" size="12"/>
+                            <h:outputLabel value="Password :"/>
+                            <h:inputSecret value="#{credentials.password}" maxlength="10" size="12"/>
+                            <h:outputLabel value="Password (Repeat):"/>
+                            <h:inputSecret value="#{credentials.password2}" maxlength="10" size="12"/>
+                            <f:facet name="footer">
+                                <h:commandButton value="Create new account"
+                                                 action="#{loginController.doCreateNewAccount}"
+                                                 type="submit"/>
+                            </f:facet>
+                        </h:panelGrid>
                     </h:form>
                 </td>
             </tr>
