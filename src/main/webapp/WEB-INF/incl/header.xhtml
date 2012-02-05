@@ -3,6 +3,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
                 xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
 
     <h:link outcome="main">
@@ -11,12 +13,25 @@
     </h:link>
 
     <h:form>
+        &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
         <div style="float: right;">
             <h:inputText value="#{catalogController.keyword}"/>
             <h:commandButton action="#{catalogController.doSearch}" value="Search"/>
         </div>
 
         <div style="margin-top: 20px;">
+            &nbsp;
+            <h:commandLink action="#{language.doFr}">
+                <h:outputText value="fr"/>
+            </h:commandLink>
+            &nbsp;
+            <h:commandLink action="#{language.doEn}">
+                <h:outputText value="en"/>
+            </h:commandLink>   
+            &nbsp;         
+ 
             <h:link outcome="signon" value="Log in" rendered="#{!accountController.loggedIn}"/>
             &nbsp;&nbsp;&nbsp;
             <h:link outcome="showaccount" value="Welcome #{accountController.loggedinCustomer.firstname}"
