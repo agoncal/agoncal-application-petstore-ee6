@@ -6,13 +6,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="layout.xhtml">
 
-    <ui:define name="title">Sign In</ui:define>
+    <ui:define name="title">#{i18n.signon_signIn}</ui:define>
 
     <ui:define name="body">
 
         <h2>#{i18n.signon_signIn}</h2>
 
-        <p><b>Are you a returning customer ?</b></p>
+        <p><b>#{i18n.signon_returningCustomer}</b></p>
 
         <table cellSpacing="0" cellPadding="20" width="100%" border="1">
             <tr>
@@ -20,14 +20,14 @@
                     <h:form>
                         <h:panelGrid columns="2">
                             <f:facet name="header">
-                                <h:outputLabel value="Yes"/>
+                                <h:outputLabel value="#{i18n.yes}"/>
                             </f:facet>
-                            <h:outputLabel value="Login :"/>
+                            <h:outputLabel value="#{i18n.customer_login}"/>
                             <h:inputText value="#{credentials.login}" maxlength="10" size="12"/>
-                            <h:outputLabel value="Password :"/>
+                            <h:outputLabel value="#{i18n.customer_password}"/>
                             <h:inputSecret value="#{credentials.password}" maxlength="10" size="12"/>
                             <f:facet name="footer">
-                                <h:commandButton value="Sign In"
+                                <h:commandButton value="#{i18n.signon_signIn}"
                                                  action="#{accountController.doLogin}"
                                                  type="submit"/>
                             </f:facet>
@@ -39,16 +39,16 @@
                     <h:form>
                         <h:panelGrid columns="2">
                             <f:facet name="header">
-                                <h:outputLabel value="No. I would like to sign up for an account."/>
+                                <h:outputLabel value="#{i18n.signon_signup}"/>
                             </f:facet>
-                            <h:outputLabel value="Login :"/>
+                            <h:outputLabel value="#{i18n.customer_login}"/>
                             <h:inputText value="#{credentials.login}" maxlength="10" size="12"/>
-                            <h:outputLabel value="Password :"/>
+                            <h:outputLabel value="#{i18n.customer_password}"/>
                             <h:inputSecret value="#{credentials.password}" maxlength="10" size="12"/>
-                            <h:outputLabel value="Password (Repeat):"/>
+                            <h:outputLabel value="#{i18n.customer_password} (#{i18n.again}):"/>
                             <h:inputSecret value="#{credentials.password2}" maxlength="10" size="12"/>
                             <f:facet name="footer">
-                                <h:commandButton value="Create new account"
+                                <h:commandButton value="#{i18n.signon_new}"
                                                  action="#{accountController.doCreateNewAccount}"
                                                  type="submit"/>
                             </f:facet>
