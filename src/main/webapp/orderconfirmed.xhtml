@@ -6,15 +6,19 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="layout.xhtml">
 
-    <ui:define name="title">Your Order is Complete</ui:define>
+    <f:metadata>
+	    <f:event type="preRenderView" listener="#{shoppingCartController.initConversation}" />		        
+    </f:metadata>
+    
+    <ui:define name="title">#{i18n.orderConfirmed_yourOrderIsComplete}</ui:define>
 
     <ui:define name="body">
 
-        <h2>Your Order is Complete :
+        <h2>#{i18n.orderConfirmed_yourOrderIsComplete} :
             <h:outputText value="#{catalogController.order.id}"/>
         </h2>
 
-        <p><b>Your order id is <h:outputText value="#{catalogController.order.id}"/></b></p>
+        <p><b>#{i18n.orderConfirmed_yourOrderIdIs} <h:outputText value="#{catalogController.order.id}"/></b></p>
 
         <h:form>
             <h:dataTable value="#{catalogController.order.orderLines}" var="orderLine">
@@ -46,9 +50,9 @@
         </h:form>
 
 
-        <P>You will receive shortly an email confirming your order</P>
+        <P>#{i18n.orderConfirmed_msg1}</P>
 
-        <P>Thank you for shopping with the YAPS Pet Store</P>
+        <P>#{i18n.orderConfirmed_msg2}</P>
 
     </ui:define>
 </ui:composition>

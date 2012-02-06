@@ -6,63 +6,67 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="layout.xhtml">
 
-    <ui:define name="title">Confirm Order</ui:define>
+    <f:metadata>
+	    <f:event type="preRenderView" listener="#{shoppingCartController.initConversation}" />		        
+    </f:metadata>
+
+    <ui:define name="title">#{i18n.orderConfirmed_yourOrderIsComplete}</ui:define>
 
     <ui:define name="body">
 
-        <h2>Confirm Order</h2>
+        <h2>#{i18n.orderConfirmed_yourOrderIsComplete}</h2>
 
         <h:form>
 
             <div class="zoneEditor">
-                <h3>Personal information</h3>
+                <h3>#{i18n.confirmorder_personalInformation}</h3>
 
                 <h:panelGrid columns="2">
-                    <h:outputText value="Firstname :"/>
+                    <h:outputText value="#{i18n.customer_firstname} :"/>
                     <h:inputText value="#{shoppingCartController.customer.firstname}" readonly="true"/>
 
-                    <h:outputText value="Lastname :"/>
+                    <h:outputText value="#{i18n.customer_lastname} :"/>
                     <h:inputText value="#{shoppingCartController.customer.lastname}" readonly="true"/>
 
-                    <h:outputText value="Email :"/>
+                    <h:outputText value="#{i18n.customer_email} :"/>
                     <h:inputText value="#{shoppingCartController.customer.email}" readonly="true"/>
 
                 </h:panelGrid>
             </div>
 
             <div class="zoneEditor">
-                <h3>Delivery Address</h3>
+                <h3>#{i18n.confirmorder_deliveryAddress}</h3>
 
                 <h:panelGrid columns="2">
-                    <h:outputText value="*Street1 :"/>
+                    <h:outputText value="*#{i18n.address_street1} :"/>
                     <h:inputText value="#{shoppingCartController.deliveryAddress.street1}"/>
 
-                    <h:outputText value="Street2 :"/>
+                    <h:outputText value="#{i18n.address_street2} :"/>
                     <h:inputText value="#{shoppingCartController.deliveryAddress.street2}"/>
 
-                    <h:outputText value="*City :"/>
+                    <h:outputText value="*#{i18n.address_city} :"/>
                     <h:inputText value="#{shoppingCartController.deliveryAddress.city}"/>
 
-                    <h:outputText value="State :"/>
+                    <h:outputText value="#{i18n.address_state} :"/>
                     <h:inputText value="#{shoppingCartController.deliveryAddress.state}"/>
 
-                    <h:outputText value="*Zipcode :"/>
+                    <h:outputText value="*#{i18n.address_zipcode} :"/>
                     <h:inputText value="#{shoppingCartController.deliveryAddress.zipcode}"/>
 
-                    <h:outputText value="*Country :"/>
+                    <h:outputText value="*#{i18n.address_country} :"/>
                     <h:inputText value="#{shoppingCartController.deliveryAddress.country}"/>
 
                 </h:panelGrid>
             </div>
 
             <div class="zoneEditor">
-                <h3>Credit Card</h3>
+                <h3>#{i18n.creditCard}</h3>
 
                 <h:panelGrid columns="2">
-                    <h:outputText value="*Credit card number :"/>
+                    <h:outputText value="*#{i18n.creditCard_creditCardNumber} :"/>
                     <h:inputText value="#{shoppingCartController.creditCard.creditCardNumber}"/>
 
-                    <h:outputText value="*Type :"/>
+                    <h:outputText value="*#{i18n.creditCard_creditCardType} :"/>
                     <h:selectOneMenu value="#{shoppingCartController.creditCard.creditCardType}">
                         <f:selectItem itemValue="visa" itemLabel="Visa"/>
                         <f:selectItem itemValue="visa_gold" itemLabel="Visa Gold"/>
@@ -70,7 +74,7 @@
                         <f:selectItem itemValue="american" itemLabel="American Express"/>
                     </h:selectOneMenu>
 
-                    <h:outputText value="*Expiry date (MM/YY):"/>
+                    <h:outputText value="*#{i18n.creditCard_creditCardExpDate} (MM/YY):"/>
                     <h:inputText value="#{shoppingCartController.creditCard.creditCardExpDate}"/>
                 </h:panelGrid>
             </div>

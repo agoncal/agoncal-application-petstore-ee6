@@ -5,7 +5,6 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
-                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
 
     <h:link outcome="main">
         <h:graphicImage id="logo" url="#{resource['banner_logo.gif']}"/>
@@ -32,15 +31,17 @@
             </h:commandLink>   
             &nbsp;         
  
-            <h:link outcome="signon" value="Log in" rendered="#{!accountController.loggedIn}"/>
+            <h:link outcome="signon" value="Log in" rendered="#{!accountController.loggedIn}">
+            	<f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+            </h:link>
             &nbsp;&nbsp;&nbsp;
             <h:link outcome="showaccount" value="Welcome #{accountController.loggedinCustomer.firstname}"
                     rendered="#{accountController.loggedIn}">
-                <f:param name="cid" value="#{conversation.id}"/>
+                <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
             </h:link>
             &nbsp;&nbsp;&nbsp;
             <h:link outcome="showcart" value="Cart" rendered="#{!shoppingCartController.shoppingCartIsEmpty()}">
-                <f:param name="cid" value="#{conversation.id}"/>
+                <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
             </h:link>
             &nbsp;&nbsp;&nbsp;
             <h:commandLink action="#{accountController.doLogout}" rendered="#{accountController.loggedIn}">

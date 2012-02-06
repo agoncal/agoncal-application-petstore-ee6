@@ -9,24 +9,25 @@
     <f:metadata>
         <f:viewParam name="categoryName" value="#{catalogController.categoryName}"/>
         <f:event type="preRenderComponent" listener="#{catalogController.doFindProducts}"/>
+        <f:event type="preRenderView" listener="#{shoppingCartController.initConversation}" />
     </f:metadata>
 
-    <ui:define name="title">#{catalogController.categoryName} Products</ui:define>
+    <ui:define name="title">#{catalogController.categoryName} #{i18n.products}</ui:define>
 
     <ui:define name="body">
 
-        <h2>Products for category :
+        <h2>#{i18n.showProducts_productForCategory} :
             <h:outputText value="#{catalogController.categoryName}"/>
         </h2>
 
-        <h:outputText value="No products found"
+        <h:outputText value="#{i18n.product_noProductFound}"
                       rendered="#{catalogController.products == null || catalogController.products.size() == 0}"/>
         <h:dataTable value="#{catalogController.products}" var="oneProduct"
                      rendered="#{catalogController.products.size() > 0}">
             <h:column>
                 <h:link outcome="showitems" includeViewParams="true" value="#{oneProduct.name}">
                     <f:param name="productId" value="#{oneProduct.id}"/>
-                    <f:param name="cid" value="#{conversation.id}"/>
+                    <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                 </h:link>
             </h:column>
             <h:column>

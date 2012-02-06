@@ -6,14 +6,18 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="layout.xhtml">
 
-    <ui:define name="title">Shopping Cart</ui:define>
+    <f:metadata>
+	    <f:event type="preRenderView" listener="#{shoppingCartController.initConversation}" />		        
+    </f:metadata>
+    
+    <ui:define name="title">#{i18n.shoppingCart}</ui:define>
 
     <ui:define name="body">
 
-        <h2>Shopping Cart</h2>
+        <h2>#{i18n.shoppingCart}</h2>
 
         <!--Shopping Cart is empty-->
-        <h:outputText value="The Shopping Cart is empty" rendered="#{shoppingCartController.shoppingCartIsEmpty()}"/>
+        <h:outputText value="#{i18n.shoppingCart_empty}" rendered="#{shoppingCartController.shoppingCartIsEmpty()}"/>
 
         <!--There are items in the Shopping Cart-->
         <h:form rendered="#{!shoppingCartController.shoppingCartIsEmpty()}">
@@ -24,12 +28,14 @@
                     <h:commandLink action="#{catalogController.doFindItem}">
                         <h:outputText value="#{oneItem.item.name}"/>
                         <f:param name="itemId" value="#{oneItem.item.id}"/>
+                        <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:commandLink>
                 </h:column>
                 <h:column>
                     <h:commandLink action="#{shoppingCartController.updateQuantity}">
-                        <h:outputText value="Update"/>
+                        <h:outputText value="#{i18n.update}"/>
                         <f:param name="itemId" value="#{oneItem.item.id}"/>
+                        <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:commandLink>
                 </h:column>
                 <h:column>
@@ -45,8 +51,9 @@
                 <h:column>
                     &nbsp;
                     <h:commandLink action="#{shoppingCartController.removeItemFromCart}">
-                        <h:outputText value="Remove"/>
+                        <h:outputText value="#{i18n.remove}"/>
                         <f:param name="itemId" value="#{oneItem.item.id}"/>
+                        <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:commandLink>
                 </h:column>
             </h:dataTable>
@@ -58,7 +65,9 @@
                 <h:outputText value="#{shoppingCartController.total}"/>
 
                 &nbsp;
-                <h:commandLink action="#{shoppingCartController.checkout}" value="Check Out"/>
+                <h:commandLink action="#{shoppingCartController.checkout}" value="Check Out">
+                	<f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                </h:commandLink>
             </div>
         </h:form>
 

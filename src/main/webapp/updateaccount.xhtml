@@ -6,34 +6,34 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="layout.xhtml">
 
-    <ui:define name="title">Update account</ui:define>
+    <ui:define name="title">#{i18n.updateYourAccount}</ui:define>
 
     <ui:define name="body">
 
-        <h2>Update your account</h2>
+        <h2>#{i18n.updateYourAccount}</h2>
 
         <h:form>
 
             <div class="zoneEditor">
-                <h3>Personal information</h3>
+                <h3>#{i18n.confirmorder_personalInformation}</h3>
 
                 <h:panelGrid columns="2">
-                    <h:outputText value="Login :"/>
+                    <h:outputText value="#{i18n.customer_login} :"/>
                     <h:inputText value="#{accountController.loggedinCustomer.login}" readonly="true"/>
 
-                    <h:outputText value="*Firstname :"/>
+                    <h:outputText value="*#{i18n.customer_firstname}  :"/>
                     <h:inputText value="#{accountController.loggedinCustomer.firstname}"/>
 
-                    <h:outputText value="*Lastname :"/>
+                    <h:outputText value="*#{i18n.customer_lastname}  :"/>
                     <h:inputText value="#{accountController.loggedinCustomer.lastname}"/>
 
-                    <h:outputText value="Email :"/>
+                    <h:outputText value="#{i18n.customer_email}  :"/>
                     <h:inputText value="#{accountController.loggedinCustomer.email}"/>
 
-                    <h:outputText value="Telephone :"/>
+                    <h:outputText value="#{i18n.customer_telephone}  :"/>
                     <h:inputText value="#{accountController.loggedinCustomer.telephone}"/>
 
-                    <h:outputText value="Date of birth (dd.MM.yyyy):"/>
+                    <h:outputText value="#{i18n.customer_dateOfBirth}  (dd.MM.yyyy):"/>
                     <h:inputText value="#{accountController.loggedinCustomer.dateOfBirth}">
                         <f:convertDateTime pattern="dd.MM.yyyy"/>
                     </h:inputText>
@@ -42,25 +42,25 @@
             </div>
 
             <div class="zoneEditor">
-                <h3>Address</h3>
+                <h3>#{i18n.address} </h3>
 
                 <h:panelGrid columns="2">
-                    <h:outputText value="*Street1 :"/>
+                    <h:outputText value="*#{i18n.address_street1}  :"/>
                     <h:inputText value="#{accountController.loggedinCustomer.homeAddress.street1}"/>
 
-                    <h:outputText value="Street2 :"/>
+                    <h:outputText value="#{i18n.address_street2}  :"/>
                     <h:inputText value="#{accountController.loggedinCustomer.homeAddress.street2}"/>
 
-                    <h:outputText value="*City :"/>
+                    <h:outputText value="*#{i18n.address_city}  :"/>
                     <h:inputText value="#{accountController.loggedinCustomer.homeAddress.city}"/>
 
-                    <h:outputText value="State :"/>
+                    <h:outputText value="#{i18n.address_state}  :"/>
                     <h:inputText value="#{accountController.loggedinCustomer.homeAddress.state}"/>
 
-                    <h:outputText value="*Zipcode :"/>
+                    <h:outputText value="*#{i18n.address_zipcode}  :"/>
                     <h:inputText value="#{accountController.loggedinCustomer.homeAddress.zipcode}"/>
 
-                    <h:outputText value="*Country :"/>
+                    <h:outputText value="*#{i18n.address_country}  :"/>
                     <h:inputText value="#{accountController.loggedinCustomer.homeAddress.country}"/>
 
                 </h:panelGrid>

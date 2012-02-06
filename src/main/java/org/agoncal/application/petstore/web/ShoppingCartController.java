@@ -31,16 +31,28 @@ public class ShoppingCartController extends Controller implements Serializable {
     private CatalogService catalogBean;
     @Inject
     private OrderService orderBean;
+    
     @Inject
     private Conversation conversation;
 
-    private List<CartItem> cartItems;
+    public Conversation getConversation() {
+		return conversation;
+	}
+
+	private List<CartItem> cartItems;
 
     private CreditCard creditCard = new CreditCard();
     private Customer customer = new Customer();
     private Address deliveryAddress = new Address();
     private Order order;
 
+	public void initConversation() {
+		if (conversation.isTransient()) {
+			cartItems = new ArrayList<CartItem>();
+			conversation.begin();
+		} 
+	}    
+    
     // ======================================
     // =              Public Methods        =
     // ======================================
@@ -53,7 +65,7 @@ public class ShoppingCartController extends Controller implements Serializable {
             // Start conversation
             if (conversation.isTransient()) {
                 cartItems = new ArrayList<CartItem>();
-                conversation.begin();
+                //conversation.begin();
             }
 
             boolean itemFound = false;
