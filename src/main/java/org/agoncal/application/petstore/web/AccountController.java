@@ -29,6 +29,7 @@ public class AccountController extends Controller implements Serializable {
     @Inject
     private Credentials credentials;
 
+    @Produces @LoggedIn
     private Customer loggedinCustomer;
 
     // ======================================

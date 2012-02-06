@@ -35,24 +35,15 @@ public class ShoppingCartController extends Controller implements Serializable {
     @Inject
     private Conversation conversation;
 
-    public Conversation getConversation() {
-		return conversation;
-	}
-
 	private List<CartItem> cartItems;
 
     private CreditCard creditCard = new CreditCard();
-    private Customer customer = new Customer();
-    private Address deliveryAddress = new Address();
+
+    @Inject @LoggedIn
+    private Customer customer;
+
     private Order order;
 
-	public void initConversation() {
-		if (conversation.isTransient()) {
-			cartItems = new ArrayList<CartItem>();
-			conversation.begin();
-		} 
-	}    
-    
     // ======================================
     // =              Public Methods        =
     // ======================================
@@ -118,7 +109,7 @@ public class ShoppingCartController extends Controller implements Serializable {
         String navigateTo = null;
 
         try {
-            order = orderBean.createOrder(customer, deliveryAddress, creditCard, getCartItems());
+            order = orderBean.createOrder(customer, creditCard, getCartItems());
             cartItems.clear();
 
             // Stop conversation
@@ -156,6 +147,13 @@ public class ShoppingCartController extends Controller implements Serializable {
         return total;
     }
 
+    public void initConversation() {
+        if (conversation.isTransient()) {
+            cartItems = new ArrayList<CartItem>();
+            conversation.begin();
+        }
+    }
+
     // ======================================
     // =         Getters & setters          =
     // ======================================
@@ -166,14 +164,6 @@ public class ShoppingCartController extends Controller implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public Address getDeliveryAddress() {
-        return deliveryAddress;
-    }
-
-    public void setDeliveryAddress(Address deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
     }
 
     public CreditCard getCreditCard() {
@@ -190,5 +180,9 @@ public class ShoppingCartController extends Controller implements Serializable {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Conversation getConversation() {
+        return conversation;
     }
 }
