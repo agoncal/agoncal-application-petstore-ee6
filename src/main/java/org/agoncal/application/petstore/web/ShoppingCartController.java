@@ -3,10 +3,12 @@ package org.agoncal.application.petstore.web;
 import org.agoncal.application.petstore.domain.*;
 import org.agoncal.application.petstore.service.CatalogService;
 import org.agoncal.application.petstore.service.OrderService;
+import org.agoncal.application.petstore.web.LoggedIn;
 
 import javax.ejb.Stateful;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -40,7 +42,7 @@ public class ShoppingCartController extends Controller implements Serializable {
     private CreditCard creditCard = new CreditCard();
 
     @Inject @LoggedIn
-    private Customer customer;
+    private Instance<Customer> customerInstances;
 
     private Order order;
 
@@ -109,7 +111,7 @@ public class ShoppingCartController extends Controller implements Serializable {
         String navigateTo = null;
 
         try {
-            order = orderBean.createOrder(customer, creditCard, getCartItems());
+            order = orderBean.createOrder(getCustomer(), creditCard, getCartItems());
             cartItems.clear();
 
             // Stop conversation
@@ -159,12 +161,10 @@ public class ShoppingCartController extends Controller implements Serializable {
     // ======================================
 
     public Customer getCustomer() {
-        return customer;
+    	Customer res = customerInstances.get();
+       return res;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 
     public CreditCard getCreditCard() {
         return creditCard;
