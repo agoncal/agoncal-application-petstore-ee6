@@ -10,6 +10,7 @@
 	<name>Petstore application using Java EE 6</name>
 
 	<properties>
+		<version.java>1.6</version.java>
 		<version.junit>4.10</version.junit>
 		<version.arquillian>1.0.0.CR7</version.arquillian>
 		<version.arquillian.glassfish.embedded>1.0.0.CR2</version.arquillian.glassfish.embedded>
@@ -18,6 +19,8 @@
 		<version.maven.embedded.glassfish.plugin>3.1.1</version.maven.embedded.glassfish.plugin>
 		<version.maven.war.plugin>2.1.1</version.maven.war.plugin>
 		<version.maven.compiler.plugin>2.3.2</version.maven.compiler.plugin>
+		<version.maven.surefire.plugin>2.10</version.maven.surefire.plugin>
+		<version.maven.failsafe.plugin>2.10</version.maven.failsafe.plugin>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<jdbc.datasource.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.datasource.driver>
@@ -79,7 +82,7 @@
 				<plugins>
 					<plugin>
 						<artifactId>maven-failsafe-plugin</artifactId>
-						<version>2.6</version>
+						<version>${version.maven.failsafe.plugin}</version>
 						<executions>
 							<execution>
 								<goals>
@@ -114,7 +117,7 @@
 				<plugins>
 					<plugin>
 						<artifactId>maven-failsafe-plugin</artifactId>
-						<version>2.6</version>
+						<version>${version.maven.failsafe.plugin}</version>
 						<executions>
 							<execution>
 								<goals>
@@ -150,13 +153,13 @@
 				<version>${version.maven.compiler.plugin}</version>
 				<inherited>true</inherited>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>${version.java}</source>
+					<target>${version.java}</target>
 				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.10</version>
+				<version>${version.maven.surefire.plugin}</version>
 
 			</plugin>
 
