@@ -129,6 +129,42 @@
 				</plugins>
 			</build>
 		</profile>
+		
+		
+		<profile>
+			<id>jbossas7-remote</id>
+			<properties>
+				<jdbc.datasource.driver>org.h2.jdbcx.JdbcDataSource</jdbc.datasource.driver>
+				<jdbc.url>jdbc:h2:~/applicationPetstoreDB;AUTO_SERVER=TRUE</jdbc.url>
+			</properties>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.as</groupId>
+					<artifactId>jboss-as-arquillian-container-remote</artifactId>
+					<version>${version.arquillian.jboss.managed}</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+			<build>
+			
+				<plugins>
+					<plugin>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>2.6</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>integration-test</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
 
