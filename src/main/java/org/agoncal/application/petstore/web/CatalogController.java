@@ -7,8 +7,11 @@ import org.agoncal.application.petstore.service.CatalogService;
 import org.agoncal.application.petstore.util.Loggable;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,9 +21,10 @@ import java.util.List;
  */
 
 @Named
-@RequestScoped
+//@RequestScoped
 @Loggable
-public class CatalogController extends Controller {
+@SessionScoped
+public class CatalogController extends Controller implements Serializable{
 
     // ======================================
     // =             Attributes             =
