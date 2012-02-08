@@ -68,10 +68,7 @@
 
                     <h:outputText value="*#{i18n.creditCard_creditCardType} :"/>
                     <h:selectOneMenu value="#{shoppingCartController.creditCard.creditCardType}">
-                        <f:selectItem itemValue="visa" itemLabel="Visa"/>
-                        <f:selectItem itemValue="visa_gold" itemLabel="Visa Gold"/>
-                        <f:selectItem itemValue="master" itemLabel="Master Card"/>
-                        <f:selectItem itemValue="american" itemLabel="American Express"/>
+                        <f:selectItems value="#{shoppingCartController.creditCardTypes}"/>
                     </h:selectOneMenu>
 
                     <h:outputText value="*#{i18n.creditCard_creditCardExpDate} (MM/YY):"/>
