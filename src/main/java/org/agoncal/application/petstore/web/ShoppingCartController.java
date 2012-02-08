@@ -185,4 +185,8 @@ public class ShoppingCartController extends Controller implements Serializable {
     public Conversation getConversation() {
         return conversation;
     }
+
+    public CreditCardType[] getCreditCardTypes() {
+        return CreditCardType.values();
+    }
 }
