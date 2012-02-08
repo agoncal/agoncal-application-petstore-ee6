@@ -32,14 +32,14 @@ public class OrderService implements Serializable {
     // =              Public Methods        =
     // ======================================
 
-    public Order createOrder(final Customer customer, final Address deliveryAddress, final CreditCard creditCard, final List<CartItem> cartItems) {
+    public Order createOrder(final Customer customer, final CreditCard creditCard, final List<CartItem> cartItems) {
 
         // OMake sure the object is valid
         if (cartItems == null || cartItems.size() == 0)
             throw new ValidationException("Shopping cart is empty"); // TODO exception bean validation
 
         // Creating the order
-        Order order = new Order(customer, em.merge(deliveryAddress), creditCard);
+        Order order = new Order(customer, creditCard);
 
         // From the shopping cart we create the order lines
         List<OrderLine> orderLines = new ArrayList<OrderLine>();

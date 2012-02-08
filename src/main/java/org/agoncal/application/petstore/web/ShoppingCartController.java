@@ -3,10 +3,12 @@ package org.agoncal.application.petstore.web;
 import org.agoncal.application.petstore.domain.*;
 import org.agoncal.application.petstore.service.CatalogService;
 import org.agoncal.application.petstore.service.OrderService;
+import org.agoncal.application.petstore.web.LoggedIn;
 
 import javax.ejb.Stateful;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -35,24 +37,15 @@ public class ShoppingCartController extends Controller implements Serializable {
     @Inject
     private Conversation conversation;
 
-    public Conversation getConversation() {
-		return conversation;
-	}
-
 	private List<CartItem> cartItems;
 
     private CreditCard creditCard = new CreditCard();
-    private Customer customer = new Customer();
-    private Address deliveryAddress = new Address();
+
+    @Inject @LoggedIn
+    private Instance<Customer> customerInstances;
+
     private Order order;
 
-	public void initConversation() {
-		if (conversation.isTransient()) {
-			cartItems = new ArrayList<CartItem>();
-			conversation.begin();
-		} 
-	}    
-    
     // ======================================
     // =              Public Methods        =
     // ======================================
@@ -118,7 +111,7 @@ public class ShoppingCartController extends Controller implements Serializable {
         String navigateTo = null;
 
         try {
-            order = orderBean.createOrder(customer, deliveryAddress, creditCard, getCartItems());
+            order = orderBean.createOrder(getCustomer(), creditCard, getCartItems());
             cartItems.clear();
 
             // Stop conversation
@@ -156,25 +149,22 @@ public class ShoppingCartController extends Controller implements Serializable {
         return total;
     }
 
+    public void initConversation() {
+        if (conversation.isTransient()) {
+            cartItems = new ArrayList<CartItem>();
+            conversation.begin();
+        }
+    }
+
     // ======================================
     // =         Getters & setters          =
     // ======================================
 
     public Customer getCustomer() {
-        return customer;
+    	Customer res = customerInstances.get();
+       return res;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Address getDeliveryAddress() {
-        return deliveryAddress;
-    }
-
-    public void setDeliveryAddress(Address deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
-    }
 
     public CreditCard getCreditCard() {
         return creditCard;
@@ -190,5 +180,9 @@ public class ShoppingCartController extends Controller implements Serializable {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Conversation getConversation() {
+        return conversation;
     }
 }

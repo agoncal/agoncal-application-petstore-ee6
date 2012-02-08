@@ -39,22 +39,22 @@
 
                 <h:panelGrid columns="2">
                     <h:outputText value="*#{i18n.address_street1} :"/>
-                    <h:inputText value="#{shoppingCartController.deliveryAddress.street1}"/>
+                    <h:inputText value="#{shoppingCartController.customer.homeAddress.street1}"/>
 
                     <h:outputText value="#{i18n.address_street2} :"/>
-                    <h:inputText value="#{shoppingCartController.deliveryAddress.street2}"/>
+                    <h:inputText value="#{shoppingCartController.customer.homeAddress.street2}"/>
 
                     <h:outputText value="*#{i18n.address_city} :"/>
-                    <h:inputText value="#{shoppingCartController.deliveryAddress.city}"/>
+                    <h:inputText value="#{shoppingCartController.customer.homeAddress.city}"/>
 
                     <h:outputText value="#{i18n.address_state} :"/>
-                    <h:inputText value="#{shoppingCartController.deliveryAddress.state}"/>
+                    <h:inputText value="#{shoppingCartController.customer.homeAddress.state}"/>
 
                     <h:outputText value="*#{i18n.address_zipcode} :"/>
-                    <h:inputText value="#{shoppingCartController.deliveryAddress.zipcode}"/>
+                    <h:inputText value="#{shoppingCartController.customer.homeAddress.zipcode}"/>
 
                     <h:outputText value="*#{i18n.address_country} :"/>
-                    <h:inputText value="#{shoppingCartController.deliveryAddress.country}"/>
+                    <h:inputText value="#{shoppingCartController.customer.homeAddress.country}"/>
 
                 </h:panelGrid>
             </div>
