@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	template="layout.xhtml">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="layout.xhtml">
 
     <f:metadata>
         <f:viewParam name="productId" value="#{catalogController.productId}"/>
@@ -44,7 +45,7 @@
                         <h:outputText value="#{i18n.searchResult_addToCart} [#{oneItem.id}]"/>
                         <f:param name="itemId" value="#{oneItem.id}"/>
                     </h:commandLink>
-                </h:form>             
+                </h:form>
             </h:column>
         </h:dataTable>
 
