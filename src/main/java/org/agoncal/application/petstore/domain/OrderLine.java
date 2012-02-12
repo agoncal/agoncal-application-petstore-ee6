@@ -1,7 +1,6 @@
 package org.agoncal.application.petstore.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 
 /**
  * @author Antonio Goncalves
@@ -21,8 +20,7 @@ public class OrderLine {
     private Long id;
     @Column(nullable = false)
     private Integer quantity;
-    @Min(1)
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name = "item_fk", nullable = false)
     private Item item;
 

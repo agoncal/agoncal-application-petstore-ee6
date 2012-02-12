@@ -11,13 +11,13 @@
     <ui:define name="body">
 
         <h2>#{i18n.orderConfirmed_yourOrderIsComplete} :
-            <h:outputText value="#{catalogController.order.id}"/>
+            <h:outputText value="#{shoppingCartController.order.id}"/>
         </h2>
 
-        <p><b>#{i18n.orderConfirmed_yourOrderIdIs} <h:outputText value="#{catalogController.order.id}"/></b></p>
+        <p><b>#{i18n.orderConfirmed_yourOrderIdIs} <h:outputText value="#{shoppingCartController.order.id}"/></b></p>
 
         <h:form>
-            <h:dataTable value="#{catalogController.order.orderLines}" var="orderLine">
+            <h:dataTable value="#{shoppingCartController.order.orderLines}" var="orderLine">
                 <h:column>
                     <b><h:outputText value="#{orderLine.item.product.name}"/></b>
                     <br/>
@@ -41,7 +41,7 @@
 
             <div class="zoneButton">
                 Total $
-                <h:outputText value="#{cart.order.total}"/>
+                <h:outputText value="#{shoppingCartController.order.total}"/>
             </div>
         </h:form>
 

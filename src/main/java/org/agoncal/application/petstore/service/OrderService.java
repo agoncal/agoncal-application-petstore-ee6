@@ -39,13 +39,13 @@ public class OrderService implements Serializable {
             throw new ValidationException("Shopping cart is empty"); // TODO exception bean validation
 
         // Creating the order
-        Order order = new Order(customer, creditCard);
+        Order order = new Order(em.merge(customer), creditCard, customer.getHomeAddress());
 
         // From the shopping cart we create the order lines
         List<OrderLine> orderLines = new ArrayList<OrderLine>();
 
         for (CartItem cartItem : cartItems) {
-            orderLines.add(new OrderLine(cartItem.getQuantity(), cartItem.getItem()));
+            orderLines.add(new OrderLine(cartItem.getQuantity(), em.merge(cartItem.getItem())));
         }
         order.setOrderLines(orderLines);
 

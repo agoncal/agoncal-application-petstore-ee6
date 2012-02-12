@@ -46,9 +46,10 @@ public class Order {
     public Order() {
     }
 
-    public Order(Customer customer, CreditCard creditCard) {
+    public Order(Customer customer, CreditCard creditCard, Address deliveryAddress) {
         this.customer = customer;
         this.creditCard = creditCard;
+        this.deliveryAddress = deliveryAddress;
     }
 
     // ======================================
