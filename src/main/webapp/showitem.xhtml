@@ -8,7 +8,6 @@
 
     <f:metadata>
         <f:viewParam name="itemId" value="#{catalogController.itemId}"/>
-	    <f:event type="preRenderView" listener="#{shoppingCartController.initConversation}" />		        
         <f:event type="preRenderComponent" listener="#{catalogController.doFindItem}"/>
     </f:metadata>
 
@@ -37,7 +36,6 @@
                                    rendered="#{accountController.loggedIn}">
                         <h:outputText value="#{i18n.searchResult_addToCart}"/>
                         <f:param name="itemId" value="#{catalogController.item.id}"/>
-                        <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:commandLink>
                 </h:form>
             </h:column>

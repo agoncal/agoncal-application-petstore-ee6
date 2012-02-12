@@ -9,7 +9,6 @@
     <f:metadata>
         <f:viewParam name="categoryName" value="#{catalogController.categoryName}"/>
         <f:event type="preRenderComponent" listener="#{catalogController.doFindProducts}"/>
-        <f:event type="preRenderView" listener="#{shoppingCartController.initConversation}" />
     </f:metadata>
 
     <ui:define name="title">#{catalogController.categoryName} #{i18n.products}</ui:define>

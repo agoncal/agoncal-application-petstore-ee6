@@ -6,10 +6,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="layout.xhtml">
 
-    <f:metadata>
-	    <f:event type="preRenderView" listener="#{shoppingCartController.initConversation}" />		        
-    </f:metadata>
-    
     <ui:define name="title">#{i18n.orderConfirmed_yourOrderIsComplete}</ui:define>
 
     <ui:define name="body">

@@ -58,7 +58,7 @@ public class ShoppingCartController extends Controller implements Serializable {
             // Start conversation
             if (conversation.isTransient()) {
                 cartItems = new ArrayList<CartItem>();
-                //conversation.begin();
+                conversation.begin();
             }
 
             boolean itemFound = false;
@@ -147,13 +147,6 @@ public class ShoppingCartController extends Controller implements Serializable {
             total += (cartItem.getSubTotal());
         }
         return total;
-    }
-
-    public void initConversation() {
-        if (conversation.isTransient()) {
-            cartItems = new ArrayList<CartItem>();
-            conversation.begin();
-        }
     }
 
     // ======================================

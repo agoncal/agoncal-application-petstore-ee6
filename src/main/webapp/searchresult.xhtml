@@ -9,7 +9,6 @@
     <f:metadata>
         <f:viewParam name="keyword" value="#{catalogController.keyword}"/>
         <f:event type="preRenderComponent" listener="#{catalogController.doSearch}"/>
-        <f:event type="preRenderView" listener="#{shoppingCartController.initConversation}" />	
     </f:metadata>
 
     <ui:define name="title">#{i18n.searchResult_searchFor} #{catalogController.keyword}</ui:define>
@@ -51,7 +50,6 @@
                                    rendered="#{accountController.loggedIn}">
                         <h:outputText value="#{i18n.searchResult_addToCart}"/>
                         <f:param name="itemId" value="#{oneItem.id}"/>
-                        <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:commandLink>
                 </h:form>
             </h:column>

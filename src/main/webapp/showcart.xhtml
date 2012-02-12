@@ -6,10 +6,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="layout.xhtml">
 
-    <f:metadata>
-	    <f:event type="preRenderView" listener="#{shoppingCartController.initConversation}" />		        
-    </f:metadata>
-    
     <ui:define name="title">#{i18n.shoppingCart}</ui:define>
 
     <ui:define name="body">
@@ -28,14 +24,12 @@
                     <h:commandLink action="#{catalogController.doFindItem}">
                         <h:outputText value="#{oneItem.item.name}"/>
                         <f:param name="itemId" value="#{oneItem.item.id}"/>
-                        <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:commandLink>
                 </h:column>
                 <h:column>
                     <h:commandLink action="#{shoppingCartController.updateQuantity}">
                         <h:outputText value="#{i18n.update}"/>
                         <f:param name="itemId" value="#{oneItem.item.id}"/>
-                        <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:commandLink>
                 </h:column>
                 <h:column>
@@ -53,7 +47,6 @@
                     <h:commandLink action="#{shoppingCartController.removeItemFromCart}">
                         <h:outputText value="#{i18n.remove}"/>
                         <f:param name="itemId" value="#{oneItem.item.id}"/>
-                        <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:commandLink>
                 </h:column>
             </h:dataTable>
@@ -65,9 +58,7 @@
                 <h:outputText value="#{shoppingCartController.total}"/>
 
                 &nbsp;
-                <h:commandLink action="#{shoppingCartController.checkout}" value="Check Out">
-                	<f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
-                </h:commandLink>
+                <h:commandLink action="#{shoppingCartController.checkout}" value="Check Out"/>
             </div>
         </h:form>
 
