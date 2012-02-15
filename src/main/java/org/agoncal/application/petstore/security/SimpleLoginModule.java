@@ -1,5 +1,6 @@
 package org.agoncal.application.petstore.security;
 
+import org.agoncal.application.petstore.domain.Customer;
 import org.agoncal.application.petstore.service.CustomerService;
 import org.agoncal.application.petstore.web.AccountController;
 
@@ -72,12 +73,21 @@ public class SimpleLoginModule  implements LoginModule{
         PasswordCallback passwordCallback = new PasswordCallback("Password : ", false);
         try {
             callbackHandler.handle(new Callback[]{nameCallback,passwordCallback});
+            String username = new String(nameCallback.getName());
+            String password = new String(passwordCallback.getPassword());
+            nameCallback.setName("");
+            passwordCallback.clearPassword();
+            Customer customer = customerService.findCustomer(username, password);
+
+            if (customer == null) {
+                throw new LoginException("Authentication failed");
+            }
+
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             throw new LoginException(e.getMessage());
         }
-
-        return true;
     }
 
     @Override
