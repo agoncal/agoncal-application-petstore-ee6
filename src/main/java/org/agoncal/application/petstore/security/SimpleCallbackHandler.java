@@ -14,10 +14,10 @@ import java.io.IOException;
  *         Time: 12:29
  */
 @Named
-@RequestScoped
 public class SimpleCallbackHandler implements CallbackHandler {
 
     @Inject
+    @RequestScoped
     private Credentials credentials;
 
     @Override

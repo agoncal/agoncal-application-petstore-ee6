@@ -14,15 +14,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * @author blep
@@ -40,6 +40,7 @@ public class LoginModuleTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar")
                 .addClasses(Credentials.class, SimpleCallbackHandler.class, LoggingProducer.class)
+                .addClasses(LoginContextProducer.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
@@ -52,16 +53,12 @@ public class LoginModuleTest {
     private Credentials credentials;
 
     @Inject
-    private SimpleCallbackHandler callbackHandler;
+    @SessionScoped
+    private LoginContext loginContext;
 
     @Before
     public void setUp() throws Exception {
-
-        String loginFile = getClass().getResource("/petstore-test.login").getFile();
-        System.out.println("loginFile = " + loginFile);
-        System.setProperty("java.security.auth.login.config", loginFile);
         customerService = mock(CustomerService.class);
-
     }
 
     @Test
@@ -76,7 +73,6 @@ public class LoginModuleTest {
 
         when(customerService.findCustomer(login, password)).thenReturn(new Customer());
 
-        LoginContext loginContext = new LoginContext("SimpleLoginModule", callbackHandler);
         loginContext.login();
 
         verify(customerService).findCustomer(login, password);
@@ -90,18 +86,10 @@ public class LoginModuleTest {
         credentials.setLogin(login);
         credentials.setPassword(password);
 
-        LoginContext loginContext = null;
-        try {
-            loginContext = new LoginContext("SimpleLoginModule", callbackHandler);
-        } catch (LoginException e) {
-            e.printStackTrace();
-            fail();
-        }
-
-
         try {
             loginContext.login();
         } catch (LoginException e) {
+            assertEquals(e.getMessage(),"Authentication failed");
             verify(customerService).findCustomer(login, password);
             throw e;
         }
