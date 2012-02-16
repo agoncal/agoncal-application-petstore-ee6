@@ -1,5 +1,6 @@
 package org.agoncal.application.petstore.util;
 
+import javax.enterprise.util.Nonbinding;
 import javax.inject.Qualifier;
 import javax.interceptor.InterceptorBinding;
 import java.lang.annotation.Retention;
@@ -17,5 +18,5 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({METHOD, FIELD,PARAMETER})
 @Retention(RUNTIME)
 public @interface ConfigProperty {
-    String value() default "";
+    @Nonbinding String value() default "";
 }

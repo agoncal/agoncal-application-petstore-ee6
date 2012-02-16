@@ -2,6 +2,7 @@ package org.agoncal.application.petstore.security;
 
 import org.agoncal.application.petstore.domain.Customer;
 import org.agoncal.application.petstore.service.CustomerService;
+import org.agoncal.application.petstore.util.ConfigPropertyProducer;
 import org.agoncal.application.petstore.util.LoggingProducer;
 import org.agoncal.application.petstore.web.Credentials;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -40,7 +41,7 @@ public class LoginModuleTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar")
                 .addClasses(Credentials.class, SimpleCallbackHandler.class, LoggingProducer.class)
-                .addClasses(LoginContextProducer.class)
+                .addClasses(LoginContextProducer.class, ConfigPropertyProducer.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
