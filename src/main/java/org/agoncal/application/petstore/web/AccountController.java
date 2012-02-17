@@ -7,6 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.security.auth.login.LoginContext;
 import java.io.Serializable;
 
 /**
@@ -32,6 +33,9 @@ public class AccountController extends Controller implements Serializable {
     @Produces @LoggedIn
     private Customer loggedinCustomer;
 
+    @Inject @SessionScoped
+    private transient LoginContext loginContext;
+
     // ======================================
     // =              Public Methods        =
     // ======================================
@@ -40,7 +44,8 @@ public class AccountController extends Controller implements Serializable {
 
         String navigateTo = null;
         try {
-            loggedinCustomer = customerService.findCustomer(credentials.getLogin(), credentials.getPassword());
+            loginContext.login();
+            loggedinCustomer = customerService.findCustomer(credentials.getLogin());
             navigateTo = "main.xhtml";
         } catch (Exception e) {
             addMessage(this.getClass().getName(), "doLogin", e);

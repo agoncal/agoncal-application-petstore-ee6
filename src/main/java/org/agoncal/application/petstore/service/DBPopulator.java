@@ -61,7 +61,7 @@ public class DBPopulator {
         catalogService.removeCategory(reptile);
         catalogService.removeCategory(cat);
         catalogService.removeCategory(bird);
-        catalogService.removeCategory(fish);
+//        catalogService.removeCategory(fish);
         customerService.removeCustomer(marc);
         customerService.removeCustomer(bill);
         customerService.removeCustomer(steve);
