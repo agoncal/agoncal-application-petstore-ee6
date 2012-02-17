@@ -32,7 +32,7 @@ import static org.mockito.Mockito.*;
  */
 //@Ignore
 @RunWith(Arquillian.class)
-public class LoginModuleTest {
+public class LoginModuleIT {
 
 
     private static CustomerService customerService;
@@ -64,7 +64,7 @@ public class LoginModuleTest {
 
     @Test
     public void testLogin() throws Exception {
-        System.out.println("LoginModuleTest.testLogin");
+        System.out.println("LoginModuleIT.testLogin");
 
         String login = "admin";
         String password = "password";
