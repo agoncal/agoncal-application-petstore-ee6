@@ -19,10 +19,10 @@ import javax.inject.Inject;
 @Singleton
 @Startup
 @Loggable
-@DataSourceDefinition(name = "java:global/jdbc/applicationPetstoreDS",
-                      className = "${jdbc.datasource.driver}",
-                      url = "${jdbc.url}"
-                      )
+//@DataSourceDefinition(name = "java:global/jdbc/applicationPetstoreDS",
+//                      className = "${jdbc.datasource.driver}",
+//                      url = "${jdbc.url}"
+//                      )
 public class DBPopulator {
 
     // ======================================

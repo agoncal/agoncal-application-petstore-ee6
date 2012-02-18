@@ -41,16 +41,16 @@
 
 
 	<dependencies>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.8.5</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.8.5</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 
 			6... -->
-        <dependency>
+		<dependency>
 			<groupId>org.glassfish.main.extras</groupId>
 			<artifactId>glassfish-embedded-all</artifactId>
 			<version>${version.glassfish}</version>
@@ -120,7 +120,7 @@
 				</dependency>
 			</dependencies>
 			<build>
-			
+
 				<plugins>
 					<plugin>
 						<artifactId>maven-failsafe-plugin</artifactId>
@@ -136,8 +136,8 @@
 				</plugins>
 			</build>
 		</profile>
-		
-		
+
+
 		<profile>
 			<id>jbossas7-remote</id>
 			<properties>
@@ -156,7 +156,7 @@
 				</dependency>
 			</dependencies>
 			<build>
-			
+
 				<plugins>
 					<plugin>
 						<artifactId>maven-failsafe-plugin</artifactId>
@@ -177,18 +177,18 @@
 
 	<build>
 		<finalName>applicationPetstore</finalName>
-		<sourceDirectory>target/filtered-sources/java</sourceDirectory>
-		<resources>
-			<resource>
-				<directory>src/main/java</directory>
-				<filtering>true</filtering>
-				<targetPath>../filtered-sources/java</targetPath>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>false</filtering>
-			</resource>
-		</resources>
+		<!-- <sourceDirectory>target/filtered-sources/java</sourceDirectory> -->
+		<!-- <resources> -->
+		<!-- <resource> -->
+		<!-- <directory>src/main/java</directory> -->
+		<!-- <filtering>true</filtering> -->
+		<!-- <targetPath>../filtered-sources/java</targetPath> -->
+		<!-- </resource> -->
+		<!-- <resource> -->
+		<!-- <directory>src/main/resources</directory> -->
+		<!-- <filtering>false</filtering> -->
+		<!-- </resource> -->
+		<!-- </resources> -->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -212,7 +212,16 @@
 				<version>${version.maven.war.plugin}</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
+
+					<webResources>
+						<resource>
+							<directory>${basedir}/src/main/webapp/WEB-INF</directory>
+							<filtering>true</filtering>
+							<targetPath>WEB-INF</targetPath>
+						</resource>
+					</webResources>
 				</configuration>
+
 			</plugin>
 			<!-- Run mvn clean package embedded-glassfish:run -->
 			<!-- and go to http://localhost:8080/applicationPetstore/ -->
