@@ -12,19 +12,18 @@
 	<properties>
 		<version.java>1.6</version.java>
 		<version.junit>4.10</version.junit>
-		<version.arquillian>1.0.0.CR7</version.arquillian>
-		<version.arquillian.glassfish.embedded>1.0.0.CR2</version.arquillian.glassfish.embedded>
-		<version.arquillian.jboss.managed>7.0.2.Final</version.arquillian.jboss.managed>
-		<version.glassfish>3.1.2-b16</version.glassfish>
+		<version.mockito>1.9.0</version.mockito>
+		<version.arquillian>1.0.1.Final</version.arquillian>
+		<version.arquillian.glassfish.embedded>1.0.0.CR3</version.arquillian.glassfish.embedded>
+		<version.arquillian.jboss.managed>7.1.1.Final</version.arquillian.jboss.managed>
+		<version.glassfish>3.1.2-b20</version.glassfish>
 		<version.maven.embedded.glassfish.plugin>3.1.1</version.maven.embedded.glassfish.plugin>
-		<version.maven.war.plugin>2.1.1</version.maven.war.plugin>
-		<version.maven.compiler.plugin>2.3.2</version.maven.compiler.plugin>
-		<version.maven.surefire.plugin>2.10</version.maven.surefire.plugin>
+		<version.maven.war.plugin>2.2</version.maven.war.plugin>
+		<version.maven.compiler.plugin>2.4</version.maven.compiler.plugin>
+		<version.maven.surefire.plugin>2.12</version.maven.surefire.plugin>
 		<version.maven.failsafe.plugin>2.10</version.maven.failsafe.plugin>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<jdbc.datasource.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.datasource.driver>
-		<jdbc.url>jdbc:derby:memory:applicationPetstoreDB;create=true;user=app;password=app</jdbc.url>
 	</properties>
 
 	<dependencyManagement>
@@ -44,7 +43,7 @@
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
-			<version>1.8.5</version>
+			<version>${version.mockito}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -73,7 +72,10 @@
 	<profiles>
 		<profile>
 			<id>glassfish-embedded</id>
-			<properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
 				<jdbc.datasource.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.datasource.driver>
 				<jdbc.url>jdbc:derby:memory:applicationPetstoreDB;create=true;user=app;password=app</jdbc.url>
 			</properties>
@@ -201,9 +203,9 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
 				<version>${version.maven.surefire.plugin}</version>
-
 			</plugin>
 
 			<plugin>
