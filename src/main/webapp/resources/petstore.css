@@ -38,7 +38,7 @@ body {
     height: 100px;
     z-index: 5;
     overflow: hidden;
-    color: #fff;
+    color: #000;
 }
 
 #header #logo {
@@ -74,7 +74,7 @@ body {
     bottom: 0px;
     border-top: 130px solid #fff;
     border-bottom: 35px solid #fff;
-    color: #000;
+    color: #fff;
 }
 
 #content {

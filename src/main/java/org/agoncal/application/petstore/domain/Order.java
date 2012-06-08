@@ -159,14 +159,14 @@ public class Order {
         Order order = (Order) o;
 
         if (!customer.equals(order.customer)) return false;
-        if (!orderDate.equals(order.orderDate)) return false;
+        if (orderDate != null && !orderDate.equals(order.orderDate)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = orderDate.hashCode();
+        int result = orderDate != null ? orderDate.hashCode() : 0;
         result = 31 * result + customer.hashCode();
         return result;
     }
