@@ -62,7 +62,7 @@ public class CatalogController extends Controller implements Serializable{
 
             category = catalogService.findCategory(categoryName);
             products = category.getProducts();
-            navigateTo = "showproducts.xhtml";
+            navigateTo = "showproducts.faces";
         } catch (Exception e) {
             addMessage(this.getClass().getName(), "doFindProducts", e);
         }
@@ -75,7 +75,7 @@ public class CatalogController extends Controller implements Serializable{
         try {
             product = catalogService.findProduct(productId);
             items = product.getItems();
-            navigateTo = "showitems.xhtml";
+            navigateTo = "showitems.faces";
         } catch (Exception e) {
             addMessage(this.getClass().getName(), "doFindItems", e);
         }
@@ -87,7 +87,7 @@ public class CatalogController extends Controller implements Serializable{
 
         try {
             item = catalogService.findItem(getParamId("itemId"));
-            navigateTo = "showitem.xhtml";
+            navigateTo = "showitem.faces";
         } catch (Exception e) {
             addMessage(this.getClass().getName(), "doFindItem", e);
         }
@@ -99,7 +99,7 @@ public class CatalogController extends Controller implements Serializable{
 
         try {
             items = catalogService.searchItems(keyword);
-            navigateTo = "searchresult.xhtml";
+            navigateTo = "searchresult.faces";
         } catch (Exception e) {
             addMessage(this.getClass().getName(), "doSearch", e);
         }

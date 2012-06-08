@@ -1,5 +1,11 @@
 package org.agoncal.application.petstore.security;
 
+import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.security.auth.login.LoginContext;
+import javax.security.auth.login.LoginException;
 import org.agoncal.application.petstore.domain.Customer;
 import org.agoncal.application.petstore.service.CustomerService;
 import org.agoncal.application.petstore.util.ConfigPropertyProducer;
@@ -15,15 +21,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.enterprise.context.SessionScoped;
-import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
-import javax.security.auth.login.LoginContext;
-import javax.security.auth.login.LoginException;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * @author blep
@@ -34,8 +36,7 @@ import static org.mockito.Mockito.*;
 @RunWith(Arquillian.class)
 public class LoginModuleIT {
 
-
-    private static CustomerService customerService;
+    private CustomerService customerService;
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -46,7 +47,7 @@ public class LoginModuleIT {
     }
 
     @Produces
-    public static CustomerService produceMockCustomerService() {
+    public CustomerService produceMockCustomerService() {
         return customerService;
     }
 

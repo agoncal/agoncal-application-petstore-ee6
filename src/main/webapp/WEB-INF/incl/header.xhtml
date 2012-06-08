@@ -7,43 +7,44 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <h:link outcome="main">
-        <h:graphicImage id="logo" url="#{resource['banner_logo.gif']}"/>
+        <h:graphicImage id="logo" url="#{resource['banner_logo.gif']}" alt="Logo" />
         <f:param name="cid" value="#{conversation.id}"/>
     </h:link>
 
     <h:form>
-        &nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;
+        &#160;&#160;&#160;
+        &#160;&#160;&#160;
+        &#160;&#160;&#160;
         <div style="float: right;">
             <h:inputText value="#{catalogController.keyword}"/>
             <h:commandButton action="#{catalogController.doSearch}" value="Search"/>
         </div>
 
         <div style="margin-top: 20px;">
-            &nbsp;
+            &#160;
             <h:commandLink action="#{language.doFr}">
                 <h:outputText value="fr"/>
             </h:commandLink>
-            &nbsp;
+            &#160;
             <h:commandLink action="#{language.doEn}">
                 <h:outputText value="en"/>
             </h:commandLink>
-            &nbsp;
+
+            &#160;&#124;&#160;
 
             <h:link outcome="signon" value="Log in" rendered="#{!accountController.loggedIn}">
                 <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
             </h:link>
-            &nbsp;&nbsp;&nbsp;
+            <h:outputText value="&#160;" rendered="#{!accountController.loggedIn}" />
             <h:link outcome="showaccount" value="Welcome #{accountController.loggedinCustomer.firstname}"
                     rendered="#{accountController.loggedIn}">
                 <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
             </h:link>
-            &nbsp;&nbsp;&nbsp;
+            <h:outputText value="&#160;" rendered="#{!shoppingCartController.shoppingCartIsEmpty()}" />
             <h:link outcome="showcart" value="Cart" rendered="#{!shoppingCartController.shoppingCartIsEmpty()}">
                 <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
             </h:link>
-            &nbsp;&nbsp;&nbsp;
+            <h:outputText value="&#160;" rendered="#{accountController.loggedIn}" />
             <h:commandLink action="#{accountController.doLogout}" rendered="#{accountController.loggedIn}">
                 <h:outputText value="Log out"/>
             </h:commandLink>

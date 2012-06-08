@@ -38,6 +38,8 @@ public class SimpleLoginModule  implements LoginModule{
         }
         try {
             Context context = new InitialContext();
+            // not portable if not called from a JEE component
+            // -> deltapsike and BeanProvider like solution is far better
             beanManager = (BeanManager) context.lookup("java:comp/BeanManager");
             Bean<?> bean = beanManager.getBeans(CustomerService.class).iterator().next();
             CreationalContext cc = beanManager.createCreationalContext(bean);
@@ -53,21 +55,17 @@ public class SimpleLoginModule  implements LoginModule{
     }
 
     public SimpleLoginModule() {
-        System.out.println("SimpleLoginModule.SimpleLoginModule");     //TODO delete me
+        // no-op
     }
 
     @Override
     public void initialize(Subject subject, CallbackHandler callbackHandler, Map<String, ?> stringMap, Map<String, ?> stringMap1) {
-        System.out.println("SimpleLoginModule.initialize");   //TODO delete me
         this.callbackHandler = callbackHandler;
         getCustomerService();
     }
 
     @Override
     public boolean login() throws LoginException {
-        System.out.println("SimpleLoginModule.login"); //TODO delete me
-        
-        
 
         NameCallback nameCallback = new NameCallback("Name : ");
         PasswordCallback passwordCallback = new PasswordCallback("Password : ", false);
@@ -92,19 +90,16 @@ public class SimpleLoginModule  implements LoginModule{
 
     @Override
     public boolean commit() throws LoginException {
-        System.out.println("SimpleLoginModule.commit");//TODO delete me
         return true;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public boolean abort() throws LoginException {
-        System.out.println("SimpleLoginModule.abort");//TODO delete me
         return true;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public boolean logout() throws LoginException {
-        System.out.println("SimpleLoginModule.logout");//TODO delete me
         return true;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

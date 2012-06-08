@@ -14,4 +14,11 @@
 <!--             </property> -->
 <!--         </configuration> -->
 <!--     </container> -->
+  <container qualifier="openejb" default="true">
+    <configuration>
+      <property name="properties">
+        java.security.auth.login.config=${project.basedir}/src/main/resources/petstore-test.login
+      </property>
+    </configuration>
+  </container>
 </arquillian>
