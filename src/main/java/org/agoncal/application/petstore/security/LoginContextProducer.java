@@ -3,7 +3,6 @@ package org.agoncal.application.petstore.security;
 import org.agoncal.application.petstore.util.ConfigProperty;
 
 import javax.enterprise.inject.Produces;
-import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Inject;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
@@ -15,15 +14,22 @@ import javax.security.auth.login.LoginException;
  */
 public class LoginContextProducer {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
     @Inject
     private SimpleCallbackHandler callbackHandler;
 
+    // ======================================
+    // =          Business methods          =
+    // ======================================
+
     @Produces
     public LoginContext produceLoginContext(@ConfigProperty("loginConfigFile") String loginConfigFileName,
-                                            @ConfigProperty("loginModuleName") String loginModuleName)
-            throws LoginException {
-        System.setProperty("java.security.auth.login.config",
-                LoginContextProducer.class.getResource(loginConfigFileName).getFile());
+                                            @ConfigProperty("loginModuleName") String loginModuleName) throws LoginException {
+
+        System.setProperty("java.security.auth.login.config", LoginContextProducer.class.getResource(loginConfigFileName).getFile());
 
         return new LoginContext(loginModuleName, callbackHandler);
     }

@@ -5,7 +5,6 @@ import org.agoncal.application.petstore.util.Loggable;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
@@ -19,10 +18,6 @@ import javax.inject.Inject;
 @Singleton
 @Startup
 @Loggable
-//@DataSourceDefinition(name = "java:global/jdbc/applicationPetstoreDS",
-//                      className = "${jdbc.datasource.driver}",
-//                      url = "${jdbc.url}"
-//                      )
 public class DBPopulator {
 
     // ======================================
@@ -61,7 +56,6 @@ public class DBPopulator {
         catalogService.removeCategory(reptile);
         catalogService.removeCategory(cat);
         catalogService.removeCategory(bird);
-//        catalogService.removeCategory(fish);
         customerService.removeCustomer(marc);
         customerService.removeCustomer(bill);
         customerService.removeCustomer(steve);

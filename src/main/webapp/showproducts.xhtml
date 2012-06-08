@@ -16,14 +16,13 @@
 
     <ui:define name="body">
 
-        <h2>#{i18n.showProducts_productForCategory} :
-            <h:outputText value="#{catalogController.categoryName}"/>
-        </h2>
+        <h2>#{i18n.showProducts_productForCategory} : #{catalogController.categoryName}</h2>
 
         <h:outputText value="#{i18n.product_noProductFound}"
                       rendered="#{catalogController.products == null || catalogController.products.size() == 0}"/>
+
         <h:dataTable value="#{catalogController.products}" var="oneProduct"
-                     rendered="#{catalogController.products.size() > 0}">
+                     rendered="#{catalogController.products.size() > 0}" styleClass="pet">
             <h:column>
                 <h:link outcome="showitems" includeViewParams="true" value="#{oneProduct.name}">
                     <f:param name="productId" value="#{oneProduct.id}"/>

@@ -1,6 +1,5 @@
 package org.agoncal.application.petstore.service;
 
-import org.agoncal.application.petstore.domain.Address;
 import org.agoncal.application.petstore.domain.Customer;
 import org.agoncal.application.petstore.exception.ValidationException;
 import org.agoncal.application.petstore.util.Loggable;

@@ -1,286 +1,286 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.agoncal.application</groupId>
-	<artifactId>petstoreee6</artifactId>
-	<packaging>war</packaging>
-	<version>1.0</version>
-	<name>Petstore application using Java EE 6</name>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.agoncal.application</groupId>
+    <artifactId>petstoreee6</artifactId>
+    <packaging>war</packaging>
+    <version>1.0</version>
+    <name>Petstore application using Java EE 6</name>
 
-	<properties>
-		<version.java>1.6</version.java>
-		<version.junit>4.10</version.junit>
-		<version.mockito>1.9.0</version.mockito>
-		<version.arquillian>1.0.1.Final</version.arquillian>
-		<version.arquillian.glassfish.embedded>1.0.0.CR3</version.arquillian.glassfish.embedded>
-		<version.arquillian.jboss.managed>7.1.1.Final</version.arquillian.jboss.managed>
-		<version.glassfish>3.1.2-b20</version.glassfish>
-		<version.maven.embedded.glassfish.plugin>3.1.1</version.maven.embedded.glassfish.plugin>
-		<version.maven.war.plugin>2.2</version.maven.war.plugin>
-		<version.maven.compiler.plugin>2.4</version.maven.compiler.plugin>
-		<version.maven.surefire.plugin>2.12</version.maven.surefire.plugin>
-		<version.maven.failsafe.plugin>2.10</version.maven.failsafe.plugin>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-	</properties>
+    <properties>
+        <version.java>1.6</version.java>
+        <version.junit>4.10</version.junit>
+        <version.mockito>1.9.0</version.mockito>
+        <version.arquillian>1.0.1.Final</version.arquillian>
+        <version.arquillian.glassfish.embedded>1.0.0.CR3</version.arquillian.glassfish.embedded>
+        <version.arquillian.jboss.managed>7.1.1.Final</version.arquillian.jboss.managed>
+        <version.glassfish>3.1.2-b20</version.glassfish>
+        <version.maven.embedded.glassfish.plugin>3.1.1</version.maven.embedded.glassfish.plugin>
+        <version.maven.war.plugin>2.2</version.maven.war.plugin>
+        <version.maven.compiler.plugin>2.4</version.maven.compiler.plugin>
+        <version.maven.surefire.plugin>2.12</version.maven.surefire.plugin>
+        <version.maven.failsafe.plugin>2.12</version.maven.failsafe.plugin>
+        <version.jrebel>1.1.3</version.jrebel>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.jboss.arquillian</groupId>
-				<artifactId>arquillian-bom</artifactId>
-				<version>${version.arquillian}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${version.arquillian}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${version.mockito}</version>
+            <scope>test</scope>
+        </dependency>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>${version.mockito}</version>
-			<scope>test</scope>
-		</dependency>
+        <!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 6... -->
+        <dependency>
+            <groupId>org.glassfish.main.extras</groupId>
+            <artifactId>glassfish-embedded-all</artifactId>
+            <version>${version.glassfish}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version.junit}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-		<!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 
-			6... -->
-		<dependency>
-			<groupId>org.glassfish.main.extras</groupId>
-			<artifactId>glassfish-embedded-all</artifactId>
-			<version>${version.glassfish}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${version.junit}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.arquillian.junit</groupId>
-			<artifactId>arquillian-junit-container</artifactId>
-			<scope>test</scope>
-		</dependency>
+    </dependencies>
 
-	</dependencies>
-
-	<profiles>
-		<profile>
-			<id>glassfish-embedded</id>
+    <profiles>
+        <profile>
+            <id>glassfish-embedded</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-				<jdbc.datasource.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.datasource.driver>
-				<jdbc.url>jdbc:derby:memory:applicationPetstoreDB;create=true;user=app;password=app</jdbc.url>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.jboss.arquillian.container</groupId>
-					<artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-					<version>${version.arquillian.glassfish.embedded}</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<version>${version.maven.failsafe.plugin}</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>integration-test</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
+                <jdbc.datasource.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.datasource.driver>
+                <jdbc.url>jdbc:derby:memory:applicationPetstoreDB;create=true;user=app;password=app</jdbc.url>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+                    <version>${version.arquillian.glassfish.embedded}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${version.maven.failsafe.plugin}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
-		<profile>
-			<id>jbossas7-managed</id>
-			<properties>
-				<jdbc.datasource.driver>org.h2.jdbcx.JdbcDataSource</jdbc.datasource.driver>
-				<jdbc.url>jdbc:h2:~/applicationPetstoreDB;AUTO_SERVER=TRUE</jdbc.url>
-			</properties>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>org.jboss.as</groupId>
-					<artifactId>jboss-as-arquillian-container-managed</artifactId>
-					<version>${version.arquillian.jboss.managed}</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-			<build>
-
-				<plugins>
-					<plugin>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<version>${version.maven.failsafe.plugin}</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>integration-test</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-
-		<profile>
-			<id>jbossas7-remote</id>
-			<properties>
-				<jdbc.datasource.driver>org.h2.jdbcx.JdbcDataSource</jdbc.datasource.driver>
-				<jdbc.url>jdbc:h2:~/applicationPetstoreDB;AUTO_SERVER=TRUE</jdbc.url>
-			</properties>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>org.jboss.as</groupId>
-					<artifactId>jboss-as-arquillian-container-remote</artifactId>
-					<version>${version.arquillian.jboss.managed}</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-			<build>
-
-				<plugins>
-					<plugin>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<version>2.6</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>integration-test</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+        <profile>
+            <id>jbossas7-managed</id>
+            <properties>
+                <jdbc.datasource.driver>org.h2.jdbcx.JdbcDataSource</jdbc.datasource.driver>
+                <jdbc.url>jdbc:h2:~/applicationPetstoreDB;AUTO_SERVER=TRUE</jdbc.url>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.as</groupId>
+                    <artifactId>jboss-as-arquillian-container-managed</artifactId>
+                    <version>${version.arquillian.jboss.managed}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${version.maven.failsafe.plugin}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
 
-	<build>
-		<finalName>applicationPetstore</finalName>
-		<!-- <sourceDirectory>target/filtered-sources/java</sourceDirectory> -->
-		<!-- <resources> -->
-		<!-- <resource> -->
-		<!-- <directory>src/main/java</directory> -->
-		<!-- <filtering>true</filtering> -->
-		<!-- <targetPath>../filtered-sources/java</targetPath> -->
-		<!-- </resource> -->
-		<!-- <resource> -->
-		<!-- <directory>src/main/resources</directory> -->
-		<!-- <filtering>false</filtering> -->
-		<!-- </resource> -->
-		<!-- </resources> -->
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${version.maven.compiler.plugin}</version>
-				<inherited>true</inherited>
-				<configuration>
-					<source>${version.java}</source>
-					<target>${version.java}</target>
-				</configuration>
-			</plugin>
-			<plugin>
+        <profile>
+            <id>jbossas7-remote</id>
+            <properties>
+                <jdbc.datasource.driver>org.h2.jdbcx.JdbcDataSource</jdbc.datasource.driver>
+                <jdbc.url>jdbc:h2:~/applicationPetstoreDB;AUTO_SERVER=TRUE</jdbc.url>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.as</groupId>
+                    <artifactId>jboss-as-arquillian-container-remote</artifactId>
+                    <version>${version.arquillian.jboss.managed}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${version.maven.failsafe.plugin}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+    <build>
+        <finalName>applicationPetstore</finalName>
+        <!-- <sourceDirectory>target/filtered-sources/java</sourceDirectory> -->
+        <!-- <resources> -->
+        <!-- <resource> -->
+        <!-- <directory>src/main/java</directory> -->
+        <!-- <filtering>true</filtering> -->
+        <!-- <targetPath>../filtered-sources/java</targetPath> -->
+        <!-- </resource> -->
+        <!-- <resource> -->
+        <!-- <directory>src/main/resources</directory> -->
+        <!-- <filtering>false</filtering> -->
+        <!-- </resource> -->
+        <!-- </resources> -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${version.maven.compiler.plugin}</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <source>${version.java}</source>
+                    <target>${version.java}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.zeroturnaround</groupId>
+                <artifactId>jrebel-maven-plugin</artifactId>
+                <version>${version.jrebel}</version>
+                <executions>
+                    <execution>
+                        <id>generate-rebel-xml</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-				<version>${version.maven.surefire.plugin}</version>
-			</plugin>
+                <version>${version.maven.surefire.plugin}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${version.maven.war.plugin}</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+                            <filtering>true</filtering>
+                            <targetPath>WEB-INF</targetPath>
+                        </resource>
+                    </webResources>
+                </configuration>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>${version.maven.war.plugin}</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
+            </plugin>
+            <!-- Run mvn clean package embedded-glassfish:run -->
+            <!-- and go to http://localhost:8080/applicationPetstore/ -->
+            <plugin>
+                <groupId>org.glassfish</groupId>
+                <artifactId>maven-embedded-glassfish-plugin</artifactId>
+                <version>${version.maven.embedded.glassfish.plugin}</version>
+                <configuration>
+                    <app>${project.build.directory}/${project.build.finalName}.war</app>
+                    <port>8080</port>
+                    <contextRoot>${project.build.finalName}</contextRoot>
+                    <name>${project.build.finalName}</name>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-					<webResources>
-						<resource>
-							<directory>${basedir}/src/main/webapp/WEB-INF</directory>
-							<filtering>true</filtering>
-							<targetPath>WEB-INF</targetPath>
-						</resource>
-					</webResources>
-				</configuration>
-
-			</plugin>
-			<!-- Run mvn clean package embedded-glassfish:run -->
-			<!-- and go to http://localhost:8080/applicationPetstore/ -->
-			<plugin>
-				<groupId>org.glassfish</groupId>
-				<artifactId>maven-embedded-glassfish-plugin</artifactId>
-				<version>${version.maven.embedded.glassfish.plugin}</version>
-				<configuration>
-					<app>${project.build.directory}/${project.build.finalName}.war</app>
-					<port>8080</port>
-					<contextRoot>${project.build.finalName}</contextRoot>
-					<name>${project.build.finalName}</name>
-				</configuration>
-			</plugin>
-			<!--<plugin> -->
-			<!--<groupId>org.zeroturnaround</groupId> -->
-			<!--<artifactId>jrebel-maven-plugin</artifactId> -->
-			<!--<executions> -->
-			<!--<execution> -->
-			<!--<id>generate-rebel-xml</id> -->
-			<!--<phase>process-resources</phase> -->
-			<!--<goals> -->
-			<!--<goal>generate</goal> -->
-			<!--</goals> -->
-			<!--</execution> -->
-			<!--</executions> -->
-			<!--</plugin> -->
-		</plugins>
-	</build>
-
-	<repositories>
-		<repository>
-			<id>jboss-public-repository-group</id>
-			<name>JBoss Public Maven Repository Group</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-			<layout>default</layout>
-		</repository>
-		<repository>
-			<id>java.net-public-repository-group</id>
-			<name>Java.Net Public Maven Repository Group</name>
-			<url>https://maven.java.net/content/groups/public</url>
-		</repository>
-		<repository>
-			<id>java.net-staging-repository-group</id>
-			<name>Java.Net Staging Maven Repository Group</name>
-			<url>https://maven.java.net/content/groups/staging</url>
-		</repository>
-		<repository>
-			<id>java.net-releases-repository-group</id>
-			<name>Java.Net Releases Maven Repository Group</name>
-			<url>https://maven.java.net/content/repositories/releases</url>
-		</repository>
-		<repository>
-			<id>java.net-snapshots-repository-group</id>
-			<name>Java.Net Snapshots Maven Repository Group</name>
-			<url>https://maven.java.net/content/repositories/snapshots</url>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Maven Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>java.net-public-repository-group</id>
+            <name>Java.Net Public Maven Repository Group</name>
+            <url>https://maven.java.net/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>java.net-staging-repository-group</id>
+            <name>Java.Net Staging Maven Repository Group</name>
+            <url>https://maven.java.net/content/groups/staging</url>
+        </repository>
+        <repository>
+            <id>java.net-releases-repository-group</id>
+            <name>Java.Net Releases Maven Repository Group</name>
+            <url>https://maven.java.net/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>java.net-snapshots-repository-group</id>
+            <name>Java.Net Snapshots Maven Repository Group</name>
+            <url>https://maven.java.net/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
 
 </project>

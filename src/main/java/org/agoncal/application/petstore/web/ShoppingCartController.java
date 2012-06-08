@@ -3,9 +3,7 @@ package org.agoncal.application.petstore.web;
 import org.agoncal.application.petstore.domain.*;
 import org.agoncal.application.petstore.service.CatalogService;
 import org.agoncal.application.petstore.service.OrderService;
-import org.agoncal.application.petstore.web.LoggedIn;
 
-import javax.ejb.Stateful;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.inject.Instance;
@@ -33,15 +31,16 @@ public class ShoppingCartController extends Controller implements Serializable {
     private CatalogService catalogBean;
     @Inject
     private OrderService orderBean;
-    
+
     @Inject
     private Conversation conversation;
 
-	private List<CartItem> cartItems;
+    private List<CartItem> cartItems;
 
     private CreditCard creditCard = new CreditCard();
 
-    @Inject @LoggedIn
+    @Inject
+    @LoggedIn
     private Instance<Customer> customerInstances;
 
     private Order order;
@@ -154,8 +153,7 @@ public class ShoppingCartController extends Controller implements Serializable {
     // ======================================
 
     public Customer getCustomer() {
-    	Customer res = customerInstances.get();
-       return res;
+        return customerInstances.get();
     }
 
 

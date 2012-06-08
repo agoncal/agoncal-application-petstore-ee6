@@ -12,6 +12,10 @@ import java.util.Properties;
  */
 public class ConfigPropertyProducer {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
     private static Properties props;
 
     static {
@@ -23,13 +27,15 @@ public class ConfigPropertyProducer {
         }
     }
 
+    // ======================================
+    // =          Business methods          =
+    // ======================================
+
     @Produces
     @ConfigProperty
     public static String produceConfigProperty(InjectionPoint ip) {
         String key = ip.getAnnotated().getAnnotation(ConfigProperty.class).value();
 
         return props.getProperty(key);
-
     }
-
 }

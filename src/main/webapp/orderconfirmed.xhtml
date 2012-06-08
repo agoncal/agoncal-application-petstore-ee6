@@ -10,16 +10,14 @@
 
     <ui:define name="body">
 
-        <h2>#{i18n.orderConfirmed_yourOrderIsComplete} :
-            <h:outputText value="#{shoppingCartController.order.id}"/>
-        </h2>
+        <h2>#{i18n.orderConfirmed_yourOrderIsComplete}</h2>
 
-        <p><b>#{i18n.orderConfirmed_yourOrderIdIs} <h:outputText value="#{shoppingCartController.order.id}"/></b></p>
+        <h3>#{i18n.orderConfirmed_yourOrderIdIs} : #{shoppingCartController.order.id}</h3>
 
         <h:form>
-            <h:dataTable value="#{shoppingCartController.order.orderLines}" var="orderLine">
+            <h:dataTable value="#{shoppingCartController.order.orderLines}" var="orderLine" styleClass="order">
                 <h:column>
-                    <b><h:outputText value="#{orderLine.item.product.name}"/></b>
+                    <strong><h:outputText value="#{orderLine.item.product.name}"/></strong>
                     <br/>
                     <h:outputText value="#{orderLine.item.name}"/>
                 </h:column>
@@ -39,16 +37,14 @@
             </h:dataTable>
             <br/>
 
-            <div class="zoneButton">
-                Total $
-                <h:outputText value="#{shoppingCartController.order.total}"/>
+            <div style="margin-top: 20px; font-weight: bold;">
+                Total $ #{shoppingCartController.order.total}
             </div>
         </h:form>
 
+        <p style="margin-top: 15px">#{i18n.orderConfirmed_msg1}</p>
 
-        <P>#{i18n.orderConfirmed_msg1}</P>
-
-        <P>#{i18n.orderConfirmed_msg2}</P>
+        <p style="margin-top: 15px">#{i18n.orderConfirmed_msg2}</p>
 
     </ui:define>
 </ui:composition>

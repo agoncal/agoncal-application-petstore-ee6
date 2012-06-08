@@ -10,7 +10,7 @@
     <title>
         <ui:insert name="title">Default title</ui:insert>
     </title>
-    <h:outputStylesheet name="petstore.css"/>
+    <h:outputStylesheet name="css/petstore.css"/>
 
 </h:head>
 <h:body>
@@ -27,9 +27,10 @@
 
     <!-- BODY -->
     <div id="content">
-
-        <h:messages errorStyle="color:red;" warnStyle="color:orange;" infoStyle="color:green;"/>
-        <ui:insert name="body">Default content</ui:insert>
+        <h:panelGrid columns="1" style="width: 100%">
+            <h:messages errorClass="msg_error" warnClass="msg_warn" infoClass="msg_info"/>
+            <ui:insert name="body">Default content</ui:insert>
+        </h:panelGrid>
     </div>
 
     <!-- FOOTER -->

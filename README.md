@@ -1,5 +1,12 @@
 # Application - Petstore Java EE 6
 
+* *Author* : [Antonio Goncalves](http://www.antoniogoncalves.org)
+* *Level* : Intermediate
+* *Technologies* : Java EE 6 (JPA 2.0, CDI 1.0, Bean Validation 1.0, EJB Lite 3.1, JSF 2.0, JAX-RS 1.1)
+* *Summary* : A Petstore-like application using Java EE 6
+
+[Download the code from GitHub](https://github.com/agoncal/agoncal-application-petstore-ee6)
+
 ## Purpose of this application
 
 Do you remember the good old Java [Petstore](http://java.sun.com/developer/releases/petstore/) ? It was a sample application created by Sun for its [Java BluePrints](http://www.oracle.com/technetwork/java/javaee/blueprints/index.html) program. The Java Petstore was designed to illustrate how J2EE (and then Java EE) could be used to develop an eCommernce web application. Yes, the point of the Petstore is to sell pets online.
@@ -73,6 +80,22 @@ The admin [REST interface](rs/application.wadl) allows you to create/update/remo
 You can also get a JSON reprensetation as follow :
 
 * `curl -X GET -H "accept: application/json" http://localhost:8080/applicationPetstore/rs/catalog/items`
+
+## JRebel
+
+[JRebel](http://zeroturnaround.com/software/jrebel/) is a JVM-plugin that makes it possible for Java developers to instantly see any code change made to an app without redeploying. It is very useful when you develop in a managed environment like application servers. If you need/want to use JRebel, just follow the [manual](http://zeroturnaround.com/software/jrebel/documentation/). To generate a rebel.xml file just do  `mvn jrebel:generate`
+
+## Developpers
+
+Some people who worked on this project :
+
+* [Antoine Sabot-Durand](https://twitter.com/#!/antoine_sd)
+* [Brice Leporini](https://twitter.com/#!/blep)
+* Hervé Le Morvan
+
+## Creative Commons
+
+I use [Silk Icons](http://www.famfamfam.com/lab/icons/silk/) which are in Creative Commons
 
 <div class="footer">
     <span class="footerTitle"><span class="uc">a</span>ntonio <span class="uc">g</span>oncalves</span>

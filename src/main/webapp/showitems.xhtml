@@ -16,12 +16,11 @@
 
     <ui:define name="body">
 
-        <h2>#{i18n.showItems_itemForProduct} :
-            <h:outputText value="#{catalogController.product.name}"/>
-        </h2>
+        <h2>#{i18n.showItems_itemForProduct} : #{catalogController.product.name}</h2>
 
         <h:outputText value="#{i18n.noItemsFound}"
                       rendered="#{catalogController.items == null || catalogController.items.size() ==0}"/>
+
         <h:dataTable value="#{catalogController.items}" var="oneItem" rendered="#{catalogController.items.size() > 0}">
             <h:column>
                 <h:graphicImage url="resources/images/#{oneItem.imagePath}"/>
@@ -42,7 +41,7 @@
                 <h:form>
                     <h:commandLink action="#{shoppingCartController.addItemToCart}"
                                    rendered="#{accountController.loggedIn}">
-                        <h:outputText value="#{i18n.searchResult_addToCart} [#{oneItem.id}]"/>
+                        <h:outputText value="#{i18n.searchResult_addToCart}" styleClass="add-to-cart"/>
                         <f:param name="itemId" value="#{oneItem.id}"/>
                     </h:commandLink>
                 </h:form>

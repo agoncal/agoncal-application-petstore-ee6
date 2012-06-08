@@ -3,6 +3,7 @@ package org.agoncal.application.petstore.web;
 import org.agoncal.application.petstore.domain.Customer;
 import org.agoncal.application.petstore.service.CustomerService;
 
+import javax.enterprise.context.Conversation;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
@@ -30,10 +31,15 @@ public class AccountController extends Controller implements Serializable {
     @Inject
     private Credentials credentials;
 
-    @Produces @LoggedIn
+    @Inject
+    private Conversation conversation;
+
+    @Produces
+    @LoggedIn
     private Customer loggedinCustomer;
 
-    @Inject @SessionScoped
+    @Inject
+    @SessionScoped
     private transient LoginContext loginContext;
 
     // ======================================
@@ -95,6 +101,10 @@ public class AccountController extends Controller implements Serializable {
 
     public void doLogout() {
         loggedinCustomer = null;
+        // Stop conversation
+        if (!conversation.isTransient()) {
+            conversation.end();
+        }
     }
 
     public String doUpdateAccount() {

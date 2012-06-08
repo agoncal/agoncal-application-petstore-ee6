@@ -28,7 +28,7 @@
                     </h:commandLink>
                 </h:column>
                 <h:column>
-                    <h:commandLink action="#{shoppingCartController.updateQuantity}">
+                    <h:commandLink action="#{shoppingCartController.updateQuantity}" styleClass="arrow_refresh">
                         <h:outputText value="#{i18n.update}"/>
                         <f:param name="itemId" value="#{oneItem.item.id}"/>
                     </h:commandLink>
@@ -45,7 +45,7 @@
                 </h:column>
                 <h:column>
                     &nbsp;
-                    <h:commandLink action="#{shoppingCartController.removeItemFromCart}">
+                    <h:commandLink action="#{shoppingCartController.removeItemFromCart}" styleClass="remove-from-cart">
                         <h:outputText value="#{i18n.remove}"/>
                         <f:param name="itemId" value="#{oneItem.item.id}"/>
                     </h:commandLink>
@@ -57,9 +57,9 @@
             <div class="zoneButton">
                 Total $
                 <h:outputText value="#{shoppingCartController.total}"/>
-
                 &nbsp;
-                <h:commandLink action="#{shoppingCartController.checkout}" value="Check Out"/>
+                <h:commandLink action="#{shoppingCartController.checkout}" value="Check Out"
+                               styleClass="checkout-cart"/>
             </div>
         </h:form>
 

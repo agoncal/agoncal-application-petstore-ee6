@@ -116,13 +116,13 @@ public class Customer implements Serializable {
     /**
      * Given a password, this method then checks if it matches the user
      *
-     * @param pwd
+     * @param pwd Password
      * @throws ValidationException thrown if the password is empty or different than the one
      *                             store in database
      */
     public void matchPassword(String pwd) {
         if (pwd == null || "".equals(pwd))
-            throw new ValidationException("Invalid password"); // TODO what about throwing a Bean Validation exception
+            throw new ValidationException("Invalid password");
 
         // The password entered by the customer is not the same stored in database
         if (!pwd.equals(password))

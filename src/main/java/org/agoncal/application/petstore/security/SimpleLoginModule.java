@@ -2,7 +2,6 @@ package org.agoncal.application.petstore.security;
 
 import org.agoncal.application.petstore.domain.Customer;
 import org.agoncal.application.petstore.service.CustomerService;
-import org.agoncal.application.petstore.web.AccountController;
 
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.Bean;
@@ -24,14 +23,23 @@ import java.util.Map;
  *         Date: 12/02/12
  *         Time: 11:59
  */
-public class SimpleLoginModule  implements LoginModule{
+
+public class SimpleLoginModule implements LoginModule {
+
+    // ======================================
+    // =             Attributes             =
+    // ======================================
 
     private CallbackHandler callbackHandler;
 
     private CustomerService customerService;
 
     private BeanManager beanManager;
-    
+
+    // ======================================
+    // =          Business methods          =
+    // ======================================
+
     private CustomerService getCustomerService() {
         if (customerService != null) {
             return customerService;
@@ -65,15 +73,12 @@ public class SimpleLoginModule  implements LoginModule{
 
     @Override
     public boolean login() throws LoginException {
-        System.out.println("SimpleLoginModule.login"); //TODO delete me
-        
-        
 
         NameCallback nameCallback = new NameCallback("Name : ");
         PasswordCallback passwordCallback = new PasswordCallback("Password : ", false);
         try {
-            callbackHandler.handle(new Callback[]{nameCallback,passwordCallback});
-            String username = new String(nameCallback.getName());
+            callbackHandler.handle(new Callback[]{nameCallback, passwordCallback});
+            String username = nameCallback.getName();
             String password = new String(passwordCallback.getPassword());
             nameCallback.setName("");
             passwordCallback.clearPassword();
@@ -92,19 +97,16 @@ public class SimpleLoginModule  implements LoginModule{
 
     @Override
     public boolean commit() throws LoginException {
-        System.out.println("SimpleLoginModule.commit");//TODO delete me
-        return true;  //To change body of implemented methods use File | Settings | File Templates.
+        return true;
     }
 
     @Override
     public boolean abort() throws LoginException {
-        System.out.println("SimpleLoginModule.abort");//TODO delete me
-        return true;  //To change body of implemented methods use File | Settings | File Templates.
+        return true;
     }
 
     @Override
     public boolean logout() throws LoginException {
-        System.out.println("SimpleLoginModule.logout");//TODO delete me
-        return true;  //To change body of implemented methods use File | Settings | File Templates.
+        return true;
     }
 }

@@ -66,12 +66,11 @@
 
                     <h:outputText value="#{i18n.address_country} :"/>
                     <h:outputText value="#{accountController.loggedinCustomer.homeAddress.country}"/>
-
                 </h:panelGrid>
             </div>
 
-            <div class="zoneButton">
-                <h:commandLink action="updateaccount">
+            <div style="margin-top: 20px">
+                <h:commandLink action="updateaccount" styleClass="user-edit">
                     <h:outputText value="#{i18n.showAccount_edit}"/>
                 </h:commandLink>
             </div>

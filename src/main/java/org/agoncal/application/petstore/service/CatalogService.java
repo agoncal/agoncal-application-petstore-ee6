@@ -67,8 +67,7 @@ public class CatalogService implements Serializable {
         if (category == null)
             throw new ValidationException("Category object is null");
 
-        em.merge(category);
-        return category;
+        return em.merge(category);
     }
 
     public void removeCategory(Category category) {
@@ -115,8 +114,7 @@ public class CatalogService implements Serializable {
         if (product == null)
             throw new ValidationException("Product object is null");
 
-        em.merge(product);
-        return product;
+        return em.merge(product);
     }
 
     public void removeProduct(Product product) {
@@ -174,8 +172,7 @@ public class CatalogService implements Serializable {
         if (item == null)
             throw new ValidationException("Item object is null");
 
-        em.merge(item);
-        return item;
+        return em.merge(item);
     }
 
     public void removeItem(Item item) {

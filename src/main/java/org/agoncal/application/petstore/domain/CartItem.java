@@ -85,9 +85,11 @@ public class CartItem {
 
     @Override
     public String toString() {
-        return "CartItem{" +
-                "item=" + item +
-                ", quantity=" + quantity +
-                '}';
+        final StringBuilder sb = new StringBuilder();
+        sb.append("CartItem");
+        sb.append("{item='").append(item).append('\'');
+        sb.append(", quantity='").append(quantity).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

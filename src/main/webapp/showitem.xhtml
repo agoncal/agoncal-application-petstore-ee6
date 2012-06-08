@@ -16,9 +16,7 @@
 
     <ui:define name="body">
 
-        <h2>
-            <h:outputText value="#{catalogController.item.product.name} - #{catalogController.item.name}"/>
-        </h2>
+        <h2>#{catalogController.item.product.name} - #{catalogController.item.name}"</h2>
 
         <h:panelGrid columns="3">
             <h:column>
@@ -35,7 +33,7 @@
                 <h:form>
                     <h:commandLink action="#{shoppingCartController.addItemToCart}"
                                    rendered="#{accountController.loggedIn}">
-                        <h:outputText value="#{i18n.searchResult_addToCart}"/>
+                        <h:outputText value="#{i18n.searchResult_addToCart}" styleClass="add-to-cart"/>
                         <f:param name="itemId" value="#{catalogController.item.id}"/>
                     </h:commandLink>
                 </h:form>
@@ -44,7 +42,7 @@
 
         <h:panelGrid columns="1">
             <h:column>
-                <h:outputText value="#{catalogController.item.description}"/> $
+                <h:outputText value="#{catalogController.item.description}"/>
             </h:column>
         </h:panelGrid>
 

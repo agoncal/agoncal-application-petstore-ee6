@@ -90,7 +90,7 @@ public class LoginModuleIT {
         try {
             loginContext.login();
         } catch (LoginException e) {
-            assertEquals(e.getMessage(),"Authentication failed");
+            assertEquals(e.getMessage(), "Authentication failed");
             verify(customerService).findCustomer(login, password);
             throw e;
         }

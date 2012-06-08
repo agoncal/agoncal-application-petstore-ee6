@@ -59,12 +59,10 @@ public abstract class Controller {
     protected String getParam(String param) {
         FacesContext context = FacesContext.getCurrentInstance();
         Map<String, String> map = context.getExternalContext().getRequestParameterMap();
-        String result = map.get(param);
-        return result;
+        return map.get(param);
     }
 
     protected Long getParamId(String param) {
-        Long result = Long.valueOf(getParam(param));
-        return result;
+        return Long.valueOf(getParam(param));
     }
 }

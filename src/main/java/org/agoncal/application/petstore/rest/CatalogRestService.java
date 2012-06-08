@@ -40,7 +40,7 @@ public class CatalogRestService implements Serializable {
     private UriInfo uriInfo;
 
     // ======================================
-    // =              Public Methods        =
+    // =          Business methods          =
     // ======================================
 
     @GET
