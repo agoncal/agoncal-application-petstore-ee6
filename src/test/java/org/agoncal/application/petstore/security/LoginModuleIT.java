@@ -34,8 +34,7 @@ import static org.mockito.Mockito.*;
 @RunWith(Arquillian.class)
 public class LoginModuleIT {
 
-
-    private static CustomerService customerService;
+    private CustomerService customerService;
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -46,7 +45,7 @@ public class LoginModuleIT {
     }
 
     @Produces
-    public static CustomerService produceMockCustomerService() {
+    public CustomerService produceMockCustomerService() {
         return customerService;
     }
 

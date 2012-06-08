@@ -52,7 +52,7 @@ public class AccountController extends Controller implements Serializable {
         try {
             loginContext.login();
             loggedinCustomer = customerService.findCustomer(credentials.getLogin());
-            navigateTo = "main.xhtml";
+            navigateTo = "main.faces";
         } catch (Exception e) {
             addMessage(this.getClass().getName(), "doLogin", e);
         }
@@ -81,7 +81,7 @@ public class AccountController extends Controller implements Serializable {
         loggedinCustomer.setLogin(credentials.getLogin());
         loggedinCustomer.setPassword(credentials.getPassword());
 
-        return "createaccount.xhtml";
+        return "createaccount.faces";
     }
 
     public String doCreateCustomer() {
@@ -91,7 +91,7 @@ public class AccountController extends Controller implements Serializable {
             // Creates the customer
             loggedinCustomer = customerService.createCustomer(loggedinCustomer);
 
-            navigateTo = "main.xhtml";
+            navigateTo = "main.faces";
         } catch (Exception e) {
             addMessage(this.getClass().getName(), "doCreateCustomer", e);
         }

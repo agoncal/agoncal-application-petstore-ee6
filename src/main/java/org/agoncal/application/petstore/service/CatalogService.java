@@ -91,7 +91,11 @@ public class CatalogService implements Serializable {
         if (productId == null)
             throw new ValidationException("Invalid id");
 
-        return em.find(Product.class, productId);
+        Product product = em.find(Product.class, productId);
+        if (product != null) {
+            product.getItems(); // TODO check lazy loading
+        }
+        return product;
     }
 
     public List<Product> findAllProducts() {

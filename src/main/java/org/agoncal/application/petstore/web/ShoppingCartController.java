@@ -72,7 +72,7 @@ public class ShoppingCartController extends Controller implements Serializable {
                 // Otherwise it's added to the shopping cart
                 cartItems.add(new CartItem(item, 1));
 
-            navigateTo = "showcart.xhtml";
+            navigateTo = "showcart.faces";
         } catch (Exception e) {
             addMessage(this.getClass().getName(), "addItemToCart", e);
         }
@@ -103,7 +103,7 @@ public class ShoppingCartController extends Controller implements Serializable {
     }
 
     public String checkout() {
-        return "confirmorder.xhtml";
+        return "confirmorder.faces";
     }
 
     public String confirmOrder() {
@@ -118,7 +118,7 @@ public class ShoppingCartController extends Controller implements Serializable {
                 conversation.end();
             }
 
-            navigateTo = "orderconfirmed.xhtml";
+            navigateTo = "orderconfirmed.faces";
         } catch (Exception e) {
             addMessage(this.getClass().getName(), "confirmOrder", e);
         }

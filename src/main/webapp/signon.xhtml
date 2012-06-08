@@ -18,12 +18,12 @@
         <h:form>
             <h:panelGrid columns="2" border="1">
                 <f:facet name="header">
-                    <h:outputLabel value="#{i18n.yes}"/>
+                    <h:outputText value="#{i18n.yes}"/>
                 </f:facet>
-                <h:outputLabel value="#{i18n.customer_login}"/>
-                <h:inputText value="#{credentials.login}" maxlength="10" size="12"/>
-                <h:outputLabel value="#{i18n.customer_password}"/>
-                <h:inputSecret value="#{credentials.password}" maxlength="10" size="12"/>
+                <h:outputLabel value="#{i18n.customer_login}" for="login"/>
+                <h:inputText id="login" value="#{credentials.login}" maxlength="10" size="12"/>
+                <h:outputLabel value="#{i18n.customer_password}" for="password"/>
+                <h:inputSecret id="password" value="#{credentials.password}" maxlength="10" size="12"/>
                 <f:facet name="footer">
                     <h:commandButton value="#{i18n.signon_signIn}" action="#{accountController.doLogin}" type="submit"/>
                     <h:outputLabel value="user/user - admin/admin"/>
@@ -34,14 +34,14 @@
         <h:form>
             <h:panelGrid columns="2" border="1">
                 <f:facet name="header">
-                    <h:outputLabel value="#{i18n.signon_signup}"/>
+                    <h:outputText value="#{i18n.signon_signup}"/>
                 </f:facet>
-                <h:outputLabel value="#{i18n.customer_login}"/>
-                <h:inputText value="#{credentials.login}" maxlength="10" size="12"/>
-                <h:outputLabel value="#{i18n.customer_password}"/>
-                <h:inputSecret value="#{credentials.password}" maxlength="10" size="12"/>
-                <h:outputLabel value="#{i18n.customer_password} (#{i18n.again}):"/>
-                <h:inputSecret value="#{credentials.password2}" maxlength="10" size="12"/>
+                <h:outputLabel value="#{i18n.customer_login}" for="newlogin"/>
+                <h:inputText id="newlogin" value="#{credentials.login}" maxlength="10" size="12"/>
+                <h:outputLabel value="#{i18n.customer_password}" for="newpassword"/>
+                <h:inputSecret id="newpassword" value="#{credentials.password}" maxlength="10" size="12"/>
+                <h:outputLabel value="#{i18n.customer_password} (#{i18n.again}):" for="newpasswordagain"/>
+                <h:inputSecret id="newpasswordagain" value="#{credentials.password2}" maxlength="10" size="12"/>
                 <f:facet name="footer">
                     <h:commandButton value="#{i18n.signon_new}" action="#{accountController.doCreateNewAccount}"
                                      type="submit"/>

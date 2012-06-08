@@ -1,17 +1,41 @@
 package org.agoncal.application.petstore.domain;
 
-import org.junit.Test;
-
+import java.io.StringWriter;
+import javax.inject.Inject;
+import javax.validation.Validator;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
-import java.io.StringWriter;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
 
 /**
  * @author Antonio Goncalves
  */
-public class CategoryTest extends AbstractDomainTest {
+@RunWith(Arquillian.class)
+public class CategoryTest {
+
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
+    @Inject
+    private Validator validator;
+
+    // ======================================
+    // =          Lifecycle Methods         =
+    // ======================================
+
+    @Deployment
+    public static JavaArchive jar() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addClass(Category.class);
+    }
 
     // ======================================
     // =              Methods               =

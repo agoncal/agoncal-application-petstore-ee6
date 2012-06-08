@@ -14,6 +14,10 @@
         <version.junit>4.10</version.junit>
         <version.mockito>1.9.0</version.mockito>
         <version.arquillian>1.0.1.Final</version.arquillian>
+        <version.openejb>4.1.0-SNAPSHOT</version.openejb>
+        <version.openejb.javaee-api>6.0-4</version.openejb.javaee-api>
+        <version.tomee>1.1.0-SNAPSHOT</version.tomee>
+        <version.myfaces>2.1.7</version.myfaces>
         <version.arquillian.glassfish.embedded>1.0.0.CR3</version.arquillian.glassfish.embedded>
         <version.arquillian.jboss.managed>7.1.1.Final</version.arquillian.jboss.managed>
         <version.glassfish>3.1.2-b20</version.glassfish>
@@ -46,14 +50,6 @@
             <version>${version.mockito}</version>
             <scope>test</scope>
         </dependency>
-
-        <!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 6... -->
-        <dependency>
-            <groupId>org.glassfish.main.extras</groupId>
-            <artifactId>glassfish-embedded-all</artifactId>
-            <version>${version.glassfish}</version>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -79,6 +75,13 @@
                 <jdbc.url>jdbc:derby:memory:applicationPetstoreDB;create=true;user=app;password=app</jdbc.url>
             </properties>
             <dependencies>
+                <!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 6... -->
+                <dependency>
+                    <groupId>org.glassfish.main.extras</groupId>
+                    <artifactId>glassfish-embedded-all</artifactId>
+                    <version>${version.glassfish}</version>
+                    <scope>provided</scope>
+                </dependency>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
@@ -158,7 +161,54 @@
                 </dependency>
             </dependencies>
             <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${version.maven.failsafe.plugin}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
+        <profile>
+            <id>tomee</id>
+            <properties>
+                <jdbc.datasource.driver>org.hsqldb.jdbcDriver</jdbc.datasource.driver>
+                <jdbc.url>jdbc:hsqldb:mem:applicationPetstoreDB</jdbc.url>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <dependencies>
+                <!--This has most of the needed dependencies : JPA, EJB, Java EE 6... -->
+                <dependency>
+                    <groupId>org.apache.openejb</groupId>
+                    <artifactId>javaee-api</artifactId>
+                    <version>${version.openejb.javaee-api}</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.myfaces.core</groupId>
+                    <artifactId>myfaces-api</artifactId>
+                    <version>${version.myfaces}</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.openejb</groupId>
+                    <artifactId>arquillian-openejb-embedded-4</artifactId>
+                    <version>${version.openejb}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -177,21 +227,16 @@
         </profile>
     </profiles>
 
-
     <build>
         <finalName>applicationPetstore</finalName>
-        <!-- <sourceDirectory>target/filtered-sources/java</sourceDirectory> -->
-        <!-- <resources> -->
-        <!-- <resource> -->
-        <!-- <directory>src/main/java</directory> -->
-        <!-- <filtering>true</filtering> -->
-        <!-- <targetPath>../filtered-sources/java</targetPath> -->
-        <!-- </resource> -->
-        <!-- <resource> -->
-        <!-- <directory>src/main/resources</directory> -->
-        <!-- <filtering>false</filtering> -->
-        <!-- </resource> -->
-        <!-- </resources> -->
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -221,6 +266,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${version.maven.surefire.plugin}</version>
+                <configuration>
+                    <forkMode>never</forkMode>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -251,10 +299,22 @@
                     <name>${project.build.finalName}</name>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.openejb.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+                <configuration>
+                    <tomeeClassifier>jaxrs</tomeeClassifier>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
     <repositories>
+        <repository>
+            <id>apache-snapshot</id>
+            <url>https://repository.apache.org/content/repositories/snapshots/</url>
+        </repository>
         <repository>
             <id>jboss-public-repository-group</id>
             <name>JBoss Public Maven Repository Group</name>
@@ -282,5 +342,12 @@
             <url>https://maven.java.net/content/repositories/snapshots</url>
         </repository>
     </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>apache-snapshot</id>
+            <url>https://repository.apache.org/content/repositories/snapshots/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

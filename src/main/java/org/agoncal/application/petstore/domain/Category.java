@@ -18,7 +18,7 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = Category.FIND_BY_NAME, query = "SELECT c FROM Category c WHERE c.name = :pname"),
+        @NamedQuery(name = Category.FIND_BY_NAME, query = "SELECT c FROM Category c LEFT JOIN FETCH c.products WHERE c.name = :pname"),
         @NamedQuery(name = Category.FIND_ALL, query = "SELECT c FROM Category c")
 })
 @XmlRootElement
