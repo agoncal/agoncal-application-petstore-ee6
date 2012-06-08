@@ -60,13 +60,8 @@ public class SimpleLoginModule implements LoginModule {
 
     }
 
-    public SimpleLoginModule() {
-        System.out.println("SimpleLoginModule.SimpleLoginModule");     //TODO delete me
-    }
-
     @Override
     public void initialize(Subject subject, CallbackHandler callbackHandler, Map<String, ?> stringMap, Map<String, ?> stringMap1) {
-        System.out.println("SimpleLoginModule.initialize");   //TODO delete me
         this.callbackHandler = callbackHandler;
         getCustomerService();
     }

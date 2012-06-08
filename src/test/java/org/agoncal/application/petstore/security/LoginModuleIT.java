@@ -64,8 +64,6 @@ public class LoginModuleIT {
 
     @Test
     public void testLogin() throws Exception {
-        System.out.println("LoginModuleIT.testLogin");
-
         String login = "admin";
         String password = "password";
 
