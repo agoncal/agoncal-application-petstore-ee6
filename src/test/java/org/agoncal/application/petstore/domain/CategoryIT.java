@@ -3,6 +3,7 @@ package org.agoncal.application.petstore.domain;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +36,8 @@ public class CategoryIT {
     @Deployment
     public static JavaArchive jar() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(Category.class);
+                .addClass(Category.class)
+                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================

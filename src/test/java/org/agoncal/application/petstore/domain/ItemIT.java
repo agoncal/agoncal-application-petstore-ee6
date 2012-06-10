@@ -1,16 +1,18 @@
 package org.agoncal.application.petstore.domain;
 
-import java.io.StringWriter;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import javax.inject.Inject;
 import javax.validation.Validator;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import java.io.StringWriter;
 
 import static org.junit.Assert.assertEquals;
 
@@ -34,7 +36,8 @@ public class ItemIT {
     @Deployment
     public static JavaArchive jar() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClasses(Category.class, Product.class, Item.class);
+                .addClasses(Category.class, Product.class, Item.class)
+                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================
