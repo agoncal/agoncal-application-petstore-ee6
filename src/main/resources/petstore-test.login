@@ -1,3 +1,3 @@
 SimpleLoginModule{
-    org.agoncal.application.petstore.security.Sim>pleLoginModule required;
+    org.agoncal.application.petstore.security.SimpleLoginModule required;
 };
