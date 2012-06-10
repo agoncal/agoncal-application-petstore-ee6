@@ -12,6 +12,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -30,7 +31,7 @@ import static org.mockito.Mockito.*;
  *         Date: 12/02/12
  *         Time: 11:59
  */
-//@Ignore
+@Ignore
 @RunWith(Arquillian.class)
 public class LoginModuleIT {
 
@@ -44,7 +45,7 @@ public class LoginModuleIT {
                 .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
     }
 
-    @Produces
+    //@Produces
     public CustomerService produceMockCustomerService() {
         return customerService;
     }

@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
  * @author Antonio Goncalves
  */
 @RunWith(Arquillian.class)
-public class OrderTest {
+public class AddressIT {
 
     // ======================================
     // =             Attributes             =
@@ -31,7 +31,7 @@ public class OrderTest {
     @Deployment
     public static JavaArchive jar() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClasses(Address.class, Customer.class, CreditCard.class, Order.class);
+                .addClass(Address.class);
     }
 
     // ======================================
@@ -39,15 +39,12 @@ public class OrderTest {
     // ======================================
 
     @Test
-    public void shouldCreateAValidOrder() {
+    public void shouldCreateAValidAddress() {
 
         // Creates an object
-        Address address = new Address("Abbey road", "Liverpool", "SW17", "UK");
-        Customer customer = new Customer("Paul", "Mc Cartney", "pmac", "pmac", "paul@beales.com", address);
-        CreditCard creditCard = new CreditCard("123456789", CreditCardType.VISA, "12/45");
-        Order order = new Order(customer, creditCard, address);
+        Address address = new Address("Street1", "City", "Zipcode", "Country");
 
         // Checks the object is valid
-        assertEquals("Should have not constraint violation", 0, validator.validate(order).size());
+        assertEquals("Should have not constraint violation", 0, validator.validate(address).size());
     }
 }

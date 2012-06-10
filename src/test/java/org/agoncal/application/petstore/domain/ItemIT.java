@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
  * @author Antonio Goncalves
  */
 @RunWith(Arquillian.class)
-public class ProductTest {
+public class ItemIT {
 
     // ======================================
     // =             Attributes             =
@@ -34,7 +34,7 @@ public class ProductTest {
     @Deployment
     public static JavaArchive jar() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClasses(Category.class, Product.class);
+                .addClasses(Category.class, Product.class, Item.class);
     }
 
     // ======================================
@@ -42,14 +42,15 @@ public class ProductTest {
     // ======================================
 
     @Test
-    public void shouldCreateAValidProduct() {
+    public void shouldCreateAValidItem() {
 
         // Creates an object
         Category category = new Category("Fish", "Any of numerous cold-blooded aquatic vertebrates characteristically having fins, gills, and a streamlined body");
         Product product = new Product("Bulldog", "Friendly dog from England", category);
+        Item item = new Item("Thootless fish", 10f, "fish1.gif", product, "desc");
 
         // Checks the object is valid
-        assertEquals("Should have not constraint violation", 0, validator.validate(product).size());
+        assertEquals("Should have not constraint violation", 0, validator.validate(item).size());
     }
 
     @Test
@@ -58,11 +59,12 @@ public class ProductTest {
         // Creates an object
         Category category = new Category("Fish", "Any of numerous cold-blooded aquatic vertebrates characteristically having fins, gills, and a streamlined body");
         Product product = new Product("Bulldog", "Friendly dog from England", category);
+        Item item = new Item("Thootless fish", 10f, "fish1.gif", product, "desc");
 
         // Marshalls it to XML
         StringWriter writer = new StringWriter();
-        JAXBContext context = JAXBContext.newInstance(Product.class);
+        JAXBContext context = JAXBContext.newInstance(Item.class);
         Marshaller m = context.createMarshaller();
-        m.marshal(product, writer);
+        m.marshal(item, writer);
     }
 }

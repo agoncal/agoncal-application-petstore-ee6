@@ -14,10 +14,6 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 public abstract class AbstractServiceIT {
 
     // ======================================
-    // =             Attributes             =
-    // ======================================
-
-    // ======================================
     // =          Lifecycle Methods         =
     // ======================================
 

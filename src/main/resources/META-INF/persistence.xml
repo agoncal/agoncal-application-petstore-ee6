@@ -15,13 +15,12 @@
             <!-- Properties for Hibernate -->
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
-              <!-- openjpa -->
-      <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
-      <!--
-      <property name="openjpa.Log" value="SQL=TRACE" />
-      <property name="openjpa.ConnectionFactoryProperties" value="printParameters=true" />
-      -->
-    </properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
+
+            <!-- openjpa -->
+            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+            <property name="openjpa.Log" value="SQL=TRACE" />
+            <property name="openjpa.ConnectionFactoryProperties" value="printParameters=true" />
+        </properties>
     </persistence-unit>
 </persistence>

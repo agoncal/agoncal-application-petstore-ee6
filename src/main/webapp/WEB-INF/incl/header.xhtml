@@ -22,7 +22,7 @@
                 <div style="float: right;">
                     <div style="float: right;">
                         <h:inputText value="#{catalogController.keyword}"/>
-                        <h:commandButton action="#{catalogController.doSearch}" value="Search"/>
+                        <h:commandButton action="#{catalogController.doSearch}" value="#{i18n.search}"/>
                     </div>
                 </div>
             </h:panelGroup>
@@ -32,25 +32,25 @@
 
             <h:panelGroup>
                 <div style="float: right;">
-                    <h:link outcome="showcart" value="Cart" rendered="#{!shoppingCartController.shoppingCartIsEmpty()}"
+                    <h:link outcome="showcart" value="#{i18n.shoppingCart}" rendered="#{!shoppingCartController.shoppingCartIsEmpty()}"
                             styleClass="menu-cart">
                         <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:link>
 
-                    <h:link outcome="showaccount" value="Welcome #{accountController.loggedinCustomer.firstname}"
+                    <h:link outcome="showaccount" value="#{i18n.welcome} #{accountController.loggedinCustomer.firstname}"
                             styleClass="menu-user"
                             rendered="#{accountController.loggedIn}">
                         <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:link>
 
-                    <h:link outcome="signon" value="Log in" rendered="#{!accountController.loggedIn}"
+                    <h:link outcome="signon" value="#{i18n.logIn}" rendered="#{!accountController.loggedIn}"
                             styleClass="menu-login">
                         <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:link>
 
                     <h:commandLink action="#{accountController.doLogout}" rendered="#{accountController.loggedIn}"
                                    styleClass="menu-logout">
-                        <h:outputText value="Log out"/>
+                        <h:outputText value="${i18n.logOut}"/>
                     </h:commandLink>
 
                     <h:commandLink action="#{language.doFr}" styleClass="menu-fr">

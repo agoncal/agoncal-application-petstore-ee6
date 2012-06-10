@@ -3,20 +3,25 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-    <!-- To let MyFaces auto start it needs som eJSF annotation (not CDI ones) -->
-  <servlet>
-    <servlet-name>Faces Servlet</servlet-name>
-    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>*.xhtml</url-pattern>
-  </servlet-mapping>
+    <!-- To let MyFaces auto start it needs some JSF annotation (@ManagedBean) instead of CDI @Named) -->
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
 
-  <data-source>
-        <name>java:global/jdbc/applicationPetstoreDS</name>
-        <class-name>${jdbc.datasource.driver}</class-name>
-        <url>${jdbc.url}</url>
-    </data-source>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <!-- To define a datasource we use the @Datasource annotation -->
+    <!--<data-source>-->
+        <!--<name>java:global/jdbc/applicationPetstoreDS</name>-->
+        <!--<class-name>org.apache.derby.jdbc.EmbeddedDriver</class-name>-->
+        <!--<url>jdbc:derby:memory:applicationPetstoreDB;create=true;user=app;password=app</url>-->
+    <!--</data-source>-->
 </web-app>

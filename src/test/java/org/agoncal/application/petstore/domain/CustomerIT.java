@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
  * @author Antonio Goncalves
  */
 @RunWith(Arquillian.class)
-public class CustomerTest {
+public class CustomerIT {
 
     // ======================================
     // =             Attributes             =

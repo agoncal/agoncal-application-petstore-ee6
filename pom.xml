@@ -11,6 +11,8 @@
 
     <properties>
         <version.java>1.6</version.java>
+        <version.javaee>6.0</version.javaee>
+        <version.derby>10.8.2.2</version.derby>
         <version.junit>4.10</version.junit>
         <version.mockito>1.9.0</version.mockito>
         <version.arquillian>1.0.1.Final</version.arquillian>
@@ -118,6 +120,17 @@
             </activation>
             <dependencies>
                 <dependency>
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-api</artifactId>
+                    <version>${version.javaee}</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.derby</groupId>
+                    <artifactId>derby</artifactId>
+                    <version>${version.derby}</version>
+                </dependency>
+                <dependency>
                     <groupId>org.jboss.as</groupId>
                     <artifactId>jboss-as-arquillian-container-managed</artifactId>
                     <version>${version.arquillian.jboss.managed}</version>
@@ -153,6 +166,12 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <dependencies>
+                <dependency>
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-api</artifactId>
+                    <version>${version.javaee}</version>
+                    <scope>provided</scope>
+                </dependency>
                 <dependency>
                     <groupId>org.jboss.as</groupId>
                     <artifactId>jboss-as-arquillian-container-remote</artifactId>

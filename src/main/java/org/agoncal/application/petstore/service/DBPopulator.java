@@ -5,6 +5,7 @@ import org.agoncal.application.petstore.util.Loggable;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
@@ -18,6 +19,10 @@ import javax.inject.Inject;
 @Singleton
 @Startup
 @Loggable
+@DataSourceDefinition(name = "java:global/jdbc/applicationPetstoreDS",
+        className = "org.apache.derby.jdbc.EmbeddedDriver",
+        url = "jdbc:derby:memory:applicationPetstoreDB;create=true;user=app;password=app"
+)
 public class DBPopulator {
 
     // ======================================
