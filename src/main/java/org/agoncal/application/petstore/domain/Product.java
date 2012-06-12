@@ -16,7 +16,8 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        // TODO fetch doesn't work with GlassFish @NamedQuery(name = Product.FIND_BY_CATEGORY_NAME, query = "SELECT p FROM Product p LEFT JOIN FETCH p.items WHERE p.category.name = :pname"),
+        // TODO fetch doesn't work with GlassFish
+//        @NamedQuery(name = Product.FIND_BY_CATEGORY_NAME, query = "SELECT p FROM Product p LEFT JOIN FETCH p.items LEFT JOIN FETCH p.category WHERE p.category.name = :pname"),
         @NamedQuery(name = Product.FIND_BY_CATEGORY_NAME, query = "SELECT p FROM Product p WHERE p.category.name = :pname"),
         @NamedQuery(name = Product.FIND_ALL, query = "SELECT p FROM Product p")
 })

@@ -54,7 +54,7 @@ public class AccountController extends Controller implements Serializable {
             loggedinCustomer = customerService.findCustomer(credentials.getLogin());
             navigateTo = "main.faces";
         } catch (Exception e) {
-            addMessage(this.getClass().getName(), "doLogin", e);
+            e.printStackTrace();
         }
         return navigateTo;
     }
@@ -93,7 +93,7 @@ public class AccountController extends Controller implements Serializable {
 
             navigateTo = "main.faces";
         } catch (Exception e) {
-            addMessage(this.getClass().getName(), "doCreateCustomer", e);
+            e.printStackTrace();
         }
         return navigateTo;
     }
@@ -117,7 +117,7 @@ public class AccountController extends Controller implements Serializable {
             addInformationMessage("Your account has been updated");
             navigateTo = "account.updated";
         } catch (Exception e) {
-            addMessage(this.getClass().getName(), "doUpdateAccount", e);
+            e.printStackTrace();
         }
         return navigateTo;
     }

@@ -38,28 +38,28 @@
                     </h:link>
 
                     <h:link outcome="showaccount" value="#{i18n.welcome} #{accountController.loggedinCustomer.firstname}"
-                            styleClass="menu-user"
-                            rendered="#{accountController.loggedIn}">
+                            styleClass="menu-user" rendered="#{accountController.loggedIn}">
                         <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:link>
 
-                    <h:link outcome="signon" value="#{i18n.logIn}" rendered="#{!accountController.loggedIn}"
-                            styleClass="menu-login">
+                    <h:link outcome="signon" value="#{i18n.logIn}" rendered="#{!accountController.loggedIn}" styleClass="menu-login">
                         <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:link>
 
-                    <h:commandLink action="#{accountController.doLogout}" rendered="#{accountController.loggedIn}"
-                                   styleClass="menu-logout">
+                    <h:commandLink action="#{accountController.doLogout}" rendered="#{accountController.loggedIn}" styleClass="menu-logout">
                         <h:outputText value="${i18n.logOut}"/>
                     </h:commandLink>
 
-                    <h:commandLink action="#{language.doFr}" styleClass="menu-fr">
-                        <h:outputText value="fr"/>
+                    <h:commandLink action="#{localeBean.setLanguage('fr')}" styleClass="menu-fr" immediate="true">
+                        <f:ajax render="@form"/>
+                        <h:outputText value="Français"/>
                     </h:commandLink>
 
-                    <h:commandLink action="#{language.doEn}" styleClass="menu-en">
-                        <h:outputText value="en"/>
+                    <h:commandLink action="#{localeBean.setLanguage('en')}" styleClass="menu-en" immediate="true">
+                        <f:ajax render="@form"/>
+                        <h:outputText value="English"/>
                     </h:commandLink>
+
                 </div>
             </h:panelGroup>
         </h:panelGrid>

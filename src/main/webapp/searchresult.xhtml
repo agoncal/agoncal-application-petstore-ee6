@@ -5,11 +5,11 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                template="layout.xhtml">
+                template="WEB-INF/layouts/template.xhtml">
 
     <f:metadata>
         <f:viewParam name="keyword" value="#{catalogController.keyword}"/>
-        <f:event type="preRenderComponent" listener="#{catalogController.doSearch}"/>
+        <f:event type="preRenderView" listener="#{catalogController.doSearch}"/>
     </f:metadata>
 
     <ui:define name="title">#{i18n.searchResult_searchFor} #{catalogController.keyword}</ui:define>

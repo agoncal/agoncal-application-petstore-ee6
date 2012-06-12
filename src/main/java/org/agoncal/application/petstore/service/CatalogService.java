@@ -36,14 +36,14 @@ public class CatalogService implements Serializable {
 
     public Category findCategory(Long categoryId) {
         if (categoryId == null)
-            throw new ValidationException("Invalid id");
+            throw new ValidationException("Invalid category id");
 
         return em.find(Category.class, categoryId);
     }
 
     public Category findCategory(String categoryName) {
         if (categoryName == null)
-            throw new ValidationException("Invalid name");
+            throw new ValidationException("Invalid category name");
 
         TypedQuery<Category> typedQuery = em.createNamedQuery(Category.FIND_BY_NAME, Category.class);
         typedQuery.setParameter("pname", categoryName);
@@ -78,10 +78,16 @@ public class CatalogService implements Serializable {
     }
 
     public void removeCategory(Long categoryId) {
+        if (categoryId == null)
+            throw new ValidationException("Invalid category id");
+
         removeCategory(findCategory(categoryId));
     }
 
     public List<Product> findProducts(String categoryName) {
+        if (categoryName == null)
+            throw new ValidationException("Invalid category name");
+
         TypedQuery<Product> typedQuery = em.createNamedQuery(Product.FIND_BY_CATEGORY_NAME, Product.class);
         typedQuery.setParameter("pname", categoryName);
         return typedQuery.getResultList();
@@ -89,7 +95,7 @@ public class CatalogService implements Serializable {
 
     public Product findProduct(Long productId) {
         if (productId == null)
-            throw new ValidationException("Invalid id");
+            throw new ValidationException("Invalid product id");
 
         Product product = em.find(Product.class, productId);
         if (product != null) {
@@ -129,10 +135,15 @@ public class CatalogService implements Serializable {
     }
 
     public void removeProduct(Long productId) {
+        if (productId == null)
+            throw new ValidationException("Invalid product id");
+
         removeProduct(findProduct(productId));
     }
 
     public List<Item> findItems(Long productId) {
+        if (productId == null)
+            throw new ValidationException("Invalid product id");
 
         TypedQuery<Item> typedQuery = em.createNamedQuery(Item.FIND_BY_PRODUCT_ID, Item.class);
         typedQuery.setParameter("productId", productId);
@@ -141,12 +152,14 @@ public class CatalogService implements Serializable {
 
     public Item findItem(final Long itemId) {
         if (itemId == null)
-            throw new ValidationException("Invalid id");
+            throw new ValidationException("Invalid item id");
 
         return em.find(Item.class, itemId);
     }
 
     public List<Item> searchItems(String keyword) {
+        if (keyword == null)
+            keyword = "";
 
         TypedQuery<Item> typedQuery = em.createNamedQuery(Item.SEARCH, Item.class);
         typedQuery.setParameter("keyword", "%" + keyword.toUpperCase() + "%");
@@ -187,6 +200,9 @@ public class CatalogService implements Serializable {
     }
 
     public void removeItem(Long itemId) {
+        if (itemId == null)
+            throw new ValidationException("itemId is null");
+
         removeItem(findItem(itemId));
     }
 }

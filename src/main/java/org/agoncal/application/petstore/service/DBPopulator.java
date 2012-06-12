@@ -33,16 +33,16 @@ public class DBPopulator {
     // =             Attributes             =
     // ======================================
 
-    Category fish;
-    Category dog;
-    Category reptile;
-    Category cat;
-    Category bird;
-    Customer marc;
-    Customer bill;
-    Customer steve;
-    Customer user;
-    Customer admin;
+    private Category fish;
+    private Category dog;
+    private Category reptile;
+    private Category cat;
+    private Category bird;
+    private Customer marc;
+    private Customer bill;
+    private Customer steve;
+    private Customer user;
+    private Customer admin;
 
     @Inject
     private CatalogService catalogService;

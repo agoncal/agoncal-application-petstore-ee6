@@ -8,8 +8,6 @@ import javax.inject.Inject;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import static org.agoncal.application.petstore.util.ExceptionUtils.getRootCause;
-import static org.agoncal.application.petstore.util.ExceptionUtils.isApplicationException;
 
 /**
  * @author Antonio Goncalves
@@ -30,16 +28,6 @@ public abstract class Controller {
     // ======================================
     // =          Protected Methods         =
     // ======================================
-
-    protected void addMessage(String sourceClass, String sourceMethod, Throwable throwable) {
-        Throwable cause = getRootCause(throwable);
-        if (isApplicationException(cause)) {
-            addWarningMessage(cause.getMessage());
-        } else {
-            addErrorMessage(throwable.getMessage());
-            logger.throwing(sourceClass, sourceMethod, throwable);
-        }
-    }
 
     protected void addInformationMessage(String message) {
         FacesContext context = FacesContext.getCurrentInstance();

@@ -74,7 +74,7 @@ public class ShoppingCartController extends Controller implements Serializable {
 
             navigateTo = "showcart.faces";
         } catch (Exception e) {
-            addMessage(this.getClass().getName(), "addItemToCart", e);
+            e.printStackTrace();
         }
         return navigateTo;
     }
@@ -93,7 +93,7 @@ public class ShoppingCartController extends Controller implements Serializable {
             }
 
         } catch (Exception e) {
-            addMessage(this.getClass().getName(), "removeItemFromCart", e);
+            e.printStackTrace();
         }
         return navigateTo;
     }
@@ -120,7 +120,7 @@ public class ShoppingCartController extends Controller implements Serializable {
 
             navigateTo = "orderconfirmed.faces";
         } catch (Exception e) {
-            addMessage(this.getClass().getName(), "confirmOrder", e);
+            e.printStackTrace();
         }
         return navigateTo;
     }

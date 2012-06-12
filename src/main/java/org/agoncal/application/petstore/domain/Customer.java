@@ -2,6 +2,7 @@ package org.agoncal.application.petstore.domain;
 
 import org.agoncal.application.petstore.constraint.Login;
 import org.agoncal.application.petstore.exception.ValidationException;
+import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -43,11 +44,14 @@ public class Customer implements Serializable {
     private String password;
     @Column(nullable = false)
     @NotNull
+    @Size(min = 2, max = 50)
     private String firstname;
     @Column(nullable = false)
     @NotNull
+    @Size(min = 2, max = 50)
     private String lastname;
     private String telephone;
+    @Email
     private String email;
     @Embedded
     @Valid
