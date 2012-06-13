@@ -32,21 +32,25 @@
 
             <h:panelGroup>
                 <div style="float: right;">
-                    <h:link outcome="showcart" value="#{i18n.shoppingCart}" rendered="#{!shoppingCartController.shoppingCartIsEmpty()}"
+                    <h:link outcome="showcart" value="#{i18n.shoppingCart}"
+                            rendered="#{!shoppingCartController.shoppingCartIsEmpty()}"
                             styleClass="menu-cart">
                         <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:link>
 
-                    <h:link outcome="showaccount" value="#{i18n.welcome} #{accountController.loggedinCustomer.firstname}"
+                    <h:link outcome="showaccount"
+                            value="#{i18n.welcome} #{accountController.loggedinCustomer.firstname}"
                             styleClass="menu-user" rendered="#{accountController.loggedIn}">
                         <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:link>
 
-                    <h:link outcome="signon" value="#{i18n.logIn}" rendered="#{!accountController.loggedIn}" styleClass="menu-login">
+                    <h:link outcome="signon" value="#{i18n.logIn}" rendered="#{!accountController.loggedIn}"
+                            styleClass="menu-login">
                         <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                     </h:link>
 
-                    <h:commandLink action="#{accountController.doLogout}" rendered="#{accountController.loggedIn}" styleClass="menu-logout">
+                    <h:commandLink action="#{accountController.doLogout}" rendered="#{accountController.loggedIn}"
+                                   styleClass="menu-logout">
                         <h:outputText value="${i18n.logOut}"/>
                     </h:commandLink>
 

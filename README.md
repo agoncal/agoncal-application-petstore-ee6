@@ -14,7 +14,7 @@ Do you remember the good old Java [Petstore](http://java.sun.com/developer/relea
 
 The Petstore had a huge momentum and we started to see plenty of Petstore-like applications flourish. The idea was to build an application with a certain technology. Let's face it, the J2EE version was far too complex using plenty of (today outdated) [design patterns](http://java.sun.com/blueprints/corej2eepatterns/). When I wrote my [Java EE 5 book](http://www.eyrolles.com/Informatique/Livre/java-ee5-9782212120387) I decided to write a Petstore-like application but much simpler. But again, it's out-dated today.
 
-So what you have here is another Petstore-like application but using [Java EE 6](http://jcp.org/en/jsr/detail?id=316) and all its goodies (CDI, EJB Lite, REST interface). The goals of this sample is to :
+So what you have here is another Petstore-like application but using [Java EE 6](http://jcp.org/en/jsr/detail?id=316) and all its goodies (CDI, EJB Lite, REST interface). It is based on the Petstore I developped for my [Java EE 5 book](http://www.eyrolles.com/Informatique/Livre/java-ee-5-9782212126587) (sorry, it's written in French). I've updated it to be more Java EE 6, ask some friends to contribute, and here we are. The goals of this sample is to :
 
 * use Java EE 6 and just Java EE 6 : no external framework or dependency, we even use the `java.util.logging` API ;o)
 * make it simple : no complex business algorithm, the point is to bring Java EE 6 technologies together to create an eCommerce website
@@ -82,9 +82,17 @@ You can also get a JSON reprensetation as follow :
 
 * `curl -X GET -H "accept: application/json" http://localhost:8080/applicationPetstore/rs/catalog/items`
 
-## JRebel
+## Third Party Tools & Frameworks
+
+### Arquillian
+
+### JRebel
 
 [JRebel](http://zeroturnaround.com/software/jrebel/) is a JVM-plugin that makes it possible for Java developers to instantly see any code change made to an app without redeploying. It is very useful when you develop in a managed environment like application servers. If you need/want to use JRebel, just follow the [manual](http://zeroturnaround.com/software/jrebel/documentation/). To generate a rebel.xml file just do  `mvn jrebel:generate`
+
+### Sonar
+
+[Sonar](http://www.sonarsource.org/) provides applications and services for continuous inspection of code quality. I use it to have some metrics on the Yaps Petstore (and produce, hopefully, not too ugly code). You can also use it to get some metrics. [Download](http://www.sonarsource.org/downloads/), [install](http://docs.codehaus.org/display/SONAR/Installing+Sonar) and run Sonar with `mvn -Pjacoco,glassfish install sonar:sonar` (or `mvn -Pjacoco,jboss7 install sonar:sonar` to run on TomEE). For integration testing we need to use [JaCoCo](http://www.eclemma.org/jacoco/).
 
 ## Developpers
 
@@ -97,6 +105,11 @@ Some people who worked on this project :
 ## Creative Commons
 
 I use [Silk Icons](http://www.famfamfam.com/lab/icons/silk/) which are in Creative Commons
+
+## Bugs & Workaround
+
+* [If you can't deploy with Intellij IDEA`and JDK 7 on JBoss](http://youtrack.jetbrains.com/issue/IDEA-826) : `-Djava.nio.channels.spi.SelectorProvider=sun.nio.ch.KQueueSelectorProvider
+
 
 <div class="footer">
     <span class="footerTitle"><span class="uc">a</span>ntonio <span class="uc">g</span>oncalves</span>

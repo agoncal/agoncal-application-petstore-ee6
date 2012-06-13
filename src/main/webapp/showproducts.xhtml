@@ -8,11 +8,11 @@
                 template="WEB-INF/layouts/template.xhtml">
 
     <f:metadata>
-        <f:viewParam name="categoryName" value="#{catalogController.categoryName}"/>
-        <f:event type="preRenderComponent" listener="#{catalogController.doFindProducts}"/>
+        <f:viewParam name="categoryName" value="#{catalogController.categoryName}" required="true"/>
+        <f:event type="preRenderView" listener="#{catalogController.doFindProducts()}"/>
     </f:metadata>
 
-    <ui:define name="title">#{catalogController.categoryName} #{i18n.products}</ui:define>
+    <ui:define name="title">#{i18n.showProducts_productForCategory} : #{catalogController.categoryName}</ui:define>
 
     <ui:define name="body">
 

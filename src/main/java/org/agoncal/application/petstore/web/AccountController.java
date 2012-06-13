@@ -2,6 +2,7 @@ package org.agoncal.application.petstore.web;
 
 import org.agoncal.application.petstore.domain.Customer;
 import org.agoncal.application.petstore.service.CustomerService;
+import org.agoncal.application.petstore.util.Loggable;
 
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.SessionScoped;
@@ -9,6 +10,7 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.security.auth.login.LoginContext;
+import javax.security.auth.login.LoginException;
 import java.io.Serializable;
 
 /**
@@ -19,6 +21,8 @@ import java.io.Serializable;
 
 @Named
 @SessionScoped
+@Loggable
+@CatchException
 public class AccountController extends Controller implements Serializable {
 
     // ======================================
@@ -46,33 +50,26 @@ public class AccountController extends Controller implements Serializable {
     // =              Public Methods        =
     // ======================================
 
-    public String doLogin() {
-
-        String navigateTo = null;
-        try {
-            loginContext.login();
-            loggedinCustomer = customerService.findCustomer(credentials.getLogin());
-            navigateTo = "main.faces";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return navigateTo;
+    public String doLogin() throws LoginException {
+        loginContext.login();
+        loggedinCustomer = customerService.findCustomer(credentials.getLogin());
+        return "main.faces";
     }
 
     public String doCreateNewAccount() {
 
         // Login has to be unique
         if (customerService.doesLoginAlreadyExist(credentials.getLogin())) {
-            addWarningMessage("Login already exists");
+            addWarningMessage("login_exists");
             return null;
         }
 
         // Id and password must be filled
         if ("".equals(credentials.getLogin()) || "".equals(credentials.getPassword()) || "".equals(credentials.getPassword2())) {
-            addWarningMessage("Id and passwords have to be filled");
+            addWarningMessage("id_pwd_filled");
             return null;
         } else if (!credentials.getPassword().equals(credentials.getPassword2())) {
-            addWarningMessage("Both entered passwords have to be the same");
+            addWarningMessage("both_pwd_same");
             return null;
         }
 
@@ -85,17 +82,8 @@ public class AccountController extends Controller implements Serializable {
     }
 
     public String doCreateCustomer() {
-        String navigateTo = null;
-
-        try {
-            // Creates the customer
-            loggedinCustomer = customerService.createCustomer(loggedinCustomer);
-
-            navigateTo = "main.faces";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return navigateTo;
+        loggedinCustomer = customerService.createCustomer(loggedinCustomer);
+        return "main.faces";
     }
 
 
@@ -108,24 +96,14 @@ public class AccountController extends Controller implements Serializable {
     }
 
     public String doUpdateAccount() {
-
-        String navigateTo = null;
-
-        try {
-            // Updates the customer
-            loggedinCustomer = customerService.updateCustomer(loggedinCustomer);
-            addInformationMessage("Your account has been updated");
-            navigateTo = "account.updated";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return navigateTo;
+        loggedinCustomer = customerService.updateCustomer(loggedinCustomer);
+        addInformationMessage("account_updated");
+        return null;
     }
 
     public boolean isLoggedIn() {
         return loggedinCustomer != null;
     }
-
 
     public Customer getLoggedinCustomer() {
         return loggedinCustomer;

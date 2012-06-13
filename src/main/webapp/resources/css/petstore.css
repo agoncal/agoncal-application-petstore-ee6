@@ -1,7 +1,7 @@
 /*START SNIPPET: layout2CHF_css*/
 html, body, div, dd, dt, dl, img, ul, ol, li, p, h1, h2, h3, h4, h5, form, td {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -41,8 +41,8 @@ body {
 #header {
     text-align: center;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     display: block;
     width: 100%;
     height: 100px;
@@ -51,24 +51,9 @@ body {
     color: #fff;
 }
 
-#header #logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.droplineMenu {
-    border: 1px solid #003366;
-    height: 30px;
-}
-
-.menuTab {
-    border: none;
-}
-
 #left {
     position: absolute;
-    left: 0px;
+    left: 0;
     top: 130px;
     bottom: 35px;
     width: 150px;
@@ -80,8 +65,8 @@ body {
 /* hack IE6 */
 * html #left {
     height: 100%;
-    top: 0px;
-    bottom: 0px;
+    top: 0;
+    bottom: 0;
     border-top: 130px solid #fff;
     border-bottom: 35px solid #fff;
     color: #000;
@@ -94,16 +79,16 @@ body {
     top: 150px;
     bottom: 35px;
     left: 170px;
-    right: 0px;
+    right: 0;
     text-align: left;
 }
 
 /* hack IE6 */
 * html #content {
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     height: 100%;
     max-height: 100%;
     width: 100%;
@@ -117,8 +102,8 @@ body {
 
 #footer {
     position: absolute;
-    bottom: 0px;
-    left: 0px;
+    bottom: 0;
+    left: 0;
     display: block;
     width: 100%;
     height: 55px;

@@ -3,6 +3,7 @@ package org.agoncal.application.petstore.web;
 import org.agoncal.application.petstore.domain.*;
 import org.agoncal.application.petstore.service.CatalogService;
 import org.agoncal.application.petstore.service.OrderService;
+import org.agoncal.application.petstore.util.Loggable;
 
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
@@ -21,6 +22,8 @@ import java.util.List;
 
 @Named
 @ConversationScoped
+@Loggable
+@CatchException
 public class ShoppingCartController extends Controller implements Serializable {
 
     // ======================================
@@ -28,21 +31,17 @@ public class ShoppingCartController extends Controller implements Serializable {
     // ======================================
 
     @Inject
+    @LoggedIn
+    private Instance<Customer> loggedInCustomer;
+    @Inject
     private CatalogService catalogBean;
     @Inject
     private OrderService orderBean;
-
     @Inject
     private Conversation conversation;
 
     private List<CartItem> cartItems;
-
     private CreditCard creditCard = new CreditCard();
-
-    @Inject
-    @LoggedIn
-    private Instance<Customer> customerInstances;
-
     private Order order;
 
     // ======================================
@@ -50,52 +49,40 @@ public class ShoppingCartController extends Controller implements Serializable {
     // ======================================
 
     public String addItemToCart() {
-        String navigateTo = null;
-        try {
-            Item item = catalogBean.findItem(getParamId("itemId"));
+        Item item = catalogBean.findItem(getParamId("itemId"));
 
-            // Start conversation
-            if (conversation.isTransient()) {
-                cartItems = new ArrayList<CartItem>();
-                conversation.begin();
-            }
-
-            boolean itemFound = false;
-            for (CartItem cartItem : cartItems) {
-                // If item already exists in the shopping cart we just change the quantity
-                if (cartItem.getItem().equals(item)) {
-                    cartItem.setQuantity(cartItem.getQuantity() + 1);
-                    itemFound = true;
-                }
-            }
-            if (!itemFound)
-                // Otherwise it's added to the shopping cart
-                cartItems.add(new CartItem(item, 1));
-
-            navigateTo = "showcart.faces";
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Start conversation
+        if (conversation.isTransient()) {
+            cartItems = new ArrayList<CartItem>();
+            conversation.begin();
         }
-        return navigateTo;
+
+        boolean itemFound = false;
+        for (CartItem cartItem : cartItems) {
+            // If item already exists in the shopping cart we just change the quantity
+            if (cartItem.getItem().equals(item)) {
+                cartItem.setQuantity(cartItem.getQuantity() + 1);
+                itemFound = true;
+            }
+        }
+        if (!itemFound)
+            // Otherwise it's added to the shopping cart
+            cartItems.add(new CartItem(item, 1));
+
+        return "showcart.faces";
     }
 
     public String removeItemFromCart() {
-        String navigateTo = null;
+        Item item = catalogBean.findItem(getParamId("itemId"));
 
-        try {
-            Item item = catalogBean.findItem(getParamId("itemId"));
-
-            for (CartItem cartItem : cartItems) {
-                if (cartItem.getItem().equals(item)) {
-                    cartItems.remove(cartItem);
-                    return null;
-                }
+        for (CartItem cartItem : cartItems) {
+            if (cartItem.getItem().equals(item)) {
+                cartItems.remove(cartItem);
+                return null;
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        return navigateTo;
+
+        return null;
     }
 
     public String updateQuantity() {
@@ -107,22 +94,15 @@ public class ShoppingCartController extends Controller implements Serializable {
     }
 
     public String confirmOrder() {
-        String navigateTo = null;
+        order = orderBean.createOrder(getCustomer(), creditCard, getCartItems());
+        cartItems.clear();
 
-        try {
-            order = orderBean.createOrder(getCustomer(), creditCard, getCartItems());
-            cartItems.clear();
-
-            // Stop conversation
-            if (!conversation.isTransient()) {
-                conversation.end();
-            }
-
-            navigateTo = "orderconfirmed.faces";
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Stop conversation
+        if (!conversation.isTransient()) {
+            conversation.end();
         }
-        return navigateTo;
+
+        return "orderconfirmed.faces";
     }
 
     public List<CartItem> getCartItems() {
@@ -153,7 +133,7 @@ public class ShoppingCartController extends Controller implements Serializable {
     // ======================================
 
     public Customer getCustomer() {
-        return customerInstances.get();
+        return loggedInCustomer.get();
     }
 
 

@@ -1,6 +1,5 @@
 package org.agoncal.application.petstore.web;
 
-import org.agoncal.application.petstore.domain.Category;
 import org.agoncal.application.petstore.domain.Item;
 import org.agoncal.application.petstore.domain.Product;
 import org.agoncal.application.petstore.service.CatalogService;
@@ -19,9 +18,10 @@ import java.util.List;
  */
 
 @Named
-//@RequestScoped
-@Loggable
+//@RequestScoped TODO should be request scoped
 @SessionScoped
+@Loggable
+@CatchException
 public class CatalogController extends Controller implements Serializable {
 
     // ======================================
@@ -36,7 +36,6 @@ public class CatalogController extends Controller implements Serializable {
     private Long itemId;
 
     private String keyword;
-    private Category category;
     private Product product;
     private Item item;
     private List<Product> products;
@@ -47,66 +46,29 @@ public class CatalogController extends Controller implements Serializable {
     // ======================================
 
     public String doFindProducts() {
-        String navigateTo = null;
-        try {
-
-            category = catalogService.findCategory(categoryName);
-            products = category.getProducts();
-            navigateTo = "showproducts.faces";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return navigateTo;
+        products = catalogService.findProducts(categoryName);
+        return "showproducts.faces";
     }
 
     public String doFindItems() {
-        String navigateTo = null;
-
-        try {
-            product = catalogService.findProduct(productId);
-            items = product.getItems();
-            navigateTo = "showitems.faces";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return navigateTo;
+        product = catalogService.findProduct(productId);
+        items = catalogService.findItems(productId);
+        return "showitems.faces";
     }
 
     public String doFindItem() {
-        String navigateTo = null;
-
-        try {
-            item = catalogService.findItem(getParamId("itemId"));
-            navigateTo = "showitem.faces";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return navigateTo;
+        item = catalogService.findItem(itemId);
+        return "showitem.faces";
     }
 
     public String doSearch() {
-        String navigateTo = null;
-
-        try {
-            items = catalogService.searchItems(keyword);
-            navigateTo = "searchresult.faces";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return navigateTo;
+        items = catalogService.searchItems(keyword);
+        return "searchresult.faces?keyword=" + keyword + "&faces-redirect=true";
     }
 
     // ======================================
     // =         Getters & setters          =
     // ======================================
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     public Product getProduct() {
         return product;
@@ -123,7 +85,6 @@ public class CatalogController extends Controller implements Serializable {
     public void setItem(Item item) {
         this.item = item;
     }
-
 
     public List<Product> getProducts() {
         return products;

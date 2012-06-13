@@ -16,14 +16,19 @@
         <version.junit>4.10</version.junit>
         <version.mockito>1.9.0</version.mockito>
         <version.arquillian>1.0.1.Final</version.arquillian>
+        <version.arquillian.glassfish.embedded>1.0.0.CR3</version.arquillian.glassfish.embedded>
+        <version.arquillian.jboss.managed>7.1.1.Final</version.arquillian.jboss.managed>
+        <version.arquillian.jacoco>1.0.0.Alpha3</version.arquillian.jacoco>
+        <version.jacoco>0.5.7.201204190339</version.jacoco>
+        <!--TomEE-->
         <version.openejb>4.1.0-SNAPSHOT</version.openejb>
         <version.openejb.javaee-api>6.0-4</version.openejb.javaee-api>
         <version.tomee>1.1.0-SNAPSHOT</version.tomee>
         <version.myfaces>2.1.7</version.myfaces>
-        <version.arquillian.glassfish.embedded>1.0.0.CR3</version.arquillian.glassfish.embedded>
-        <version.arquillian.jboss.managed>7.1.1.Final</version.arquillian.jboss.managed>
+        <!--GlassFish-->
         <version.glassfish>3.1.2-b20</version.glassfish>
         <version.maven.embedded.glassfish.plugin>3.1.1</version.maven.embedded.glassfish.plugin>
+        <!--Maven Plugins & co-->
         <version.maven.war.plugin>2.2</version.maven.war.plugin>
         <version.maven.compiler.plugin>2.4</version.maven.compiler.plugin>
         <version.maven.surefire.plugin>2.12</version.maven.surefire.plugin>
@@ -82,7 +87,7 @@
                    <plugin>
                        <groupId>org.jacoco</groupId>
                        <artifactId>jacoco-maven-plugin</artifactId>
-                       <version>0.5.7.201204190339</version>
+                       <version>${version.jacoco}</version>
                        <executions>
                             <execution>
                                 <phase>pre-integration-test</phase>
@@ -105,10 +110,6 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <properties>
-                <jdbc.datasource.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.datasource.driver>
-                <jdbc.url>jdbc:derby:memory:applicationPetstoreDB;create=true;user=app;password=app</jdbc.url>
-            </properties>
             <dependencies>
                 <!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 6... -->
                 <dependency>
@@ -147,10 +148,6 @@
 
         <profile>
             <id>jbossas7-managed</id>
-            <properties>
-                <jdbc.datasource.driver>org.h2.jdbcx.JdbcDataSource</jdbc.datasource.driver>
-                <jdbc.url>jdbc:h2:~/applicationPetstoreDB;AUTO_SERVER=TRUE</jdbc.url>
-            </properties>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -197,10 +194,6 @@
 
         <profile>
             <id>jbossas7-remote</id>
-            <properties>
-                <jdbc.datasource.driver>org.h2.jdbcx.JdbcDataSource</jdbc.datasource.driver>
-                <jdbc.url>jdbc:h2:~/applicationPetstoreDB;AUTO_SERVER=TRUE</jdbc.url>
-            </properties>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -241,10 +234,6 @@
 
         <profile>
             <id>tomee</id>
-            <properties>
-                <jdbc.datasource.driver>org.hsqldb.jdbcDriver</jdbc.datasource.driver>
-                <jdbc.url>jdbc:hsqldb:mem:applicationPetstoreDB</jdbc.url>
-            </properties>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -293,13 +282,6 @@
 
     <build>
         <finalName>applicationPetstore</finalName>
-
-        <resources>
-            <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
 
         <plugins>
             <plugin>
@@ -363,48 +345,60 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>apache-snapshot</id>
-            <url>https://repository.apache.org/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>jboss-public-repository-group</id>
-            <name>JBoss Public Maven Repository Group</name>
-            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>java.net-public-repository-group</id>
-            <name>Java.Net Public Maven Repository Group</name>
-            <url>https://maven.java.net/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>java.net-staging-repository-group</id>
-            <name>Java.Net Staging Maven Repository Group</name>
-            <url>https://maven.java.net/content/groups/staging</url>
-        </repository>
-        <repository>
-            <id>java.net-releases-repository-group</id>
-            <name>Java.Net Releases Maven Repository Group</name>
-            <url>https://maven.java.net/content/repositories/releases</url>
-        </repository>
-        <repository>
-            <id>java.net-snapshots-repository-group</id>
-            <name>Java.Net Snapshots Maven Repository Group</name>
-            <url>https://maven.java.net/content/repositories/snapshots</url>
-        </repository>
-    </repositories>
+    <!--<repositories>-->
+        <!--<repository>-->
+        <!-- for jacoco -->
+        <!--<id>sonar</id>-->
+        <!--<name>Sonar</name>-->
+        <!--<url>http://repository.sonarsource.org/content/repositories/sonar</url>-->
+        <!--<releases>-->
+            <!--<enabled>true</enabled>-->
+        <!--</releases>-->
+        <!--<snapshots>-->
+            <!--<enabled>false</enabled>-->
+        <!--</snapshots>-->
+    <!--</repository>-->
+    <!--<repository>-->
+            <!--<id>apache-snapshot</id>-->
+            <!--<url>https://repository.apache.org/content/repositories/snapshots/</url>-->
+        <!--</repository>-->
+        <!--<repository>-->
+            <!--<id>jboss-public-repository-group</id>-->
+            <!--<name>JBoss Public Maven Repository Group</name>-->
+            <!--<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>-->
+            <!--<layout>default</layout>-->
+        <!--</repository>-->
+        <!--<repository>-->
+            <!--<id>java.net-public-repository-group</id>-->
+            <!--<name>Java.Net Public Maven Repository Group</name>-->
+            <!--<url>https://maven.java.net/content/groups/public</url>-->
+        <!--</repository>-->
+        <!--<repository>-->
+            <!--<id>java.net-staging-repository-group</id>-->
+            <!--<name>Java.Net Staging Maven Repository Group</name>-->
+            <!--<url>https://maven.java.net/content/groups/staging</url>-->
+        <!--</repository>-->
+        <!--<repository>-->
+            <!--<id>java.net-releases-repository-group</id>-->
+            <!--<name>Java.Net Releases Maven Repository Group</name>-->
+            <!--<url>https://maven.java.net/content/repositories/releases</url>-->
+        <!--</repository>-->
+        <!--<repository>-->
+            <!--<id>java.net-snapshots-repository-group</id>-->
+            <!--<name>Java.Net Snapshots Maven Repository Group</name>-->
+            <!--<url>https://maven.java.net/content/repositories/snapshots</url>-->
+        <!--</repository>-->
+    <!--</repositories>-->
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>apache-snapshot</id>
-            <url>https://repository.apache.org/content/repositories/snapshots/</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>maven-central</id>
-            <url>http://repo1.maven.org/maven2/</url>
-        </pluginRepository>
-    </pluginRepositories>
+    <!--<pluginRepositories>-->
+        <!--<pluginRepository>-->
+            <!--<id>apache-snapshot</id>-->
+            <!--<url>https://repository.apache.org/content/repositories/snapshots/</url>-->
+        <!--</pluginRepository>-->
+        <!--<pluginRepository>-->
+            <!--<id>maven-central</id>-->
+            <!--<url>http://repo1.maven.org/maven2/</url>-->
+        <!--</pluginRepository>-->
+    <!--</pluginRepositories>-->
 
 </project>

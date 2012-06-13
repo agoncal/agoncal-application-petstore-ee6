@@ -19,12 +19,12 @@ import javax.inject.Inject;
 @Singleton
 @Startup
 @Loggable
-@DataSourceDefinition (
-        className="org.apache.derby.jdbc.EmbeddedDataSource",
-        name="java:global/jdbc/applicationPetstoreDS",
-        user="app",
-        password="app",
-        databaseName="applicationPetstoreDB",
+@DataSourceDefinition(
+        className = "org.apache.derby.jdbc.EmbeddedDataSource",
+        name = "java:global/jdbc/applicationPetstoreDS",
+        user = "app",
+        password = "app",
+        databaseName = "applicationPetstoreDB",
         properties = {"connectionAttributes=;create=true"}
 )
 public class DBPopulator {

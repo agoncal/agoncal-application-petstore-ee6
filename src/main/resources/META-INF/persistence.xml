@@ -9,18 +9,19 @@
         <properties>
             <!-- Properties for EclipseLink -->
             <property name="eclipselink.target-database" value="DERBY"/>
-            <property name="eclipselink.ddl-generation" value="create-tables"/>
+            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
             <property name="eclipselink.logging.level" value="INFO"/>
 
             <!-- Properties for Hibernate -->
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect"/>
 
             <!-- openjpa -->
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
-            <property name="openjpa.Log" value="SQL=TRACE" />
-            <property name="openjpa.ConnectionFactoryProperties" value="printParameters=true" />
+            <property name="openjpa.Log" value="SQL=TRACE"/>
+            <property name="openjpa.ConnectionFactoryProperties" value="printParameters=true"/>
         </properties>
     </persistence-unit>
 </persistence>
