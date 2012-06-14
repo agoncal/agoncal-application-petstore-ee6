@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Antonio Goncalves
@@ -66,7 +67,11 @@ public class CustomerService implements Serializable {
         TypedQuery<Customer> typedQuery = em.createNamedQuery(Customer.FIND_BY_LOGIN, Customer.class);
         typedQuery.setParameter("login", login);
 
+        try {
         return typedQuery.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     public Customer findCustomer(final String login, final String password) {
@@ -81,6 +86,11 @@ public class CustomerService implements Serializable {
         typedQuery.setParameter("password", password);
 
         return typedQuery.getSingleResult();
+    }
+
+    public List<Customer> findAllCustomers() {
+        TypedQuery<Customer> typedQuery = em.createNamedQuery(Customer.FIND_ALL, Customer.class);
+        return typedQuery.getResultList();
     }
 
     public Customer updateCustomer(final Customer customer) {

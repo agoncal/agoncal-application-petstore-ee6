@@ -28,10 +28,6 @@ public class CatalogServiceIT extends AbstractServiceIT {
     private CatalogService catalogService;
 
     // ======================================
-    // =          Lifecycle Methods         =
-    // ======================================
-
-    // ======================================
     // =              Unit tests            =
     // ======================================
 
