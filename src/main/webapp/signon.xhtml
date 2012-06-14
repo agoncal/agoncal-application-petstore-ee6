@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="layout.xhtml">
+
+    <ui:define name="title">#{i18n.signon_signIn}</ui:define>
+
+    <ui:define name="body">
+
+        <h2>#{i18n.signon_signIn}</h2>
+
+        <h3>#{i18n.signon_returningCustomer}</h3>
+
+        <h:form>
+            <p:panel id="panel" header="#{i18n.yes}" footer="user/user - admin/admin">
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{i18n.customer_login}" for="login"/>
+                    <p:inputText id="login" value="#{credentials.login}" maxlength="10" size="12"/>
+                    <h:outputLabel value="#{i18n.customer_password}" for="password"/>
+                    <p:password id="password" value="#{credentials.password}" maxlength="10" size="12"/>
+                    <p:commandButton value="#{i18n.signon_signIn}" action="#{accountController.doLogin}" type="submit"/>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+
+        <h:form>
+            <p:panel id="panel" header="#{i18n.signon_signup}">
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{i18n.customer_login}" for="newlogin"/>
+                    <p:inputText id="newlogin" value="#{credentials.login}" maxlength="10" size="12"/>
+                    <h:outputLabel value="#{i18n.customer_password}" for="newpassword"/>
+                    <p:password id="newpassword" value="#{credentials.password}" maxlength="10" size="12"/>
+                    <h:outputLabel value="#{i18n.customer_password} (#{i18n.again}):" for="newpasswordagain"/>
+                    <p:password id="newpasswordagain" value="#{credentials.password2}" maxlength="10" size="12"/>
+                    <p:commandButton value="#{i18n.signon_new}" action="#{accountController.doCreateNewAccount}" type="submit"/>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

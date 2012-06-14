@@ -1,0 +1,146 @@
+/*START SNIPPET: layout2CHF_css*/
+html, body, div, dd, dt, dl, img, ul, ol, li, p, h1, h2, h3, h4, h5, form, td {
+    margin: 0px;
+    padding: 0px;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+img {
+    border: 0;
+}
+
+html {
+    height: 100%;
+    max-height: 100%;
+    border: 0;
+    background: #fff;
+}
+
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    border: 0;
+}
+
+#logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.droplineMenu {
+    border: 1px solid #003366;
+    height: 30px;
+}
+
+.menuTab {
+    border: none;
+}
+
+table.pet {
+    width: 80%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+table.pet td {
+    padding: 3px;
+    text-align: left;
+}
+
+table.order {
+    width: 60%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+table.order td {
+    padding: 3px;
+    text-align: left;
+}
+
+.menu-user {
+    background: transparent url("#{resource['icons/user.png']}") no-repeat center left;
+    padding: 5px 5px 5px 20px;
+}
+
+.menu-login {
+    background: transparent url("#{resource['icons/door_in.png']}") no-repeat center left;
+    padding: 5px 5px 5px 20px;
+}
+
+.menu-logout {
+    background: transparent url("#{resource['icons/door_out.png']}") no-repeat center left;
+    padding: 5px 5px 5px 20px;
+}
+
+.menu-cart {
+    background: transparent url("#{resource['icons/cart.png']}") no-repeat center left;
+    padding: 5px 5px 5px 20px;
+}
+
+.menu-fr {
+    background: transparent url("#{resource['icons/fr.gif']}") no-repeat center left;
+    padding: 5px 5px 5px 20px;
+}
+
+.menu-en {
+    background: transparent url("#{resource['icons/us.gif']}") no-repeat center left;
+    padding: 5px 5px 5px 20px;
+}
+
+.add-to-cart {
+    background: transparent url("#{resource['icons/cart_add.png']}") no-repeat center left;
+    padding: 5px 5px 5px 20px;
+}
+
+.remove-from-cart {
+    background: transparent url("#{resource['icons/cart_delete.png']}") no-repeat center left;
+    padding: 5px 5px 5px 20px;
+}
+
+.checkout-cart {
+    background: transparent url("#{resource['icons/cart_go.png']}") no-repeat center left;
+    padding: 5px 5px 5px 20px;
+}
+
+.user-edit {
+    background: transparent url("#{resource['icons/user_edit.png']}") no-repeat center left;
+    padding: 5px 5px 5px 20px;
+}
+
+.arrow_refresh {
+    background: transparent url("#{resource['icons/arrow_refresh.png']}") no-repeat center left;
+    padding: 5px 5px 5px 20px;
+}
+
+.msg_error {
+    font-size: 20px;
+    color: red;
+}
+
+.msg_warn {
+    font-size: 20px;
+    color: orange;
+}
+
+.msg_info {
+    font-size: 20px;
+    color: green;
+}

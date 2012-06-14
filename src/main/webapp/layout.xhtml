@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/icon_dog.gif"/>
+    <title>
+        <ui:insert name="title">Default title</ui:insert>
+    </title>
+    <h:outputStylesheet name="css/petstore.css"/>
+
+</h:head>
+<h:body>
+    <p:layout fullPage="true">
+
+        <!-- HEADER -->
+        <p:layoutUnit position="north" size="130" header="Top" resizable="true" closable="true" collapsible="true">
+            <ui:include src="/WEB-INF/incl/header.xhtml"/>
+        </p:layoutUnit>
+
+        <!-- NAVIGATION -->
+        <p:layoutUnit position="west" header="Left" resizable="true" closable="true" collapsible="true" size="140">
+            <ui:include src="/WEB-INF/incl/navigation.xhtml"/>
+        </p:layoutUnit>
+
+        <!-- BODY -->
+        <p:layoutUnit position="center">
+            <h:panelGrid columns="1" style="width: 100%">
+                <h:messages errorClass="msg_error" warnClass="msg_warn" infoClass="msg_info"/>
+                <ui:insert name="body">Default content</ui:insert>
+            </h:panelGrid>
+        </p:layoutUnit>
+
+        <!-- FOOTER -->
+        <p:layoutUnit position="south" header="Bottom" resizable="true" closable="true" collapsible="true">
+            <ui:include src="/WEB-INF/incl/footer.xhtml"/>
+        </p:layoutUnit>
+    </p:layout>
+
+</h:body>
+</html>

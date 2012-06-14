@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="layout.xhtml">
+
+    <ui:define name="title">#{i18n.orderConfirmed_yourOrderIsComplete}</ui:define>
+
+    <ui:define name="body">
+
+        <h2>#{i18n.orderConfirmed_yourOrderIsComplete}</h2>
+
+        <h:form>
+
+            <div class="zoneEditor">
+                <h3>#{i18n.confirmorder_personalInformation}</h3>
+
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{i18n.customer_firstname} :"/>
+                    <h:inputText value="#{shoppingCartController.customer.firstname}" readonly="true"/>
+
+                    <h:outputText value="#{i18n.customer_lastname} :"/>
+                    <h:inputText value="#{shoppingCartController.customer.lastname}" readonly="true"/>
+
+                    <h:outputText value="#{i18n.customer_email} :"/>
+                    <h:inputText value="#{shoppingCartController.customer.email}" readonly="true"/>
+
+                </h:panelGrid>
+            </div>
+
+            <div class="zoneEditor">
+                <h3>#{i18n.confirmorder_deliveryAddress}</h3>
+
+                <h:panelGrid columns="2">
+                    <h:outputText value="*#{i18n.address_street1} :"/>
+                    <h:inputText value="#{shoppingCartController.customer.homeAddress.street1}"/>
+
+                    <h:outputText value="#{i18n.address_street2} :"/>
+                    <h:inputText value="#{shoppingCartController.customer.homeAddress.street2}"/>
+
+                    <h:outputText value="*#{i18n.address_city} :"/>
+                    <h:inputText value="#{shoppingCartController.customer.homeAddress.city}"/>
+
+                    <h:outputText value="#{i18n.address_state} :"/>
+                    <h:inputText value="#{shoppingCartController.customer.homeAddress.state}"/>
+
+                    <h:outputText value="*#{i18n.address_zipcode} :"/>
+                    <h:inputText value="#{shoppingCartController.customer.homeAddress.zipcode}"/>
+
+                    <h:outputText value="*#{i18n.address_country} :"/>
+                    <h:inputText value="#{shoppingCartController.customer.homeAddress.country}"/>
+
+                </h:panelGrid>
+            </div>
+
+            <div class="zoneEditor">
+                <h3>#{i18n.creditCard}</h3>
+
+                <h:panelGrid columns="2">
+                    <h:outputText value="*#{i18n.creditCard_creditCardNumber} :"/>
+                    <h:inputText value="#{shoppingCartController.creditCard.creditCardNumber}"/>
+
+                    <h:outputText value="*#{i18n.creditCard_creditCardType} :"/>
+                    <h:selectOneMenu value="#{shoppingCartController.creditCard.creditCardType}">
+                        <f:selectItems value="#{shoppingCartController.creditCardTypes}"/>
+                    </h:selectOneMenu>
+
+                    <h:outputText value="*#{i18n.creditCard_creditCardExpDate} (MM/YY):"/>
+                    <h:inputText value="#{shoppingCartController.creditCard.creditCardExpDate}"/>
+                </h:panelGrid>
+            </div>
+
+            <div class="zoneButton">
+                <h:commandButton value="Submit" action="#{shoppingCartController.confirmOrder}" type="submit"/>
+            </div>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
