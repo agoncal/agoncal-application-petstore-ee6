@@ -29,7 +29,7 @@ public class LoginContextProducer {
     public LoginContext produceLoginContext(@ConfigProperty("loginConfigFile") String loginConfigFileName,
                                             @ConfigProperty("loginModuleName") String loginModuleName) throws LoginException {
 
-        System.setProperty("java.security.auth.login.config", LoginContextProducer.class.getResource(loginConfigFileName).getFile());
+        System.setProperty("java.security.auth.login.config", new File(LoginContextProducer.class.getResource(loginConfigFileName).toURI()).getPath());
 
         return new LoginContext(loginModuleName, callbackHandler);
     }
