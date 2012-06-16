@@ -14,6 +14,9 @@ import java.util.List;
 @Entity
 @Table(name = "t_order")
 @XmlRootElement
+@NamedQueries({
+        @NamedQuery(name = Order.FIND_ALL, query = "SELECT o FROM Order o")
+})
 public class Order {
 
     // ======================================
@@ -38,6 +41,12 @@ public class Order {
     private Address deliveryAddress;
     @Embedded
     private CreditCard creditCard = new CreditCard();
+
+    // ======================================
+    // =             Constants              =
+    // ======================================
+
+    public static final String FIND_ALL = "Order.findAll";
 
     // ======================================
     // =            Constructors            =

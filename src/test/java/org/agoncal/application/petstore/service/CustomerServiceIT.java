@@ -14,7 +14,6 @@ import static org.junit.Assert.assertNull;
  * @author Antonio Goncalves
  *         http://www.antoniogoncalves.org
  */
-//@Ignore
 @RunWith(Arquillian.class)
 public class CustomerServiceIT extends AbstractServiceIT {
 

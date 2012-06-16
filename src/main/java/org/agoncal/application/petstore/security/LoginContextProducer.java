@@ -6,6 +6,8 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
+import java.io.File;
+import java.net.URISyntaxException;
 
 /**
  * @author blep
@@ -27,7 +29,7 @@ public class LoginContextProducer {
 
     @Produces
     public LoginContext produceLoginContext(@ConfigProperty("loginConfigFile") String loginConfigFileName,
-                                            @ConfigProperty("loginModuleName") String loginModuleName) throws LoginException {
+                                            @ConfigProperty("loginModuleName") String loginModuleName) throws LoginException, URISyntaxException {
 
         System.setProperty("java.security.auth.login.config", new File(LoginContextProducer.class.getResource(loginConfigFileName).toURI()).getPath());
 

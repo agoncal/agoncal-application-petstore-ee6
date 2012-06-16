@@ -7,6 +7,7 @@ import org.agoncal.application.petstore.util.Loggable;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,5 +54,24 @@ public class OrderService implements Serializable {
         em.persist(order);
 
         return order;
+    }
+
+    public Order findOrder(Long orderId) {
+        if (orderId == null)
+            throw new ValidationException("Invalid order id");
+
+        return em.find(Order.class, orderId);
+    }
+
+    public List<Order> findAllOrders() {
+        TypedQuery<Order> typedQuery = em.createNamedQuery(Order.FIND_ALL, Order.class);
+        return typedQuery.getResultList();
+    }
+
+    public void removeOrder(Order order) {
+        if (order == null)
+            throw new ValidationException("Order object is null");
+
+        em.remove(em.merge(order));
     }
 }

@@ -106,7 +106,7 @@
         </profile>
     
         <profile>
-            <id>glassfish-embedded</id>
+            <id>glassfish3</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -147,7 +147,7 @@
         </profile>
 
         <profile>
-            <id>jbossas7-managed</id>
+            <id>jbossas7</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -191,49 +191,8 @@
             </build>
         </profile>
 
-
         <profile>
-            <id>jbossas7-remote</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>javax</groupId>
-                    <artifactId>javaee-api</artifactId>
-                    <version>${version.javaee}</version>
-                    <scope>provided</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.as</groupId>
-                    <artifactId>jboss-as-arquillian-container-remote</artifactId>
-                    <version>${version.arquillian.jboss.managed}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${version.maven.failsafe.plugin}</version>
-                        <configuration>
-                            <argLine>${it.failsafe.argLine}</argLine>
-                        </configuration>            
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>tomee</id>
+            <id>tomee1</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -345,60 +304,53 @@
         </plugins>
     </build>
 
-    <!--<repositories>-->
-        <!--<repository>-->
-        <!-- for jacoco -->
-        <!--<id>sonar</id>-->
-        <!--<name>Sonar</name>-->
-        <!--<url>http://repository.sonarsource.org/content/repositories/sonar</url>-->
-        <!--<releases>-->
-            <!--<enabled>true</enabled>-->
-        <!--</releases>-->
-        <!--<snapshots>-->
-            <!--<enabled>false</enabled>-->
-        <!--</snapshots>-->
-    <!--</repository>-->
-    <!--<repository>-->
-            <!--<id>apache-snapshot</id>-->
-            <!--<url>https://repository.apache.org/content/repositories/snapshots/</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>jboss-public-repository-group</id>-->
-            <!--<name>JBoss Public Maven Repository Group</name>-->
-            <!--<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>-->
-            <!--<layout>default</layout>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>java.net-public-repository-group</id>-->
-            <!--<name>Java.Net Public Maven Repository Group</name>-->
-            <!--<url>https://maven.java.net/content/groups/public</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>java.net-staging-repository-group</id>-->
-            <!--<name>Java.Net Staging Maven Repository Group</name>-->
-            <!--<url>https://maven.java.net/content/groups/staging</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>java.net-releases-repository-group</id>-->
-            <!--<name>Java.Net Releases Maven Repository Group</name>-->
-            <!--<url>https://maven.java.net/content/repositories/releases</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>java.net-snapshots-repository-group</id>-->
-            <!--<name>Java.Net Snapshots Maven Repository Group</name>-->
-            <!--<url>https://maven.java.net/content/repositories/snapshots</url>-->
-        <!--</repository>-->
-    <!--</repositories>-->
+    <repositories>
+        <repository>
+            <id>sonar</id>
+            <name>Sonar</name>
+            <url>http://repository.sonarsource.org/content/repositories/sonar</url>
+        </repository>
+        <repository>
+            <id>apache-snapshot</id>
+            <url>https://repository.apache.org/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Maven Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>java.net-public-repository-group</id>
+            <name>Java.Net Public Maven Repository Group</name>
+            <url>https://maven.java.net/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>java.net-staging-repository-group</id>
+            <name>Java.Net Staging Maven Repository Group</name>
+            <url>https://maven.java.net/content/groups/staging</url>
+        </repository>
+        <repository>
+            <id>java.net-releases-repository-group</id>
+            <name>Java.Net Releases Maven Repository Group</name>
+            <url>https://maven.java.net/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>java.net-snapshots-repository-group</id>
+            <name>Java.Net Snapshots Maven Repository Group</name>
+            <url>https://maven.java.net/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
 
-    <!--<pluginRepositories>-->
-        <!--<pluginRepository>-->
-            <!--<id>apache-snapshot</id>-->
-            <!--<url>https://repository.apache.org/content/repositories/snapshots/</url>-->
-        <!--</pluginRepository>-->
-        <!--<pluginRepository>-->
-            <!--<id>maven-central</id>-->
-            <!--<url>http://repo1.maven.org/maven2/</url>-->
-        <!--</pluginRepository>-->
-    <!--</pluginRepositories>-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>apache-snapshot</id>
+            <url>https://repository.apache.org/content/repositories/snapshots/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>maven-central</id>
+            <url>http://repo1.maven.org/maven2/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>
