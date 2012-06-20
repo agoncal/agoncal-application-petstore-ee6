@@ -92,7 +92,7 @@ You can also get a JSON reprensetation as follow :
 
 ### Sonar
 
-[Sonar](http://www.sonarsource.org/) provides applications and services for continuous inspection of code quality. I use it to have some metrics on the Yaps Petstore (and produce, hopefully, not too ugly code). You can also use it to get some metrics. [Download](http://www.sonarsource.org/downloads/), [install](http://docs.codehaus.org/display/SONAR/Installing+Sonar) and run Sonar with `mvn -Pjacoco,glassfish install sonar:sonar` (or `mvn -Pjacoco,jboss7 install sonar:sonar` to run on TomEE). For integration testing we need to use [JaCoCo](http://www.eclemma.org/jacoco/).
+[Sonar](http://www.sonarsource.org/) provides applications and services for continuous inspection of code quality. I use it to have some metrics on the Yaps Petstore (and produce, hopefully, not too ugly code). You can also use it to get some metrics. [Download](http://www.sonarsource.org/downloads/), [install](http://docs.codehaus.org/display/SONAR/Installing+Sonar) and run Sonar with `mvn -Pjacoco,glassfish install sonar:sonar` (or `mvn -Pjacoco,jboss7 install sonar:sonar` to run on JBoss 7). For integration testing we need to use [JaCoCo](http://www.eclemma.org/jacoco/).
 
 ## Developpers
 
