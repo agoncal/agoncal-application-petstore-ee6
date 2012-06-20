@@ -18,7 +18,6 @@
         <version.arquillian>1.0.1.Final</version.arquillian>
         <version.arquillian.glassfish.embedded>1.0.0.CR3</version.arquillian.glassfish.embedded>
         <version.arquillian.jboss.managed>7.1.1.Final</version.arquillian.jboss.managed>
-        <version.arquillian.jacoco>1.0.0.Alpha3</version.arquillian.jacoco>
         <version.jacoco>0.5.7.201204190339</version.jacoco>
         <!--TomEE-->
         <version.openejb>4.1.0-SNAPSHOT</version.openejb>
