@@ -22,7 +22,7 @@
                       rendered="#{catalogController.products == null || catalogController.products.size() == 0}"/>
 
         <h:dataTable value="#{catalogController.products}" var="oneProduct"
-                     rendered="#{catalogController.products.size() > 0}" styleClass="pet">
+                     rendered="#{catalogController.products.size() > 0}" styleClass="table">
             <h:column>
                 <h:link outcome="showitems" includeViewParams="true" value="#{oneProduct.name}">
                     <f:param name="productId" value="#{oneProduct.id}"/>

@@ -51,6 +51,15 @@ public class AccountController extends Controller implements Serializable {
     // ======================================
 
     public String doLogin() throws LoginException {
+        if ("".equals(credentials.getLogin())) {
+            addWarningMessage("id_filled");
+            return null;
+        }
+        if ("".equals(credentials.getPassword())) {
+            addWarningMessage("pwd_filled");
+            return null;
+        }
+
         loginContext.login();
         loggedinCustomer = customerService.findCustomer(credentials.getLogin());
         return "main.faces";
@@ -87,18 +96,20 @@ public class AccountController extends Controller implements Serializable {
     }
 
 
-    public void doLogout() {
+    public String doLogout() {
         loggedinCustomer = null;
         // Stop conversation
         if (!conversation.isTransient()) {
             conversation.end();
         }
+        addInformationMessage("been_loggedout");
+        return "main.faces";
     }
 
     public String doUpdateAccount() {
         loggedinCustomer = customerService.updateCustomer(loggedinCustomer);
         addInformationMessage("account_updated");
-        return null;
+        return "showaccount.faces";
     }
 
     public boolean isLoggedIn() {

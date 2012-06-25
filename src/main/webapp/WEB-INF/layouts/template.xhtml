@@ -9,39 +9,195 @@
         contentType="text/html"
         encoding="UTF-8">
 
+    <!--HEAD-->
     <h:head>
         <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/icon_dog.gif"/>
         <title>
             <ui:insert name="title">Default title</ui:insert>
         </title>
-        <h:outputStylesheet name="css/petstore.css"/>
+        <h:outputStylesheet name="css/bootstrap-2.0.4.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
 
+            .sidebar-nav {
+                padding: 9px 0;
+            }
+        </style>
+        <!-- Don't move this line up otherwise there is a display bug -->
+        <h:outputStylesheet name="css/bootstrap-responsive-2.0.4.css" rel="stylesheet"/>
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
     </h:head>
+
+    <!--BODY-->
     <h:body>
 
-        <!-- HEADER -->
-        <div id="header">
-            <ui:include src="header.xhtml"/>
+        <!-- Top navigation bar -->
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <div class="nav-collapse">
+                        <h:form>
+                            <h:link class="brand" outcome="main">Yaps Petstore
+                                <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                            </h:link>
+
+                            <ul class="nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages<b
+                                            class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <h:commandLink action="#{localeBean.setLanguage('fr')}" styleClass="menu-fr"
+                                                           immediate="true">
+                                                <f:ajax render="@form"/>
+                                                <h:outputText value=" Français"/>
+                                            </h:commandLink>
+                                        </li>
+                                        <li>
+                                            <h:commandLink action="#{localeBean.setLanguage('en')}" styleClass="menu-en"
+                                                           immediate="true">
+                                                <f:ajax render="@form"/>
+                                                <h:outputText value=" English"/>
+                                            </h:commandLink>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="nav pull-right">
+                                <li>
+                                    <!--<i class="icon-user icon-white"></i>-->
+                                    <h:link outcome="showaccount"
+                                            value="#{i18n.welcome} #{accountController.loggedinCustomer.firstname}"
+                                            rendered="#{accountController.loggedIn}">
+                                        <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                                    </h:link>
+                                </li>
+                                <li>
+                                    <!--<i class="icon-off icon-white"></i>-->
+                                    <h:commandLink action="#{accountController.doLogout}"
+                                                   rendered="#{accountController.loggedIn}">
+                                        <h:outputText value="${i18n.logOut}"/>
+                                    </h:commandLink>
+                                </li>
+                                <li>
+                                    <!--<i class="icon-eye-open icon-white"></i>-->
+                                    <h:link outcome="signon" value="#{i18n.logIn}"
+                                            rendered="#{!accountController.loggedIn}">
+                                        <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                                    </h:link>
+                                </li>
+                                <li>
+                                    <!--<i class="icon-shopping-cart icon-white"></i>-->
+                                    <h:link outcome="showcart" value="#{i18n.shoppingCart}"
+                                            rendered="#{!shoppingCartController.shoppingCartIsEmpty()}">
+                                        <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                                    </h:link>
+                                </li>
+
+                                <div class="navbar-search">
+                                    <h:inputText class="search-query" value="#{catalogController.keyword}"/>
+                                    <h:commandButton action="#{catalogController.doSearch}" value="#{i18n.search}"
+                                                     class="btn"/>
+                                </div>
+                            </ul>
+                        </h:form>
+                    </div>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+        <!-- /.Top navigation bar -->
+
+        <div class="container-fluid">
+
+            <!-- Error messages-->
+            <div class="page-header">
+                <h:messages globalOnly="true" errorClass="alert alert-error" warnClass="alert"
+                            infoClass="alert alert-info"/>&nbsp;
+            </div>
+
+            <div class="row-fluid">
+                <div class="span2 well sidebar-nav">
+                    <ul class="nav nav-list">
+                        <li class="active"><h2><h:link outcome="showproducts" value="Fish">
+                            <f:param name="categoryName" value="Fish"/>
+                            <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                        </h:link></h2>
+                        </li>
+                        <li><h2><h:link outcome="showproducts" value="Dogs">
+                            <f:param name="categoryName" value="Dogs"/>
+                            <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                        </h:link></h2>
+                        </li>
+                        <li><h2><h:link outcome="showproducts" value="Reptiles">
+                            <f:param name="categoryName" value="Reptiles"/>
+                            <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                        </h:link></h2>
+                        </li>
+                        <li><h2><h:link outcome="showproducts" value="Cats">
+                            <f:param name="categoryName" value="Cats"/>
+                            <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                        </h:link></h2>
+                        </li>
+                        <li><h2><h:link outcome="showproducts" value="Birds">
+                            <f:param name="categoryName" value="Birds"/>
+                            <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                        </h:link></h2>
+                        </li>
+                    </ul>
+                    <!--/.well -->
+                </div>
+                <!--/span-->
+
+                <!-- CONTENT -->
+                <div class="span10 well">
+                    <ui:insert name="body">Default content</ui:insert>
+                </div>
+                <!--/.CONTENT -->
+
+            </div>
+            <!--/.fluid-container-->
         </div>
 
-        <!-- NAVIGATION -->
-        <div id="left">
-            <ui:include src="navigation.xhtml"/>
-        </div>
+        <!-- Footer -->
+        <hr/>
+        <footer>
+            <div class="row">
+                <div class="span2 centered-text">
+                    <a href="https://github.com/agoncal/agoncal-application-petstore-ee6">Source code on GitHub</a>
+                    <br/>
+                    <a href="http://www.antoniogoncalves.org">Antonio Goncalves</a>
+                </div>
+                <div class="span8 centered-text">
+                    <h2>Yaps Petstore</h2>
+                </div>
+                <div class="span2 centered-text">
+                    Debug
+                    <br/>
+                    <h:outputText value="Conversation [#{shoppingCartController.conversation.id}]"/>
+                </div>
+            </div>
+        </footer>
 
-        <!-- BODY -->
-        <div id="content">
-            <h:panelGrid columns="1" style="width: 100%">
-                <h:messages globalOnly="true" errorClass="msg_error" warnClass="msg_warn" infoClass="msg_info"/>
-                <ui:insert name="body">Default content</ui:insert>
-            </h:panelGrid>
-        </div>
-
-        <!-- FOOTER -->
-        <div id="footer">
-            <ui:include src="footer.xhtml"/>
-        </div>
-
+        <!-- Le javascript
+       ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <h:outputScript name="js/jquery-1.7.2.min.js"/>
+        <h:outputScript name="js/bootstrap-2.0.4.js"/>
     </h:body>
 </f:view>
 </html>

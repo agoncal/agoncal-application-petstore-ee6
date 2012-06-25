@@ -18,7 +18,7 @@
 
         <!--There are items in the Shopping Cart-->
         <h:form rendered="#{!shoppingCartController.shoppingCartIsEmpty()}">
-            <h:dataTable value="#{shoppingCartController.cartItems}" var="oneItem">
+            <h:dataTable value="#{shoppingCartController.cartItems}" var="oneItem" styleClass="table">
                 <h:column>
                     <h:outputText value="#{oneItem.item.product.name}"/>
                     <br/>

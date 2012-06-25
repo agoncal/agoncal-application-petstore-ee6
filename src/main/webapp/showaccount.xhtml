@@ -15,59 +15,53 @@
 
         <h:form>
 
-            <div>
-                <h3>#{i18n.confirmorder_personalInformation}</h3>
+            <legend>#{i18n.confirmorder_personalInformation}</legend>
+            <h:panelGrid columns="2">
+                <h:outputText value="#{i18n.customer_login} :"/>
+                <h:outputText value="#{accountController.loggedinCustomer.login}"/>
 
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{i18n.customer_login} :"/>
-                    <h:outputText value="#{accountController.loggedinCustomer.login}"/>
+                <h:outputText value="#{i18n.customer_firstname} :"/>
+                <h:outputText value="#{accountController.loggedinCustomer.firstname}"/>
 
-                    <h:outputText value="#{i18n.customer_firstname} :"/>
-                    <h:outputText value="#{accountController.loggedinCustomer.firstname}"/>
+                <h:outputText value="#{i18n.customer_lastname} :"/>
+                <h:outputText value="#{accountController.loggedinCustomer.lastname}"/>
 
-                    <h:outputText value="#{i18n.customer_lastname} :"/>
-                    <h:outputText value="#{accountController.loggedinCustomer.lastname}"/>
+                <h:outputText value="#{i18n.customer_email} :"/>
+                <h:outputText value="#{accountController.loggedinCustomer.email}"/>
 
-                    <h:outputText value="#{i18n.customer_email} :"/>
-                    <h:outputText value="#{accountController.loggedinCustomer.email}"/>
+                <h:outputText value="#{i18n.customer_telephone} :"/>
+                <h:outputText value="#{accountController.loggedinCustomer.telephone}"/>
 
-                    <h:outputText value="#{i18n.customer_telephone} :"/>
-                    <h:outputText value="#{accountController.loggedinCustomer.telephone}"/>
+                <h:outputText value="#{i18n.customer_dateOfBirth} (dd.MM.yyyy):"/>
+                <h:outputText value="#{accountController.loggedinCustomer.dateOfBirth}">
+                    <f:convertDateTime pattern="dd.MM.yyyy"/>
+                </h:outputText>
 
-                    <h:outputText value="#{i18n.customer_dateOfBirth} (dd.MM.yyyy):"/>
-                    <h:outputText value="#{accountController.loggedinCustomer.dateOfBirth}">
-                        <f:convertDateTime pattern="dd.MM.yyyy"/>
-                    </h:outputText>
+                <h:outputText value="#{i18n.customer_age} :"/>
+                <h:outputText value="#{accountController.loggedinCustomer.age}"/>
 
-                    <h:outputText value="#{i18n.customer_age} :"/>
-                    <h:outputText value="#{accountController.loggedinCustomer.age}"/>
+            </h:panelGrid>
 
-                </h:panelGrid>
-            </div>
+            <legend>#{i18n.address}</legend>
+            <h:panelGrid columns="2">
+                <h:outputText value="#{i18n.address_street1} :"/>
+                <h:outputText value="#{accountController.loggedinCustomer.homeAddress.street1}"/>
 
-            <div>
-                <h3>#{i18n.address}</h3>
+                <h:outputText value="#{i18n.address_street2} :"/>
+                <h:outputText value="#{accountController.loggedinCustomer.homeAddress.street2}"/>
 
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{i18n.address_street1} :"/>
-                    <h:outputText value="#{accountController.loggedinCustomer.homeAddress.street1}"/>
+                <h:outputText value="#{i18n.address_city} :"/>
+                <h:outputText value="#{accountController.loggedinCustomer.homeAddress.city}"/>
 
-                    <h:outputText value="#{i18n.address_street2} :"/>
-                    <h:outputText value="#{accountController.loggedinCustomer.homeAddress.street2}"/>
+                <h:outputText value="#{i18n.address_state} :"/>
+                <h:outputText value="#{accountController.loggedinCustomer.homeAddress.state}"/>
 
-                    <h:outputText value="#{i18n.address_city} :"/>
-                    <h:outputText value="#{accountController.loggedinCustomer.homeAddress.city}"/>
+                <h:outputText value="#{i18n.address_zipcode} :"/>
+                <h:outputText value="#{accountController.loggedinCustomer.homeAddress.zipcode}"/>
 
-                    <h:outputText value="#{i18n.address_state} :"/>
-                    <h:outputText value="#{accountController.loggedinCustomer.homeAddress.state}"/>
-
-                    <h:outputText value="#{i18n.address_zipcode} :"/>
-                    <h:outputText value="#{accountController.loggedinCustomer.homeAddress.zipcode}"/>
-
-                    <h:outputText value="#{i18n.address_country} :"/>
-                    <h:outputText value="#{accountController.loggedinCustomer.homeAddress.country}"/>
-                </h:panelGrid>
-            </div>
+                <h:outputText value="#{i18n.address_country} :"/>
+                <h:outputText value="#{accountController.loggedinCustomer.homeAddress.country}"/>
+            </h:panelGrid>
 
             <div style="margin-top: 20px">
                 <h:commandLink action="updateaccount" styleClass="user-edit">

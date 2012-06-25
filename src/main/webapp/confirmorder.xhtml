@@ -16,8 +16,7 @@
         <h:form>
 
             <div>
-                <h3>#{i18n.confirmorder_personalInformation}</h3>
-
+                <legend>#{i18n.confirmorder_personalInformation}</legend>
                 <h:panelGrid columns="3">
                     <h:outputText value="#{i18n.customer_firstname} :"/>
                     <h:inputText id="firstname" value="#{shoppingCartController.customer.firstname}" readonly="true"/>
@@ -35,8 +34,7 @@
             </div>
 
             <div>
-                <h3>#{i18n.confirmorder_deliveryAddress}</h3>
-
+                <legend>#{i18n.confirmorder_deliveryAddress}</legend>
                 <h:panelGrid columns="3">
                     <h:outputText value="*#{i18n.address_street1} :"/>
                     <h:inputText id="street1" value="#{shoppingCartController.customer.homeAddress.street1}"/>
@@ -66,8 +64,7 @@
             </div>
 
             <div>
-                <h3>#{i18n.creditCard}</h3>
-
+                <legend>#{i18n.creditCard}</legend>
                 <h:panelGrid columns="3">
                     <h:outputText value="*#{i18n.creditCard_creditCardNumber} :"/>
                     <h:inputText id="creditCardNumber" value="#{shoppingCartController.creditCard.creditCardNumber}"/>

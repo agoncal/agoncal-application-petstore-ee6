@@ -33,7 +33,8 @@ public class OrderServiceIT extends AbstractServiceIT {
     // =              Unit tests            =
     // ======================================
 
-    @Test @Ignore("TODO Not finished")
+    @Test
+    @Ignore("TODO Not finished")
     public void shouldCRUDanOrder() {
 
         // Finds all the objects

@@ -12,10 +12,8 @@
 
         <h2>#{i18n.orderConfirmed_yourOrderIsComplete}</h2>
 
-        <h3>#{i18n.orderConfirmed_yourOrderIdIs} : #{shoppingCartController.order.id}</h3>
-
         <h:form>
-            <h:dataTable value="#{shoppingCartController.order.orderLines}" var="orderLine" styleClass="order">
+            <h:dataTable value="#{shoppingCartController.order.orderLines}" var="orderLine" styleClass="table">
                 <h:column>
                     <strong><h:outputText value="#{orderLine.item.product.name}"/></strong>
                     <br/>
@@ -41,6 +39,8 @@
                 Total $ #{shoppingCartController.order.total}
             </div>
         </h:form>
+
+        <legend>#{i18n.orderConfirmed_yourOrderIdIs} : #{shoppingCartController.order.id}</legend>
 
         <p style="margin-top: 15px">#{i18n.orderConfirmed_msg1}</p>
 

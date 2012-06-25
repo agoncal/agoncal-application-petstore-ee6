@@ -68,7 +68,7 @@ public class CustomerService implements Serializable {
         typedQuery.setParameter("login", login);
 
         try {
-        return typedQuery.getSingleResult();
+            return typedQuery.getSingleResult();
         } catch (NoResultException e) {
             return null;
         }

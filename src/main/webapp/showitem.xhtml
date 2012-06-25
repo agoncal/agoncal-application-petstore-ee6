@@ -21,7 +21,7 @@
         <h:outputText value="#{i18n.noItemsFound}" rendered="#{catalogController.item == null}"/>
 
         <h:form>
-            <h:panelGrid columns="3" rendered="#{catalogController.item != null}">
+            <h:panelGrid columns="3" rendered="#{catalogController.item != null}" styleClass="table">
                 <h:column>
                     <h:graphicImage url="resources/images/#{catalogController.item.imagePath}"
                                     alt="#{catalogController.item.name}"/>
