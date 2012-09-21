@@ -33,7 +33,7 @@ The only external framework that we use is [Arquillian](http://arquillian.org/).
 
 Being Maven centric, you can compile and package it with `mvn clean compile`, `mvn clean package` or `mvn clean install`. The `package` and `install` phase will automatically trigger the unit tests. Once you have your war file, you can deploy it.
 
- GlassFish is the default deployment application server, so you don't need to use any Maven profile. But if you wanted you could do `mvn -Pglassifh-embedded clean install`.
+GlassFish is the default deployment application server, so you don't need to use any Maven profile. But if you wanted you could do `mvn -Pglassifh-embedded clean install`.
 
 ### Test with Glassfish embedded
 
@@ -84,6 +84,14 @@ You can also get a JSON reprensetation as follow :
 
 ## Third Party Tools & Frameworks
 
+### Twitter Bootstrap
+
+When, like me, you have no web designer skills at all and your web pages look ugly, you use [Twitter Bootstrap](http://twitter.github.com/bootstrap/) ;o)
+
+## Silk Icons
+
+I use [Silk Icons](http://www.famfamfam.com/lab/icons/silk/) which are in Creative Commons
+
 ### Arquillian
 
 ### JRebel
@@ -102,14 +110,13 @@ Some people who worked on this project :
 * [Brice Leporini](https://twitter.com/#!/blep)
 * Hervé Le Morvan
 
-## Creative Commons
-
-I use [Silk Icons](http://www.famfamfam.com/lab/icons/silk/) which are in Creative Commons
-
 ## Bugs & Workaround
 
 * [If you can't deploy with Intellij IDEA`and JDK 7 on JBoss](http://youtrack.jetbrains.com/issue/IDEA-826) : `-Djava.nio.channels.spi.SelectorProvider=sun.nio.ch.KQueueSelectorProvider
 
+## Licensing
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
 
 <div class="footer">
     <span class="footerTitle"><span class="uc">a</span>ntonio <span class="uc">g</span>oncalves</span>

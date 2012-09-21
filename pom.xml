@@ -12,10 +12,10 @@
     <properties>
         <version.java>1.6</version.java>
         <version.javaee>6.0</version.javaee>
-        <version.derby>10.8.2.2</version.derby>
+        <version.derby>10.9.1.0</version.derby>
         <version.junit>4.10</version.junit>
         <version.mockito>1.9.0</version.mockito>
-        <version.arquillian>1.0.1.Final</version.arquillian>
+        <version.arquillian>1.0.2.Final</version.arquillian>
         <version.arquillian.glassfish.embedded>1.0.0.CR3</version.arquillian.glassfish.embedded>
         <version.arquillian.jboss.managed>7.1.1.Final</version.arquillian.jboss.managed>
         <version.jacoco>0.5.7.201204190339</version.jacoco>
@@ -25,12 +25,12 @@
         <version.tomee>1.1.0-SNAPSHOT</version.tomee>
         <version.myfaces>2.1.7</version.myfaces>
         <!--GlassFish-->
-        <version.glassfish>3.1.2-b20</version.glassfish>
+        <version.glassfish>3.1.2.2</version.glassfish>
         <version.maven.embedded.glassfish.plugin>3.1.1</version.maven.embedded.glassfish.plugin>
         <!--Maven Plugins & co-->
         <version.maven.war.plugin>2.2</version.maven.war.plugin>
-        <version.maven.compiler.plugin>2.4</version.maven.compiler.plugin>
-        <version.maven.surefire.plugin>2.12</version.maven.surefire.plugin>
+        <version.maven.compiler.plugin>2.5.1</version.maven.compiler.plugin>
+        <version.maven.surefire.plugin>2.12.2</version.maven.surefire.plugin>
         <version.maven.failsafe.plugin>2.12</version.maven.failsafe.plugin>
         <version.jrebel>1.1.3</version.jrebel>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

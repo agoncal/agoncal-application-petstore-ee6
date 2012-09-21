@@ -2,26 +2,6 @@
     text-align: center
 }
 
-.menu-user {
-    background: transparent url("#{resource['icons/user.png']}") no-repeat center left;
-    padding: 5px 5px 5px 20px;
-}
-
-.menu-login {
-    background: transparent url("#{resource['icons/door_in.png']}") no-repeat center left;
-    padding: 5px 5px 5px 20px;
-}
-
-.menu-logout {
-    background: transparent url("#{resource['icons/door_out.png']}") no-repeat center left;
-    padding: 5px 5px 5px 20px;
-}
-
-.menu-cart {
-    background: transparent url("#{resource['icons/cart.png']}") no-repeat center left;
-    padding: 5px 5px 5px 20px;
-}
-
 .menu-fr {
     background: transparent url("#{resource['icons/fr.gif']}") no-repeat center left;
     padding: 5px 5px 5px 20px;
