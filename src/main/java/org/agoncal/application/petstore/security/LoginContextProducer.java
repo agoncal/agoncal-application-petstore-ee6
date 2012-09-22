@@ -33,7 +33,12 @@ public class LoginContextProducer {
 
         System.setProperty("java.security.auth.login.config", new File(LoginContextProducer.class.getResource(loginConfigFileName).toURI()).getPath());
 
-        return new LoginContext(loginModuleName, callbackHandler);
+        try {
+            return new LoginContext(loginModuleName, callbackHandler);
+        } catch (Exception e) {
+            System.out.println("ouch!!!");
+            return null;
+        }
     }
 
 }
