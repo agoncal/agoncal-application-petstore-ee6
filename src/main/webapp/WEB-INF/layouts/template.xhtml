@@ -15,8 +15,8 @@
         <title>
             <ui:insert name="title">Default title</ui:insert>
         </title>
-        <h:outputStylesheet name="css/bootstrap-2.0.4.css"/>
-        <h:outputStylesheet name="css/style.css"/>
+        <h:outputStylesheet  library="webjars/bootstrap/2.3.2/css"  name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="style.css"/>
         <style type="text/css">
             body {
                 padding-top: 60px;
@@ -28,7 +28,7 @@
             }
         </style>
         <!-- Don't move this line up otherwise there is a display bug -->
-        <h:outputStylesheet name="css/bootstrap-responsive-2.0.4.css" rel="stylesheet"/>
+        <h:outputStylesheet library="webjars/bootstrap/2.3.2/css" name="bootstrap-responsive.css" rel="stylesheet"/>
 
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -196,8 +196,8 @@
         <!-- Le javascript
        ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <h:outputScript name="js/jquery-1.7.2.min.js"/>
-        <h:outputScript name="js/bootstrap-2.0.4.js"/>
+        <h:outputScript name="webjars/jquery/1.9.1/jquery.min.js"/>
+        <h:outputScript library="webjars/bootstrap/2.3.2/js" name="bootstrap.min.js"/>
     </h:body>
 </f:view>
 </html>
