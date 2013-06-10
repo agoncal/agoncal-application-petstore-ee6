@@ -1,5 +1,9 @@
-.centered-text {
-    text-align: center
+body {
+    padding-top: 50px;
+}
+
+.nav-list {
+    font-size: 25px;
 }
 
 .menu-fr {
