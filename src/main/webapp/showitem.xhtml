@@ -16,36 +16,26 @@
 
     <ui:define name="body">
 
-        <h2>#{catalogController.item.product.name} - #{catalogController.item.name}</h2>
-
         <h:outputText value="#{i18n.noItemsFound}" rendered="#{catalogController.item == null}"/>
 
-        <h:form>
-            <h:panelGrid columns="3" rendered="#{catalogController.item != null}" styleClass="table">
-                <h:column>
-                    <h:graphicImage url="resources/images/#{catalogController.item.imagePath}"
-                                    alt="#{catalogController.item.name}"/>
-                </h:column>
+        <h:form rendered="#{catalogController.item != null}">
+            <div class="media">
+                <h:graphicImage url="resources/images/#{catalogController.item.imagePath}"
+                                alt="#{catalogController.item.name}" class="pull-left"/>
 
-                <h:column>
-                    <h:outputText value="#{i18n.item_unitCost}:"/>
-                    <h:outputText value="#{catalogController.item.unitCost}"/> $
-                </h:column>
-
-                <h:column>
-                    <h:commandLink action="#{shoppingCartController.addItemToCart}" styleClass="add-to-cart"
-                                   rendered="#{accountController.loggedIn}">
+                <div class="media-body">
+                    <h3 class="media-heading">#{catalogController.item.product.name} - #{catalogController.item.name}</h3>
+                    <h4 class="media-heading">#{i18n.item_unitCost}: $#{catalogController.item.unitCost}</h4>
+                    <h:outputText value="#{catalogController.item.description}"/>
+                </div>
+                <div class="pull-right">
+                    <h:commandLink action="#{shoppingCartController.addItemToCart}" styleClass="add-to-cart">
+                        <!--rendered="#{accountController.loggedIn}">-->
                         <h:outputText value="#{i18n.searchResult_addToCart}"/>
                         <f:param name="itemId" value="#{catalogController.item.id}"/>
                     </h:commandLink>
-                </h:column>
-            </h:panelGrid>
-
-            <h:panelGrid columns="1" rendered="#{catalogController.item != null}">
-                <h:column>
-                    <h:outputText value="#{catalogController.item.description}"/>
-                </h:column>
-            </h:panelGrid>
+                </div>
+            </div>
         </h:form>
 
     </ui:define>
