@@ -29,8 +29,8 @@
                     <h:outputText value="#{catalogController.item.description}"/>
                 </div>
                 <div class="pull-right">
-                    <h:commandLink action="#{shoppingCartController.addItemToCart}" styleClass="add-to-cart">
-                        <!--rendered="#{accountController.loggedIn}">-->
+                    <h:commandLink action="#{shoppingCartController.addItemToCart}" styleClass="add-to-cart"
+                        rendered="#{accountController.loggedIn}">
                         <h:outputText value="#{i18n.searchResult_addToCart}"/>
                         <f:param name="itemId" value="#{catalogController.item.id}"/>
                     </h:commandLink>
