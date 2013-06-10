@@ -24,13 +24,17 @@
         <h:dataTable value="#{catalogController.products}" var="oneProduct"
                      rendered="#{catalogController.products.size() > 0}" styleClass="table">
             <h:column>
-                <h:link outcome="showitems" includeViewParams="true" value="#{oneProduct.name}">
-                    <f:param name="productId" value="#{oneProduct.id}"/>
-                    <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
-                </h:link>
-            </h:column>
-            <h:column>
-                <h:outputText value="#{oneProduct.description}"/>
+                <div class="media">
+                    <div class="media-body">
+                        <h3 class="media-heading">
+                            <h:link outcome="showitems" includeViewParams="true" value="#{oneProduct.name}">
+                                <f:param name="productId" value="#{oneProduct.id}"/>
+                                <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                            </h:link>
+                        </h3>
+                        <h:outputText value="#{oneProduct.description}"/>
+                    </div>
+                </div>
             </h:column>
         </h:dataTable>
 
