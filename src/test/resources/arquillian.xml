@@ -5,13 +5,6 @@
         http://jboss.org/schema/arquillian
         http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
 
-    <engine>
-        <property name="deploymentExportPath">target/arquillian</property>
-    </engine>
-
-    <container qualifier="glassfish-embedded" default="true">
-    </container>
-
     <container qualifier="tomee">
         <configuration>
             <property name="properties">
@@ -19,10 +12,17 @@
                 # java.security.auth.login.config=${project.basedir}/src/main/resources/petstore-test.login
 
                 ## using hsqldb
-                #global/jdbc/applicationPetstoreDS.Username = sa
-                #global/jdbc/applicationPetstoreDS.Password =
-                #global/jdbc/applicationPetstoreDS.JdbcDriver = org.hsqldb.jdbcDriver
-                #global/jdbc/applicationPetstoreDS.JdbcUrl = jdbc:hsqldb:mem:petstore
+                # global/jdbc/applicationPetstoreDS.Username = sa
+                # global/jdbc/applicationPetstoreDS.Password =
+                # global/jdbc/applicationPetstoreDS.JdbcDriver = org.hsqldb.jdbcDriver
+                # global/jdbc/applicationPetstoreDS.JdbcUrl = jdbc:hsqldb:mem:petstore
+                # global/jdbc/applicationPetstoreDS.JtaManaged = true
+
+                # global/jdbc/applicationPetstoreDSNonJta.Username = sa
+                # global/jdbc/applicationPetstoreDSNonJta.Password =
+                # global/jdbc/applicationPetstoreDSNonJta.JdbcDriver = org.hsqldb.jdbcDriver
+                # global/jdbc/applicationPetstoreDSNonJta.JdbcUrl = jdbc:hsqldb:mem:petstore
+                # global/jdbc/applicationPetstoreDSNonJta.JtaManaged = false
             </property>
         </configuration>
     </container>

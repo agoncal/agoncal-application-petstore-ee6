@@ -6,6 +6,7 @@ import org.agoncal.application.petstore.util.Loggable;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.sql.DataSourceDefinition;
+import javax.annotation.sql.DataSourceDefinitions;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
@@ -19,14 +20,25 @@ import javax.inject.Inject;
 @Singleton
 @Startup
 @Loggable
-@DataSourceDefinition (
+@DataSourceDefinitions({
+    @DataSourceDefinition (
         className="org.apache.derby.jdbc.EmbeddedDataSource",
         name="java:global/jdbc/applicationPetstoreDS",
         user="app",
         password="app",
         databaseName="applicationPetstoreDB",
         properties = {"connectionAttributes=;create=true"}
-)
+    ),
+    @DataSourceDefinition (
+        transactional = false,
+        className="org.apache.derby.jdbc.EmbeddedDataSource",
+        name="java:global/jdbc/applicationPetstoreDSNonJta",
+        user="app",
+        password="app",
+        databaseName="applicationPetstoreDB",
+        properties = {"connectionAttributes=;create=true"}
+    )
+})
 public class DBPopulator {
 
     // ======================================
