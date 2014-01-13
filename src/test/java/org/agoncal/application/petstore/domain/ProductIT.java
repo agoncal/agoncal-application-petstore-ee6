@@ -34,10 +34,12 @@ public class ProductIT {
     // ======================================
 
     @Deployment
-    public static JavaArchive jar() {
-        return ShrinkWrap.create(JavaArchive.class)
+    public static JavaArchive createDeployment() {
+        JavaArchive archive = ShrinkWrap.create(JavaArchive.class)
                 .addClasses(Category.class, Product.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+        System.out.println(archive.toString(true));
+        return archive;
     }
 
     // ======================================

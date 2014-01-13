@@ -20,7 +20,7 @@
         <version.junit>4.11</version.junit>
         <version.mockito>1.9.5</version.mockito>
         <version.arquillian>1.1.2.Final</version.arquillian>
-        <version.arquillian.glassfish.embedded>1.0.0.CR3</version.arquillian.glassfish.embedded>
+        <version.arquillian.glassfish.embedded>1.0.0.CR4</version.arquillian.glassfish.embedded>
         <version.arquillian.jboss.managed>7.1.1.Final</version.arquillian.jboss.managed>
         <version.jacoco>0.5.7.201204190339</version.jacoco>
         <!--TomEE-->
@@ -56,17 +56,7 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>${version.bootstrap}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-            <version>${version.jquery}</version>
-        </dependency>
-
+        <!--Test-->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
@@ -85,55 +75,21 @@
             <scope>test</scope>
         </dependency>
 
+        <!--UI-->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>${version.bootstrap}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>${version.jquery}</version>
+        </dependency>
+
     </dependencies>
 
     <profiles>
-    
-        <profile>
-            <id>jacoco</id>
-            <properties>
-                <jacoco.destFile>${project.build.directory}/jacoco.exec</jacoco.destFile>
-                <sonar.jacoco.reportPath>${jacoco.destFile}</sonar.jacoco.reportPath>
-                <it.jacoco.destFile>${project.build.directory}/jacocoit.exec</it.jacoco.destFile>
-                <sonar.jacoco.itReportPath>${it.jacoco.destFile}</sonar.jacoco.itReportPath>
-            </properties>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                   <plugin>
-                       <groupId>org.jacoco</groupId>
-                       <artifactId>jacoco-maven-plugin</artifactId>
-                       <version>${version.jacoco}</version>
-                       <executions>
-                            <execution>
-                                <id>test</id>
-                                <phase>initialize</phase>
-                                <goals>
-                                    <goal>prepare-agent</goal>
-                                </goals>
-                                <configuration>
-                                    <propertyName>surefire.argLine</propertyName>
-                                    <destFile>${jacoco.destFile}</destFile>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>integration-test</id>
-                                <phase>pre-integration-test</phase>
-                                <goals>
-                                    <goal>prepare-agent</goal>
-                                </goals>
-                                <configuration>
-                                    <propertyName>it.surefire.argLine</propertyName>
-                                    <destFile>${it.jacoco.destFile}</destFile>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
     
         <profile>
             <id>glassfish3</id>
@@ -210,6 +166,53 @@
                 </dependency>
             </dependencies>
         </profile>
+
+        <profile>
+            <id>jacoco</id>
+            <properties>
+                <jacoco.destFile>${project.build.directory}/jacoco.exec</jacoco.destFile>
+                <sonar.jacoco.reportPath>${jacoco.destFile}</sonar.jacoco.reportPath>
+                <it.jacoco.destFile>${project.build.directory}/jacocoit.exec</it.jacoco.destFile>
+                <sonar.jacoco.itReportPath>${it.jacoco.destFile}</sonar.jacoco.itReportPath>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${version.jacoco}</version>
+                        <executions>
+                            <execution>
+                                <id>test</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                                <configuration>
+                                    <propertyName>surefire.argLine</propertyName>
+                                    <destFile>${jacoco.destFile}</destFile>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>integration-test</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                                <configuration>
+                                    <propertyName>it.surefire.argLine</propertyName>
+                                    <destFile>${it.jacoco.destFile}</destFile>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
     </profiles>
 
     <build>

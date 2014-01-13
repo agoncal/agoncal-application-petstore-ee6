@@ -38,10 +38,12 @@ public class LoginModuleIT {
 
     @Deployment
     public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class, "test.jar")
+        JavaArchive archive = ShrinkWrap.create(JavaArchive.class)
                 .addClasses(Credentials.class, SimpleCallbackHandler.class, LoggingProducer.class)
                 .addClasses(LoginContextProducer.class, ConfigPropertyProducer.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+        System.out.println(archive.toString(true));
+        return archive;
     }
 
     //@Produces

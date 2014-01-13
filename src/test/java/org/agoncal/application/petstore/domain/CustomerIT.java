@@ -31,10 +31,12 @@ public class CustomerIT {
     // ======================================
 
     @Deployment
-    public static JavaArchive jar() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addClasses(Category.class, Address.class)
+    public static JavaArchive createDeployment() {
+        JavaArchive archive = ShrinkWrap.create(JavaArchive.class)
+                .addClasses(Customer.class, Address.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+        System.out.println(archive.toString(true));
+        return archive;
     }
 
     // ======================================

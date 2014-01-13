@@ -31,10 +31,12 @@ public class OrderIT {
     // ======================================
 
     @Deployment
-    public static JavaArchive jar() {
-        return ShrinkWrap.create(JavaArchive.class)
+    public static JavaArchive createDeployment() {
+        JavaArchive archive = ShrinkWrap.create(JavaArchive.class)
                 .addClasses(Address.class, Customer.class, CreditCard.class, Order.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+        System.out.println(archive.toString(true));
+        return archive;
     }
 
     // ======================================
