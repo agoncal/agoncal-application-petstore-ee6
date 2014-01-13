@@ -1,8 +1,8 @@
 package org.agoncal.application.petstore.domain;
 
+import org.agoncal.application.petstore.constraint.Email;
 import org.agoncal.application.petstore.constraint.Login;
 import org.agoncal.application.petstore.exception.ValidationException;
-import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.Valid;
