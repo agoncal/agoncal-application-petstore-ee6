@@ -36,7 +36,7 @@ public class CategoryIT {
     @Deployment
     public static JavaArchive createDeployment() {
         JavaArchive archive = ShrinkWrap.create(JavaArchive.class)
-                .addClass(Category.class)
+                .addClasses(Category.class, Product.class, Item.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
         System.out.println(archive.toString(true));
         return archive;

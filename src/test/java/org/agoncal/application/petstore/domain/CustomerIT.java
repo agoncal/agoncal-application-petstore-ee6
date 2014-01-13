@@ -1,5 +1,6 @@
 package org.agoncal.application.petstore.domain;
 
+import org.agoncal.application.petstore.exception.ValidationException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -33,7 +34,7 @@ public class CustomerIT {
     @Deployment
     public static JavaArchive createDeployment() {
         JavaArchive archive = ShrinkWrap.create(JavaArchive.class)
-                .addClasses(Customer.class, Address.class)
+                .addClasses(Customer.class, Address.class, ValidationException.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
         System.out.println(archive.toString(true));
         return archive;
