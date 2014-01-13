@@ -34,7 +34,6 @@ public class OrderServiceIT extends AbstractServiceIT {
     // ======================================
 
     @Test
-    @Ignore("TODO Not finished")
     public void shouldCRUDanOrder() {
 
         // Finds all the objects
@@ -44,7 +43,13 @@ public class OrderServiceIT extends AbstractServiceIT {
         Address address = new Address("78 Gnu Rd", "Texas", "666", "WWW");
         Customer customer = new Customer("Richard", "Stallman", "rich", "rich", "rich@gnu.org", address);
         CreditCard creditCard = new CreditCard("1234", CreditCardType.MASTER_CARD, "10/12");
+
+        Category category = new Category("Fish", "Any of numerous cold-blooded aquatic vertebrates characteristically having fins, gills, and a streamlined body");
+        Product product = new Product("Angelfish", "Saltwater fish from Australia", category);
+        Item item = new Item("Large", 10.00f, "fish1.jpg", product, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit ante, malesuada porta condimentum eget, tristique id magna. Donec ac justo velit. Suspendisse potenti. Donec vulputate vulputate molestie. Quisque vitae arcu massa, dictum sodales leo. Sed feugiat elit vitae ante auctor ultrices. Duis auctor consectetur arcu id faucibus. Curabitur gravida.");
+
         List<CartItem> cartItems = new ArrayList<CartItem>();
+        cartItems.add(new CartItem(item, 2));
 
         // Persists the object
         customer = customerService.createCustomer(customer);
