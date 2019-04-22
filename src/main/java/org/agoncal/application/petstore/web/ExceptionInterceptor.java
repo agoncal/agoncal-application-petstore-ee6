@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class ExceptionInterceptor implements Serializable {
 
     @Inject
-    private Logger log;
+    private transient Logger log;
 
     @AroundInvoke
     public Object catchException(InvocationContext ic) throws Exception {
