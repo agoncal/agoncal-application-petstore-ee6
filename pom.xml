@@ -17,7 +17,7 @@
         <version.jquery>1.9.1</version.jquery>
         <!--Test-->
         <version.derby>10.10.1.1</version.derby>
-        <version.junit>4.11</version.junit>
+        <version.junit>4.13.1</version.junit>
         <version.mockito>1.9.5</version.mockito>
         <version.arquillian>1.1.2.Final</version.arquillian>
         <version.arquillian.container.glassfish>1.0.0.CR4</version.arquillian.container.glassfish>
