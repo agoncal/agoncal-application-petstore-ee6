@@ -16,7 +16,7 @@
         <version.bootstrap>2.3.2</version.bootstrap>
         <version.jquery>1.9.1</version.jquery>
         <!--Test-->
-        <version.derby>10.10.1.1</version.derby>
+        <version.derby>10.14.2.0</version.derby>
         <version.junit>4.11</version.junit>
         <version.mockito>1.9.5</version.mockito>
         <version.arquillian>1.1.2.Final</version.arquillian>
